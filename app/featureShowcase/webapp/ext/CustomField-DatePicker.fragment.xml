@@ -1,0 +1,9 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:commons="sap.suite.ui.commons">
+        <DateRangeSelection
+			id="DRS3"
+			showFooter="true"
+            enabled ="{= ${ui>/editMode} === 'Editable'}"
+            from = "{validFrom}"
+            secondDateValue = "{validTo}"
+			/>
+</core:FragmentDefinition>

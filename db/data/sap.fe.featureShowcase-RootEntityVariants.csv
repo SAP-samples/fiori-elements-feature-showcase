@@ -1,0 +1,5 @@
+ID;stringProperty;contact_ID;fieldWithUoM;uom_code;fieldWithPrice;isoCurrency_code;fieldWithCriticality;criticality_code;integerValue;forecastValue;starsValue
+z419b9d9-897e-4e1f-9a7d-6a16e3c8f776;RootEntity Variant 1;d419b9d9-897e-4e1f-9a7d-6a16e3c8f776;2000;length-meter;400;EUR;Neutral;0;20;25;3
+z5d24ecb-8b18-459f-be21-4e7d5727fb56;RootEntity Variant 2;c5d24ecb-8b18-459f-be21-4e7d5727fb56;2100;EA;300;JPY;Negative;1;22;34;1.2
+z0cb1ac9-bc9c-408b-b44d-e2ea1d5c353d;RootEntity Variant 3;10cb1ac9-bc9c-408b-b44d-e2ea1d5c353d;2200;EA;200;SGD;Critical;2;24;38;2.5
+z1541b40-f5a6-4e5c-bb86-b0c0fcbb7bea;RootEntity Variant 4;21541b40-f5a6-4e5c-bb86-b0c0fcbb7bea;700;EA;100;USD;Positive;3;28;42;1.9

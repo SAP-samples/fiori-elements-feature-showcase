@@ -1,0 +1,13 @@
+ID;parent_ID;field;fieldWithPerCent;booleanProperty;criticalityValue_code
+7152266c-d4bd-42d2-85d9-9a770d649c8b;d419b9d9-897e-4e1f-9a7d-6a16e3c8f776;child entity 1;22.2;  true; 0
+b4e967f7-e019-454a-ae84-14791293aad2;d419b9d9-897e-4e1f-9a7d-6a16e3c8f776;child entity 2;50.00; false;1
+e1892cf1-ac4c-40d6-8b97-57bba50f955f;d419b9d9-897e-4e1f-9a7d-6a16e3c8f776;child entity 3;76.9;  true; 2
+b608d22c-e70c-4770-a6d3-3ad1ab43c4ab;c5d24ecb-8b18-459f-be21-4e7d5727fb56;child entity 4;100;   false;3
+ebc24684-f13b-48fa-833d-4ec460b7e1f8;c5d24ecb-8b18-459f-be21-4e7d5727fb56;child entity 5;22.2;  true; 0
+cf19f456-49a2-4f58-bd89-e7ad93a323b8;c5d24ecb-8b18-459f-be21-4e7d5727fb56;child entity 6;50.00; false;1
+c612e49e-f50a-4229-9aa5-de31d37008d5;10cb1ac9-bc9c-408b-b44d-e2ea1d5c353d;child entity 7;76.9;  true; 2
+e60c158b-5ca4-4ba7-a62b-e464e36469f1;10cb1ac9-bc9c-408b-b44d-e2ea1d5c353d;child entity 8;100;   false;3
+967cef12-5ddd-4490-bafd-21d97190bfd5;10cb1ac9-bc9c-408b-b44d-e2ea1d5c353d;child entity 9;22.2;  true; 0
+9bcfca5d-da0f-4bae-a095-53e3370d0366;21541b40-f5a6-4e5c-bb86-b0c0fcbb7bea;child entity 10;50.00; false;1
+7719a480-0728-4b66-9254-b9f97d417042;21541b40-f5a6-4e5c-bb86-b0c0fcbb7bea;child entity 11;76.9;  true; 2
+7719a480-0728-4b66-9254-b9f97d417056;21541b40-f5a6-4e5c-bb86-b0c0fcbb7bea;child entity 12;100;   false;3

@@ -1,0 +1,519 @@
+{
+    "_version": "1.32.0",
+    "sap.app": {
+        "id": "sap.fe.featureShowcase.mainApp",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "1.0.0"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "subTitle": "{{appSubTitle}}",
+        "dataSources": {
+            "mainService": {
+                "uri": "/srv1/",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "4.0"
+                }
+            }
+        },
+        "offline": false,
+        "resources": "resources.json",
+        "sourceTemplate": {
+            "id": "ui5template.fiorielements.v4.lrop",
+            "version": "1.0.0"
+        },
+        "crossNavigation": {
+            "outbounds": {
+                "ExternalNavigation": {
+                    "semanticObject": "FeatureShowcaseChildEntity2",
+                    "action": "manage"
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "resources": {
+            "js": [],
+            "css": []
+        },
+        "dependencies": {
+            "minUI5Version": "1.93.0",
+            "libs": {
+                "sap.ui.core": {},
+                "sap.fe.templates": {}
+            }
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/i18n.properties"
+            },
+            "": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {
+                    "synchronizationMode": "None",
+                    "operationMode": "Server",
+                    "autoExpandSelect": true,
+                    "earlyRequests": true
+                }
+            }
+        },
+        "routing": {
+            "routes": [
+                {
+                    "pattern": ":?query:",
+                    "name": "RootEntityListReport",
+                    "target": "RootEntityListReport"
+                },
+                {
+                    "pattern": "RootEntities({key}):?query:",
+                    "name": "RootEntityObjectReport",
+                    "target": "RootEntityObjectReport"
+                },
+                {
+                    "pattern": "RootEntities({key})/childEntities1({key2}):?query:",
+                    "name": "childEntities1ObjectPage",
+                    "target": "childEntities1ObjectPage"
+                },
+                {
+                    "pattern": "RootEntities({key})/childEntities3({key2}):?query:",
+                    "name": "CustomObjectPage_childEntities3",
+                    "target": "CustomObjectPage_childEntities3"
+                }
+            ],
+            "targets": {
+                "RootEntityListReport": {
+                    "type": "Component",
+                    "id": "RootEntityListReport",
+                    "name": "sap.fe.templates.ListReport",
+                    "options": {
+                        "settings": {
+                            "entitySet": "RootEntities",
+                            "variantManagement": "Page",
+                            "enhanceI18n": "i18n/customI18N.properties",
+                            "navigation": {
+                                "RootEntities": {
+                                    "detail": {
+                                        "route": "RootEntityObjectReport"
+                                    }
+                                }
+                            },
+                            "initialLoad": true,
+                            "views": {
+                                "paths": [
+                                    {
+                                        "key": "tab1",
+                                        "annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#variant1"
+                                    },
+                                    {
+                                        "key": "tab2",
+                                        "annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#variant2"
+                                    },
+                                    {
+                                        "key": "tab3",
+                                        "annotationPath": "com.sap.vocabularies.UI.v1.SelectionPresentationVariant#SelectionPresentationVariant"
+                                    },
+                                    {
+                                        "key": "tab4",
+                                        "entitySet": "RootEntityVariants",
+                                        "annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#variant3"
+                                    }
+                                ],
+                                "showCounts": false
+                            },
+                            "controlConfiguration": {
+                                "@com.sap.vocabularies.UI.v1.LineItem": {
+                                    "actions": {
+                                        "MenuActions": {
+                                            "text": "{i18n>MenuButton}",
+                                            "menu": [
+                                                "DataFieldForAction::service1.changeCriticality",
+                                                "DataFieldForAction::service1.EntityContainer::unboundAction"
+                                            ]
+                                        },
+                                        "CustomActionLR": {
+                                            "press": "sap.fe.featureShowcase.mainApp.ext.CustomActions.messageBox",
+                                            "enabled": "sap.fe.featureShowcase.mainApp.ext.CustomActions.enabledForSingleSelect",
+                                            "visible": true,
+                                            "text": "{i18n>CustomActionLR}"
+                                        }
+                                    },
+                                    "tableSettings": {
+                                        "type": "ResponsiveTable",
+                                        "selectionMode": "Multi",
+                                        "quickVariantSelection": {
+                                            "paths": [
+                                                {
+                                                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#variant1"
+                                                },
+                                                {
+                                                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#variant2"
+                                                }
+                                            ],
+                                            "hideTableTitle": false,
+                                            "showCounts": true
+                                        }
+                                    },
+                                    "columns": {
+                                        "CustomColumn": {
+                                            "key": "customColumnLR",
+                                            "header": "{i18n>validityPeriodLR}",
+                                            "template": "sap.fe.featureShowcase.mainApp.ext.CustomColumn-DateRangeLR",
+                                            "availability": "Default",
+                                            "horizontalAlign": "Center",
+                                            "width": "auto",
+                                            "properties": [
+                                                "validFrom",
+                                                "validTo"
+                                            ],
+                                            "position": {
+                                                "placement": "After",
+                                                "anchor": "DataField::fieldWithCriticality"
+                                            }
+                                        }
+                                    }
+                                },
+                                "@com.sap.vocabularies.UI.v1.SelectionFields": {
+                                    "filterFields": {
+                                        "customFilter": {
+                                            "label": "{i18n>customFilter}",
+                                            "property": "starsValue",
+                                            "template": "sap.fe.featureShowcase.mainApp.ext.CustomFilter-Rating"
+                                        }
+                                    }
+                                }
+                            },
+                            "content": {
+                                "header": {
+                                    "actions": {
+                                        "CustomActionLRGlobal": {
+                                            "press": "sap.fe.featureShowcase.mainApp.ext.CustomActions.messageBox",
+                                            "enabled": "sap.fe.featureShowcase.mainApp.ext.CustomActions.enabled",
+                                            "visible": true,
+                                            "text": "{i18n>CustomActionLRGlobal}"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "RootEntityObjectReport": {
+                    "type": "Component",
+                    "id": "RootEntityObjectReport",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "entitySet": "RootEntities",
+                            "enhanceI18n": "i18n/customI18N.properties",
+                            "sectionLayout": "Tabs",
+                            "variantManagement": "Control",
+                            "showRelatedApps": true,
+                            "navigation": {
+                                "childEntities1": {
+                                    "detail": {
+                                        "route": "childEntities1ObjectPage"
+                                    }
+                                },
+                                "childEntities3": {
+                                    "detail": {
+                                        "route": "CustomObjectPage_childEntities3"
+                                    }
+                                }
+                            },
+                            "controlConfiguration": {
+                                "childEntities1/@com.sap.vocabularies.UI.v1.LineItem": {
+                                    "tableSettings": {
+                                        "type": "GridTable",
+                                        "enablePaste": true,
+                                        "enableFullScreen": true,
+                                        "creationMode": {
+                                            "name": "Inline",
+                                            "createAtEnd": true
+                                        },
+                                        "personalization": {
+                                            "column": true,
+                                            "sort": false,
+                                            "filter": true
+                                        },
+                                        "editableHeaderContent": false,
+                                        "showRelatedApps": true,
+                                        "enableMassEdit": true,
+                                        "quickVariantSelection": {
+                                            "paths": [
+                                                {
+                                                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#variant1"
+                                                },
+                                                {
+                                                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#variant2"
+                                                },
+                                                {
+                                                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#variant3"
+                                                },
+                                                {
+                                                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#variant4"
+                                                }
+                                            ],
+                                            "hideTableTitle": false,
+                                            "showCounts": true
+                                        },
+                                        "enableExport": true
+                                    },
+                                    "columns": {
+                                        "DataField::field": {
+                                            "horizontalAlign": "End"
+                                        },
+                                        "CustomColumnOnObjectPage": {
+                                            "header": "{i18n>customColumn}",
+                                            "template": "sap.fe.featureShowcase.mainApp.ext.CustomColumn-ProcessFlow",
+                                            "availability": "Default",
+                                            "properties": [
+                                                "booleanProperty",
+                                                "field"
+                                            ]
+                                        }
+                                    },
+                                    "actions": {
+                                        "CustomActionOPTableToolbar": {
+                                            "press": "sap.fe.featureShowcase.mainApp.ext.CustomActions.messageBox",
+                                            "enabled": "{= %{deletePossible} === true}",
+                                            "visible": true,
+                                            "text": "{i18n>CustomActionOPTableToolbar}"
+                                        },
+                                        "ToggleSideContent": {
+                                            "press": "sap.fe.featureShowcase.mainApp.ext.SideContent.toggleSideContentItem1",
+                                            "enabled": true,
+                                            "visible": true,
+                                            "text": "{i18n>ToggleSideContent}"
+                                        }
+                                    }
+                                },
+                                "@com.sap.vocabularies.UI.v1.DataPoint#progressIndicator": {
+                                    "navigation": {
+                                        "targetSections": {
+                                            "sectionId": "sap.fe.featureShowcase.mainApp::RootEntityObjectReport--fe::FacetSection::chartDataCollection"
+                                        }
+                                    }
+                                },
+                                "@com.sap.vocabularies.UI.v1.DataPoint#ratingIndicator": {
+                                    "navigation": {
+                                        "targetOutbound": {
+                                            "outbound": "ExternalNavigation"
+                                        }
+                                    }
+                                },
+                                "@com.sap.vocabularies.UI.v1.FieldGroup#timeAndDate": {
+                                    "fields": {
+                                        "CustomContentFieldGroup": {
+                                            "label": "{i18n>validityPeriodOP}",
+                                            "template": "sap.fe.featureShowcase.mainApp.ext.CustomField-DatePicker",
+                                            "position": {
+                                                "placement": "Before",
+                                                "anchor": "DataField::validTo"
+                                            }
+                                        }
+                                    }
+                                },
+                                "@com.sap.vocabularies.UI.v1.FieldGroup#Section": {
+                                    "fields": {
+                                        "DataField::description": {
+                                            "formatOptions": {
+                                                "textLinesDisplay": 1,
+                                                "textLinesEdit": 3
+                                            }
+                                        },
+                                        "DataField::description_customGrowing": {
+                                            "formatOptions": {
+                                                "textMaxLines": "5",
+                                                "textMaxCharactersDisplay": 400,
+                                                "textExpandBehaviorDisplay": "Popover"
+                                            }
+                                        }
+                                    },
+                                    "actions": {
+                                        "CustomActionForm": {
+                                            "press": "sap.fe.featureShowcase.mainApp.ext.CustomActions.messageBox",
+                                            "enabled": true,
+                                            "visible": true,
+                                            "inline": true,
+                                            "text": "{i18n>CustomActionOPFooter}"
+                                        }
+                                    }
+                                },
+                                "@com.sap.vocabularies.UI.v1.FieldGroup#HeaderData": {
+                                    "fields": {
+                                        "CustomFieldHeaderOP": {
+                                            "label": "{i18n>validityPeriodOP}",
+                                            "template": "sap.fe.featureShowcase.mainApp.ext.CustomField-DateRange",
+                                            "position": {
+                                                "placement": "After",
+                                                "anchor": "DataField::stringProperty"
+                                            }
+                                        }
+                                    }
+                                },
+                                "childEntities3/@com.sap.vocabularies.UI.v1.LineItem": {
+                                    "tableSettings": {
+                                        "personalization": {
+                                            "sort": true,
+                                            "filter": true,
+                                            "column": true
+                                        }
+                                    }
+                                }
+                            },
+                            "content": {
+                                "header": {
+                                    "anchorBarVisible": true,
+                                    "visible": true,
+                                    "actions": {
+                                        "CustomActionOPHeader": {
+                                            "press": "sap.fe.featureShowcase.mainApp.ext.CustomActions.messageBox",
+                                            "enabled": "{= ${ui>/editMode} === 'Editable'}",
+                                            "visible": true,
+                                            "text": "{i18n>CustomActionOPHeader}"
+                                        }
+                                    }
+                                },
+                                "body": {
+                                    "sections": {
+                                        "customSectionQualifier": {
+                                            "template": "sap.fe.featureShowcase.mainApp.ext.CustomSection",
+                                            "position": {
+                                                "anchor": "chartDataCollection",
+                                                "placement": "Before"
+                                            },
+                                            "title": "{i18n>customSection}",
+                                            "actions" : {
+                                                "CustomActionSectionForm" : {
+                                                    "press": "sap.fe.featureShowcase.mainApp.ext.CustomActions.messageBox",
+                                                    "enabled": "{= ${ui>/editMode} !== 'Editable'}",
+                                                    "visible" : true,
+                                                    "text": "{i18n>CustomActionSection}"
+                                                },
+                                                "ToggleSideContent" : {
+                                                    "press": "sap.fe.featureShowcase.mainApp.ext.SideContent.toggleSideContent",
+                                                    "enabled": true,
+                                                    "visible" : true,
+                                                    "text": "{i18n>ToggleSideContent}"
+                                                }
+                                            },
+                                            "sideContent": {
+                                                "template": "sap.fe.featureShowcase.mainApp.ext.SideContent",
+                                                "equalSplit":true
+                                            }
+                                        },
+                                        "collectionFacetSection": {
+                                            "subSections": {
+												"customSubSectionQualifier": {
+													"template": "sap.fe.featureShowcase.mainApp.ext.CustomSubSection",
+													"title": "{i18n>customSubSection}",
+                                                    "visible": true
+												}
+											}
+                                        },
+                                        "childEntities1Section": {
+                                            "sideContent": {
+                                                "template": "sap.fe.featureShowcase.mainApp.ext.SideContentTable"
+                                            }
+                                        }
+                                    }
+                                },
+                                "footer": {
+                                    "actions": {
+                                        "CustomActionOPFooter": {
+                                            "press": "sap.fe.featureShowcase.mainApp.ext.CustomActions.messageBox",
+                                            "enabled": "{= ${ui>/editMode} !== 'Editable'}",
+                                            "visible": true,
+                                            "text": "{i18n>CustomActionOPFooter}"
+                                        }
+                                    }
+                                }
+                            },
+                            "editableHeaderContent": false
+                        }
+                    }
+                },
+                "childEntities1ObjectPage": {
+                    "type": "Component",
+                    "id": "childEntities1ObjectPage",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "editableHeaderContent": true,
+                            "entitySet": "ChildEntities1",
+                            "sectionLayout": "Page",
+                            "content": {
+                                "header": {
+                                    "facets": {
+                                        "CustomHeaderFacet": {
+                                            "template": "sap.fe.featureShowcase.mainApp.ext.CustomHeaderFacet-ProcessFlow",
+                                            "templateEdit": "sap.fe.featureShowcase.mainApp.ext.CustomHeaderFacet-Edit",
+                                            "stashed": false,
+                                            "title": "{i18n>customHeaderFacet}",
+                                            "position": {
+                                                "placement": "After",
+                                                "anchor": "FacetWithPercent"
+                                            },
+                                            "flexSettings": {
+                                                "designtime": "not-adaptable-visibility"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "CustomObjectPage_childEntities3": {
+                    "type": "Component",
+                    "Id": "CustomObjectPageView",
+                    "name": "sap.fe.core.fpm",
+                    "options": {
+                        "settings": {
+                            "viewName": "sap.fe.featureShowcase.mainApp.ext.view.CustomObjectPage",
+                            "entitySet": "ChildEntities3"
+                        }
+                    }
+                }
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        }
+    },
+    "sap.platform.abap": {
+        "_version": "1.1.0",
+        "uri": ""
+    },
+    "sap.platform.hcp": {
+        "_version": "1.1.0",
+        "uri": ""
+    },
+    "sap.fiori": {
+        "_version": "1.1.0",
+        "registrationIds": [],
+        "archeType": "transactional"
+    }
+}

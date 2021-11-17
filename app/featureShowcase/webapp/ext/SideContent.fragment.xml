@@ -1,0 +1,8 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.f" xmlns:grid="sap.ui.layout.cssgrid" >
+	<l:VerticalLayout core:require="{handler: 'sap/fe/featureShowcase/mainApp/ext/CustomController'}" width="100%">
+		<!-- Search-Term: #SideContent -->
+		<Title text="Side Content"/>
+		<Button text="Change Criticality" press="handler.onChangeCriticality"/>
+		<Text text="{description}"/>
+	</l:VerticalLayout>
+</core:FragmentDefinition>

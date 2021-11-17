@@ -1,0 +1,208 @@
+code;country_code;name
+AU-NSW;AU;New South Wales
+AU-QLD;AU;Queensland
+AU-SA;AU;South Australia
+AU-TAS;AU;Tasmania
+AU-VIC;AU;Victoria
+AU-WA;AU;Western Australia
+AU-ACT;AU;Australian Capital Territory
+AU-NT;AU;Northern Territory
+CA-AB;CA;Alberta
+CA-BC;CA;British Columbia
+CA-MB;CA;Manitoba
+CA-NB;CA;New Brunswick
+CA-NL;CA;Newfoundland and Labrador
+CA-NS;CA;Nova Scotia
+CA-ON;CA;Ontario
+CA-PE;CA;Prince Edward Island
+CA-QC;CA;Quebec
+CA-SK;CA;Saskatchewan
+CA-NT;CA;Northwest Territories
+CA-NU;CA;Nunavut
+CA-YT;CA;Yukon
+CN-AH;CN;Anhui Sheng
+CN-BJ;CN;Beijing Shi
+CN-CQ;CN;Chongqing Shi
+CN-FJ;CN;Fujian Sheng
+CN-GD;CN;Guangdong Sheng
+CN-GS;CN;Gansu Sheng
+CN-GX;CN;Guangxi Zhuangzu Zizhiqu
+CN-GZ;CN;Guizhou Sheng
+CN-HA;CN;Henan Sheng
+CN-HB;CN;Hubei Sheng
+CN-HE;CN;Hebei Sheng
+CN-HI;CN;Hainan Sheng
+CN-HK;CN;Hong Kong SAR (en)
+CN-HL;CN;Heilongjiang Sheng
+CN-HN;CN;Hunan Sheng
+CN-JL;CN;Jilin Sheng
+CN-JS;CN;Jiangsu Sheng
+CN-JX;CN;Jiangxi Sheng
+CN-LN;CN;Liaoning Sheng
+CN-MO;CN;Macao SAR (en)
+CN-NM;CN;Nei Mongol Zizhiqu
+CN-NX;CN;Ningxia Huizi Zizhiqu
+CN-QH;CN;Qinghai Sheng
+CN-SC;CN;Sichuan Sheng
+CN-SD;CN;Shandong Shen
+CN-SH;CN;Shanghai Shi
+CN-SN;CN;Shaanxi Sheng
+CN-SX;CN;Shanxi Sheng
+CN-TJ;CN;Tianjin Shi
+CN-TW;CN;Taiwan Sheng
+CN-XJ;CN;Xinjiang Uygur Zizhiqu
+CN-XZ;CN;Xizang Zizhiqu
+CN-YN;CN;Yunnan Sheng
+CN-ZJ;CN;Zhejiang Sheng
+DE-BW;DE;Baden-Württemberg
+DE-BY;DE;Bayern	Bavaria
+DE-BE;DE;Berlin	Berlin
+DE-BB;DE;Brandenburg
+DE-HB;DE;Bremen
+DE-HH;DE;Hamburg
+DE-HE;DE;Hessen
+DE-MV;DE;Mecklenburg-Vorpommern
+DE-NI;DE;Niedersachsen
+DE-NW;DE;Nordrhein-Westfalen
+DE-RP;DE;Rheinland-Pfalz
+DE-SL;DE;Saarland
+DE-SN;DE;Sachsen
+DE-ST;DE;Sachsen-Anhalt
+DE-SH;DE;Schleswig-Holstein
+DE-TH;DE;Thüringen
+FR-ARA;FR;Auvergne-Rhône-Alpes
+FR-BFC;FR;Bourgogne-Franche-Comté
+FR-BRE;FR;Bretagne
+FR-CVL;FR;Centre-Val de Loire
+FR-20R;FR;Corse
+FR-GES;FR;Grand-Est
+FR-GP;FR;Guadeloupe
+FR-GF;FR;Guyane (française)
+FR-HDF;FR;Hauts-de-France
+FR-IDF;FR;Île-de-France
+FR-MQ;FR;Martinique
+FR-YT;FR;Mayotte
+FR-NOR;FR;Normandie
+FR-NAQ;FR;Nouvelle-Aquitaine
+FR-OCC;FR;Occitanie
+FR-PDL;FR;Pays-de-la-Loire
+FR-PAC;FR;Provence-Alpes-Côte-d’Azur
+FR-RE;FR;La Réunion
+GB-ENG;GB;England
+GB-NIR;GB;Northern Ireland
+GB-SCT;GB;Scotland
+GB-WLS;GB;Wales
+IL-D;IL;HaDarom
+IL-M;IL;HaMerkaz
+IL-Z;IL;HaTsafon
+IL-HA;IL;H̱efa
+IL-TA;IL;Tel Aviv
+IL-JM;IL;Yerushalayim
+IN-AP;IN;Andhra Pradesh
+IN-AR;IN;Arunāchal Pradesh
+IN-AS;IN;Assam
+IN-BR;IN;Bihār
+IN-CT;IN;Chhattīsgarh
+IN-GA;IN;Goa
+IN-GJ;IN;Gujarāt
+IN-HR;IN;Haryāna
+IN-HP;IN;Himāchal Pradesh
+IN-JH;IN;Jhārkhand
+IN-KA;IN;Karnātaka
+IN-KL;IN;Kerala
+IN-MP;IN;Madhya Pradesh
+IN-MH;IN;Mahārāshtra
+IN-MN;IN;Manipur
+IN-ML;IN;Meghālaya
+IN-MZ;IN;Mizoram
+IN-NL;IN;Nāgāland
+IN-OR;IN;Odisha
+IN-PB;IN;Punjab
+IN-RJ;IN;Rājasthān
+IN-SK;IN;Sikkim
+IN-TN;IN;Tamil Nādu
+IN-TG;IN;Telangāna
+IN-TR;IN;Tripura
+IN-UT;IN;Uttarākhand
+IN-UP;IN;Uttar Pradesh
+IN-WB;IN;West Bengal
+IN-AN;IN;Andaman and Nicobar Islands
+IN-CH;IN;Chandigarh
+IN-DH;IN;Dādra and Nagar Haveli and Damān and Diu
+IN-DL;IN;Delhi
+IN-JK;IN;Jammu and Kashmīr
+IN-LA;IN;Ladākh
+IN-LD;IN;Lakshadweep
+IN-PY;IN;Puducherry
+MM-07;MM;Ayeyarwady
+MM-02;MM;Bago
+MM-03;MM;Magway
+MM-04;MM;Mandalay
+MM-01;MM;Sagaing
+MM-05;MM;Tanintharyi
+MM-06;MM;Yangon
+MM-14;MM;Chin
+MM-11;MM;Kachin
+MM-12;MM;Kayah
+MM-13;MM;Kayin
+MM-15;MM;Mon
+MM-16;MM;Rakhine
+MM-17;MM;Shan
+MM-18;MM;Nay Pyi Taw
+US-AL;US;Alabama
+US-AK;US;Alaska
+US-AZ;US;Arizona
+US-AR;US;Arkansas
+US-CA;US;California
+US-CO;US;Colorado
+US-CT;US;Connecticut
+US-DE;US;Delaware
+US-FL;US;Florida
+US-GA;US;Georgia
+US-HI;US;Hawaii
+US-ID;US;Idaho
+US-IL;US;Illinois
+US-IN;US;Indiana
+US-IA;US;Iowa
+US-KS;US;Kansas
+US-KY;US;Kentucky
+US-LA;US;Louisiana
+US-ME;US;Maine
+US-MD;US;Maryland
+US-MA;US;Massachusetts
+US-MI;US;Michigan
+US-MN;US;Minnesota
+US-MS;US;Mississippi
+US-MO;US;Missouri
+US-MT;US;Montana
+US-NE;US;Nebraska
+US-NV;US;Nevada
+US-NH;US;New Hampshire
+US-NJ;US;New Jersey
+US-NM;US;New Mexico
+US-NY;US;New York
+US-NC;US;North Carolina
+US-ND;US;North Dakota
+US-OH;US;Ohio
+US-OK;US;Oklahoma
+US-OR;US;Oregon
+US-PA;US;Pennsylvania
+US-RI;US;Rhode Island
+US-SC;US;South Carolina
+US-SD;US;South Dakota
+US-TN;US;Tennessee
+US-TX;US;Texas
+US-UT;US;Utah
+US-VT;US;Vermont
+US-VA;US;Virginia
+US-WA;US;Washington
+US-WV;US;West Virginia
+US-WI;US;Wisconsin
+US-WY;US;Wyoming
+US-DC;US;District of Columbia
+US-AS;US;American Samoa
+US-GU;US;Guam
+US-MP;US;Northern Mariana Islands
+US-PR;US;Puerto Rico
+US-UM;US;United States Minor Outlying Islands
+US-VI;US;U.S. Virgin Islands

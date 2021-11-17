@@ -1,0 +1,9 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.f" xmlns:grid="sap.ui.layout.cssgrid" xmlns:macros="sap.fe.macros" >
+	<l:VerticalLayout width="100%">
+		<Label text="This is a custom sub section" labelFor="input-b" />
+        <Input id="input-b" enabled="{= ${ui>/editMode} === 'Editable'}" description="Input has no effect on the app" />
+
+		<Label text="{i18n>macroField}" labelFor="macroField" />
+		<macros:Field metaPath="email" id="macroField"/>
+	</l:VerticalLayout>
+</core:FragmentDefinition>

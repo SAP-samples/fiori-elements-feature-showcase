@@ -1,0 +1,62 @@
+{
+  "name": "feature-showcase",
+  "version": "1.0.0",
+  "description": "A simple CAP project to demonstrate different FEv4 List Report & Oject Page features.",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:SAP-samples/fiori-elements-feature-showcase.git"
+  },
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@sap/cds": "^5.4.6",
+    "content-disposition": "^0.5.3",
+    "express": "^4"
+  },
+  "devDependencies": {
+    "@sap/ux-specification": "^1.90.12",
+    "sqlite3": "^5.0.2"
+  },
+  "scripts": {
+    "start": "cds run"
+  },
+  "cds": {
+    "requires": {
+      "db": {
+        "kind": "sqlite",
+        "credentials": {
+          "database": ":memory:"
+        }
+      }
+    }
+  },
+  "eslintConfig": {
+    "extends": "eslint:recommended",
+    "env": {
+      "es2020": true,
+      "node": true,
+      "jest": true,
+      "mocha": true
+    },
+    "globals": {
+      "SELECT": true,
+      "INSERT": true,
+      "UPDATE": true,
+      "DELETE": true,
+      "CREATE": true,
+      "DROP": true,
+      "CDL": true,
+      "CQL": true,
+      "CXL": true,
+      "cds": true
+    },
+    "rules": {
+      "no-console": "off",
+      "require-atomic-updates": "off"
+    }
+  },
+  "sapux": [
+    "app/featureShowcase",
+    "app/featureShowcaseNavigationTarget"
+  ]
+}
