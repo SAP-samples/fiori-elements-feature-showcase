@@ -1,4 +1,6 @@
 # SAP Fiori elements for OData V4 Feature Showcase 
+[![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/fiori-elements-feature-showcase)](https://api.reuse.software/info/github.com/SAP-samples/fiori-elements-feature-showcase)
+
 ![Screenshot](readmeImages/app-screenshot.png)
 <br/>
 The main focus of this project is to present features from the List Report & Object Page floorplan. Please note, some feature combinations might not be intended by the [SAP Fiori UX Guidelines](https://experience.sap.com/fiori-design/) but are shown here for the sake of demonstration.
