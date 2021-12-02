@@ -9,7 +9,7 @@ Start the app and search for features you might want to use or search through th
 <br/><br/>
 Some topics have a hint, that the implementation is possible using Fiori tools, which we recommend to use.
 <br/><br/>
-If you use CAP for the first time, please follow the instructions from the [CAP Getting startet](https://cap.cloud.sap/docs/get-started/) <br/> <br/>
+If you use CAP for the first time, please follow the instructions from the [CAP Getting started](https://cap.cloud.sap/docs/get-started/) <br/> <br/>
 Install the dependencies with `npm install`. <br/>
 Start the app with `cds watch`.
 <br/>
