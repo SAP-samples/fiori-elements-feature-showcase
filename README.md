@@ -141,7 +141,7 @@ To enable the Flexible Column Layout please use the Application Modeler from the
 
 ### Configure Draft
 
-<i>Search term:</i> `#Draft`
+<i>Search term:</i> [`#Draft`](../../search?q=Draft)
 
 The annotation `@odata.draft.enabled` adds the draft mode to an entity.
 
@@ -151,7 +151,7 @@ annotate service1.RootEntities with @odata.draft.enabled;
 
 ### Replacing Standard UI Texts
 
-<i>Search term:</i> `"enhanceI18n"`
+<i>Search term:</i> [`"enhanceI18n"`](../../search?q=enhanceI18n)
 
 If wanted, the replacement of standard UI texts is possible.
 For this a new i18n file is needed, for example "customI18N.properties" which is then referenced in the [manifest.json](app/featureShowcase/webapp/manifest.json) file.
@@ -181,7 +181,7 @@ More information about replacing standard UI texts and what can be overridden is
 
 ### Custom Actions
 
-<i>Search term:</i> `CustomActions`
+<i>Search term:</i> [`CustomActions`](../../search?q=CustomActions)
 
 With extensions points it is possible to add custom front-end actions to the UI at different places. Custom actions are added to the [manifest.json](app/featureShowcase/webapp/manifest.json) file. The location depends on where the action shall be visible on the UI.
 In general a custom action consists of a unique qualifier for the action. The property "press" is the path to the event handler in a JavaScript file. Both the "enabled" and "visible" property accept either static values (true/false), a binding path, like in the example, or another path to a JavaScript function which returns true or false. The "text" property is the label of the button.
@@ -222,7 +222,7 @@ sap.ui.define([
 
 #### Invoking CAP actions out of a Custom Action
 
-<i>Search term:</i> `#EditFlowAPI`
+<i>Search term:</i> [`#EditFlowAPI`](../../search?q=EditFlowAPI)
 
 It is also possible to invoke CAP actions out of a JavaScript function using the "invokeAction" function of the Fiori elements Edit flow API.
 ```
@@ -251,7 +251,7 @@ sap.ui.define([
 
 ### Enabling Variant Management
 
-<i>Search term:</i> `"variantManagement"`
+<i>Search term:</i> [`"variantManagement"`](../../search?q=variantManagement)
 
 Variant Management (saving the filter settings and the personalization of tables) is by default enabled. However with the annotation `"variantManagement": "None"` it can be disabled in the [manifest.json](app/featureShowcase/webapp/manifest.json).
 ```
@@ -276,15 +276,15 @@ When the Variant Management is disabled, the App title will be shown instead at 
 ```
 
 ### Define Filters
-<i>Search term:</i> `#FilterDefault`, `#HideFilter`, `#FilterGrouping`, `#VisibleFilters`, `#ValueHelps`, `#DependentFilter`
+<i>Search term:</i> [`#FilterDefault`](../../search?q=FilterDefault), [`#HideFilter`](../../search?q=HideFilter),[`#FilterGrouping`](../../search?q=FilterGrouping), [`#VisibleFilters`](../../search?q=VisibleFilters), `#ValueHelps`, [`#DependentFilter`](../../search?q=DependentFilter)
 
 #### Default Values
-<i>Search term:</i> `#FilterDefault`
+<i>Search term:</i> [`#FilterDefault`](../../search?q=FilterDefault)
 
 With the annotation `@Common.FilterDefaultValue` default values can be defined, like in [field-control.cds](app/featureShowcase/field-control.cds). This Annotation does not allow complex values and when switching variants, the annotation is no longer considered. For complex values the [UI.SelectionVariant](#selection-variant) annotation is a better solution.
 More information are available in the [SAP UI5 Dokumentation](https://sapui5.hana.ondemand.com/#/topic/f27ad7bc1f9c4b0d947b1fb18c37e94c)
 #### Hide filters
-<i>Search term:</i> `#HideFilter`
+<i>Search term:</i> [`#HideFilter`](../../search?q=HideFilter)
 
 To reduce the amount of available filters in a List Report, properties can be annotated with `@UI.HiddenFilter` to hide them. An example is in the file [field-control.cds](app/featureShowcase/field-control.cds).
 ```
@@ -299,7 +299,7 @@ annotate service1.RootEntities {
 ```
 
 #### Filter facets
-<i>Search term:</i> `#FilterGrouping`
+<i>Search term:</i> [`#FilterGrouping`](../../search?q=FilterGrouping)
 
 Another nice feature are `@UI.FilterFacets`, which allow one to structure the available properties of the entity into groups, so that filter adaptation is easier.
 ```
@@ -329,7 +329,7 @@ annotate service.RootEntities with @(
 ```
 The implementation is in the [layout.cds](app/featureShowcase/layout.cds) file.
 #### Selection Fields
-<i>Search term:</i> `#VisibleFilters`
+<i>Search term:</i> [`#VisibleFilters`](../../search?q=VisibleFilters)
 
 `@UI.SelectionFields` is the annotation, which allows to specify an array of fields, which should by default be shown in the List Report filter bar as a filter, so that the user does not need to adapt the filters. The annotation is used in the [layout.cds](app/featureShowcase/layout.cds) file.
 ```
@@ -343,7 +343,7 @@ annotate service.RootEntities with @(
 ```
 Further information are available in the [UI5 Dokumentation](https://sapui5.hana.ondemand.com/#/topic/4de40b31324e4876a8421f6f642e0140).
 #### Value Help
-<i>Search term:</i> `#ValueHelps`
+<i>Search term:</i> [](../../search?q=)`#ValueHelps`
 
 While CAP delivers the value help for Code Lists out of the box. For other associations this is not the case. To get a value help for a filter (and for the corresponding field on the Object Page), the entity has to be annotated with `@Common.ValueList`. 
 ```
@@ -380,7 +380,7 @@ The `Label` property will be shown as the title of the value help dialog und the
 For smaller collections of possible values in the value help, it might be a good idea to have a dropdown instead of a dialog to choose the value. This can be achieved with the `@Common.ValueListWithFixedValues` annotation.
 The implementation is in the [value-helps.cds](app/featureShowcase/value-helps.cds) file.
 #### Dependent Filtering (Value Help)
-<i>Search term:</i> `#DependentFilter`
+<i>Search term:</i> [`#DependentFilter`](../../search?q=DependentFilter)
 
 Dependent filtering can be achieved with an input parameter for the value help. An example would be with countries and regions. The value help for the region should only show regions of the selected country, which is another property of the entity.
 ```
@@ -425,7 +425,7 @@ Here the region property (which is an Association to a Code List) is annotated w
 
 #### Custom Filter
 
-<i>Search term:</i> `"customFilter"`
+<i>Search term:</i> [`"customFilter"`](../../search?q=customFilter)
 
 Custom filter are useful, when the data value is in a special format, for example a rating. The implementation consists of multiple parts.
 First List Report in the [manifest.json](app/featureShowcase/webapp/manifest.json) is extended with the following lines.
@@ -487,7 +487,7 @@ sap.ui.define(["sap/ui/model/Filter", "sap/ui/model/FilterOperator"], function(F
 More information regarding custom filter are in the [SAP Fiori elements Documentation](https://sapui5.hana.ondemand.com/#/topic/5fb9f57fcf12401bbe39a635e9a32a4e).
 
 ### Custom Actions (Global List Report)
-<i>Search term:</i> `"CustomActionLRGlobal"`
+<i>Search term:</i> [`"CustomActionLRGlobal"`](../../search?q=CustomActionLRGlobal)
 
 With extension points custom actions can be added in the header area of the List Report.
 
@@ -519,7 +519,7 @@ The custom action itself is described here: [Custom Actions](#custom-actions-lis
 ## Content Area List Report
 ### Configuring Tables
 #### Actions
-<i>Search term:</i> `#UnboundAction`, `#BoundAction`, `#SideEffect`, `#ValueHelpParameter`, `"MenuActions"`, `#DynamicCRUD`
+<i>Search term:</i> [`#UnboundAction`](../../search?q=UnboundAction), [`#BoundAction`](../../search?q=BoundAction), [`#SideEffect`](../../search?q=SideEffect), [`#ValueHelpParameter`](../../search?q=ValueHelpParameter), [`"MenuActions"`](../../search?q=MenuActions), [`#DynamicCRUD`](../../search?q=DynamicCRUD)
 
 In CAP, actions can be bound to a specific entity or unbound and just be a part of the service. Bound actions can only be executed, when at least one entity is selected. Unbound actions can be executed anytime.
 If an action shall be visible, the `UI.DataFieldForAction` has to be added to the `UI.LineItem` annotation of the table. The action is called through the service.
@@ -577,7 +577,7 @@ annotate service.RootEntities with @(
 );
 ```
 ##### Side Effects of actions
-<i>Search term:</i> `#SideEffect`
+<i>Search term:</i> [`#SideEffect`](../../search?q=SideEffect)
 
 If your action triggers changes on the entities, you need side effects so that the UI updates automatically. These side effect annotations have to be added to the action.
 ```
@@ -594,7 +594,7 @@ entity RootEntities as select from persistence.RootEntities actions {
 ```
 The OData binding parameter is needed, in order to refer to the fields of the entity, which need to be updated. These fields are then listed in the array of the `TargetProperties` property of `@Common.SideEffects`.
 ##### Value Help for action parameter
-<i>Search term:</i> `#ValueHelpParameter`
+<i>Search term:</i> [`#ValueHelpParameter`](../../search?q=ValueHelpParameter)
 
 Often properties of an entity have value helps, so that creating a new entity is easier and wrong inputs are reduced. Value helps for action parameters are also possible.
 ```
@@ -630,7 +630,7 @@ entity RootEntities as select from persistence.RootEntities actions {
 This can be achieved, by just annotating the parameter with a common valueList. The annotation has to be inline with the parameter.
 
 ##### Default Value for action parameter
-<i>Search term:</i> `#ParameterDefaultValue`
+<i>Search term:</i> [`#ParameterDefaultValue`](../../search?q=ParameterDefaultValue)
 
 With the annotation `@UI.ParameterDefaultValue` a default value for the parameter is set.
 ```
@@ -641,7 +641,7 @@ entity RootEntities as select from persistence.RootEntities actions {
 ```
 
 ##### Action Drop down menu
-<i>Search term:</i> `"MenuActions"`
+<i>Search term:</i> [`"MenuActions"`](../../search?q=MenuActions)
 
 A dropdown menu to group actions is possible with an annotation in the [manifest.json](app/featureShowcase/webapp/manifest.json) file.
 ```
@@ -671,7 +671,7 @@ A dropdown menu to group actions is possible with an annotation in the [manifest
 ```
 In the control configuration of the List Report, the line item annotation of the table (it does not affect other line item definitions which may be used in other table views) has a property `"actions"` under which the menu button needs to be added. `"MenuActions"` is in this case just the identifier of this specific menu button. The text property is the actual label of the menu button and the `"menu"` property contains all actions, which should be included. "changeCriticality" is a bound action and can be directly accessed through the service. The unbound action on the other side, needs to be accessed through the EntityContainer. The slash is replaced with two colons in the identifier for the action.
 ##### Dynamic CRUD Restrictions
-<i>Search term:</i> `#DynamicCRUD`
+<i>Search term:</i> [`#DynamicCRUD`](../../search?q=DynamicCRUD)
 
 The visibility of the "Edit", "Create" and "Delete" actions can be dynamically adjusted. For example the delete operation can be dependent on a field of the entity, through the annotation `@Capabilities.DeleteRestrictions`. Fixed values are also possible.
 ```
@@ -687,7 +687,7 @@ annotate service1.RootEntityVariants with @(
 While `@Capabilities.UpdateRestrictions` would restrict the update possibilities of the entity in the edit mode, e.g. all fields are read only, the "Edit" button would not disappear. Instead the `@UI.UpdateHidden` annotation should be used, which when true, hides the "Edit" button as intended.
 
 ##### Navigation Button
-<i>Search term:</i> `#NavAction`
+<i>Search term:</i> [`#NavAction`](../../search?q=NavAction)
 
 A navigation action navigating to an associated entity can be added, through adding the `UI.DataFieldForIntentBasedNavigation` as a line item.
 ```
@@ -736,7 +736,7 @@ The property `RequiresContext` determines, whether an entry needs to be selected
 Icons can be displayed as the label of the button instead of text, but only if the button is inline. When Icons are displayed, the criticality is being ignored.
 
 ##### Critical Actions
-<i>Search term:</i> `#CriticalAction`
+<i>Search term:</i> [`#CriticalAction`](../../search?q=CriticalAction)
 
 When an action is annotated with `@Common.IsActioNCritical : true`, a popover will appear before invoking the action, asking the user if he/she is sure about invoking the selected action.
 
@@ -747,7 +747,7 @@ annotate service1.criticalAction with @(
 ```
 
 ##### Custom Actions (Table List Report)
-<i>Search term:</i> `"CustomActionLR"`
+<i>Search term:</i> [`"CustomActionLR"`](../../search?q=CustomActionLR)
 
 With extension points custom actions can be added in the table toolbar of the List Report.
 
@@ -782,7 +782,7 @@ The custom action itself is described here: [Custom Actions](#custom-actions-lis
 #### Setting the Table Type
 
 <i style="color:orange;">INFO: </i>We recommend that you use [SAP Fiori tools](http://help.sap.com/disclaimer?site=https://help.sap.com/viewer/product/SAP_FIORI_tools/Latest/en-US), which is a set of extensions for SAP Business Application Studio and Visual Studio Code, to configure the app using the Application Modeler tool. <br/>
-<i>Search term:</i> `"tableSettings"`, `"ResponsiveTable"`, `"GridTable"`
+<i>Search term:</i> [`"tableSettings"`](../../search?q=tableSettings), [`"ResponsiveTable"`](../../search?q=ResponsiveTable), [`"GridTable"`](../../search?q=GridTable)
 
 Supported table types are the <i>ResponsiveTable</i> and the <i>GridTable</i>. The table type of the List Report can be adjusted in the [manifest.json](app/featureShowcase/webapp/manifest.json) file (Line 146).
 ```
@@ -809,11 +809,11 @@ Supported table types are the <i>ResponsiveTable</i> and the <i>GridTable</i>. T
 ```
 
 #### Multiple Views
-<i>Search term:</i> `#multipleViews`, `"views"`, `"quickVariantSelection"`
+<i>Search term:</i> [`#multipleViews`](../../search?q=`#multipleViews`), [`"views"`](../../search?q=views), `[`#multipleViews`](../../search?q=`#multipleViews`), ["quickVariantSelection"`](../../search?q=quickVariantSelection)
 
 With multiple views, you can display different selections and/or presentations of the entity set, without the need to set the filter manually. 
 ##### Single table mode
-<i>Search term:</i> `"quickVariantSelection"`
+<i>Search term:</i> [`"quickVariantSelection"`](../../search?q=quickVariantSelection)
 
 In the single table mode all views are displayed in the same table. You can switch between the views through a segmented button next to the table title. If you define more than three views, a drop down menu will be displayed instead. A restriction of the single table mode is, that you can change the selected entities (`@UI.SelectionVariant`), but not the presentation (`@UI.SelectionPresentationVariant`) of the entities, nor the entity set itself.
 To implement the single table mode, you need to define a selection variant and refer to it in the manifest.json file, through using its qualifier (e.g. #variant1).
@@ -853,7 +853,7 @@ To implement the single table mode, you need to define a selection variant and r
 Further you can define, if each view should show the amount of rows it displays and if the table title should be hidden for all views. By default the `"showCounts"` property is false, as additional $count requests impact the performance.
 
 ##### Multiple table mode
-<i>Search term:</i> `"views"`
+<i>Search term:</i> [`"views"`](../../search?q=views)
 
 In multiple table mode, a icon tab bar will be rendered above the table to switch between the views. Each view has its own table with its own table tool bar and variant management (if activated), but only the table of the selected tab will be shown. Here you have the possibility to use the `@UI.SelectionPresentationVariant` annotation and there is the possibility to define another entity set to be displayed in a tab.
 The single and multiple table mode do not exclude each other completely. When using a SelectionVariant as the annotation for a view of the multiple table mode, the different views of the single table mode can be additionally applied. When using a `UI.SelectionPresentationVarian` in the multiple table mode for the view, you cannot apply the view from the single table mode.
@@ -895,7 +895,7 @@ When you want to have a view with a different entity set, you just need to add t
 More information are available in the [SAP UI5 Documentation](https://sapui5.hana.ondemand.com/#/topic/b6b59e4a4c3548cf83ff9c3b955d3ba3).
 
 ##### Selection Variant
-<i>Search term:</i> `#SVariant`
+<i>Search term:</i> [`#SVariant`](../../search?q=SVariant)
 
 With a selection variant, you can define how the fields of an entity set should be sorted. The "Text" property is the title of the view and the property "SelectOptions" contains all sorting parameters.
 ```
@@ -923,7 +923,7 @@ The "Option" property supports the following options: Equal To (EQ), Between (BT
 The annotations are in the [layouts_RootEntities.cds](app/featureShowcase/layouts_RootEntities.cds) file.
 
 ##### Selection Presentation Variant
-<i>Search term:</i> `#SPVariant`
+<i>Search term:</i> [`#SPVariant`](../../search?q=SPVariant)
 
 With a selection presentation variant a selection of entities and a presentation can be defined. The `PresentationVariant` currently supports the properties `SortOrder` and `Visualizations`. The selection and presentation variants are basically identical to their stand-alone counterparts, only the selection variant here does not include the text property.
 ```
@@ -963,7 +963,7 @@ You can refer to a specialised `UI.LineItem` collection, when you define one wit
 More information are available in the [SAP UI5 Documentation](https://sapui5.hana.ondemand.com/#/topic/37aeed74e17a42caa2cba3123f0c15fc).
 
 #### Creation Dialog
-<i>Search term:</i> `#CreationDialog`
+<i>Search term:</i> [`#CreationDialog`](../../search?q=CreationDialog)
 
 When creating a new entity, a creation dialog will pop up for all fields, which are annotated with `@Core.Immutable`, because fields with this annotation cannot be updated and the value has to be provided during creation.
 
@@ -976,7 +976,7 @@ annotate service1.RootEntities {
 ```
 
 #### Defining the Default Sort Order
-<i>Search term:</i> `#DefaultSort`
+<i>Search term:</i> [`#DefaultSort`](../../search?q=DefaultSort)
 
 Use the `UI.PresentationVariant` annotation to define a default sort order. The attribute `Visualizations` defines, on which line items the sort order should be applied.
 ```
@@ -999,7 +999,7 @@ Without a sort order defined, the values are ascending. The implementation is in
 #### Enabling Multiple Selection in Tables
 
 <i style="color:orange;">INFO: </i>We recommend that you use [SAP Fiori tools](http://help.sap.com/disclaimer?site=https://help.sap.com/viewer/product/SAP_FIORI_tools/Latest/en-US), which is a set of extensions for SAP Business Application Studio and Visual Studio Code, to configure the app using the Application Modeler tool. <br/>
-<i>Search term:</i> `"selectionMode"`
+<i>Search term:</i> [`"selectionMode"`](../../search?q=selectionMode)
 
 Multiple Selection can be enabled in the List Report with the property `"selectionMode": "Multi"` in the table Settings. Other possible values are: Auto, Single or None. More Information about these are available in the [SAP FE Documentation](https://sapui5.hana.ondemand.com/#/topic/116b5d82e8c545e2a56e1b51b8b0a9bd).
 ```
@@ -1026,7 +1026,7 @@ Multiple Selection can be enabled in the List Report with the property `"selecti
 },
 ```
 #### Handling Semantic Key Fields
-<i>Search term:</i> `#SemanticKey`
+<i>Search term:</i> [`#SemanticKey`](../../search?q=SemanticKey)
 
 Semantic Key fields can be defined, with the annotation `Common.SemanticKey`, which consists of an Array of fields from the entity. The given fields will be displayed in bold, and when possible the editing status will be displayed. Currently this is only possible for the default DataField.
 ```
@@ -1037,7 +1037,7 @@ annotate service.RootEntities with @(
 [layouts_RootEntities.cds](app/featureShowcase/layouts_RootEntities.cds)
 
 #### Highlighting Line Items Based on Criticality
-<i>Search term:</i> `#LineItemHighlight`
+<i>Search term:</i> [`#LineItemHighlight`](../../search?q=LineItemHighlight)
 
 Line items can be highlighted based on there criticality with the annotation `![@UI.Criticality]`. The annotation has to be a part of the `@UI.LineItem` annotation.
 ```
@@ -1051,7 +1051,7 @@ annotate service.RootEntities with @(
 );
 ```
 #### Adding a Rating Indicator to a Table
-<i>Search term:</i> `#RatingIndicator`
+<i>Search term:</i> [`#RatingIndicator`](../../search?q=RatingIndicator)
 
 To add a rating indicator (stars) to the table, the entity needs to be annotated with `@UI.DataPoint`. The Value Property of the annotation defines, how many stars are visible. Values between x.25 and x.74 are displaced as a half star. The target property defines, how many stars are possible.
 ```
@@ -1087,7 +1087,7 @@ annotate service.RootEntities with @(
 ```
 The annotations are in the [layouts_RootEntities.cds](app/featureShowcase/layouts_RootEntities.cds) file.
 #### Adding a Progress Indicator to a Table
-<i>Search term:</i> `#ProgressIndicator`
+<i>Search term:</i> [`#ProgressIndicator`](../../search?q=ProgressIndicator)
 
 To add a progress indicator to a table, the entity needs to be annotated with `@UI.DataPoint`. The value property defines the current progress and the target property the maximum progress. Additionally a criticality can be given, if wanted.
 ```
@@ -1123,7 +1123,7 @@ annotate service.RootEntities with @(
 The annotations are in the [layouts_RootEntities.cds](app/featureShowcase/layouts_RootEntities.cds) file.
 
 #### Adding a field with a tooltip to a Table
-<i>Search term:</i> `#ToolTip`
+<i>Search term:</i> [`#ToolTip`](../../search?q=ToolTip)
 
 Fields can have a tooltip in the List Report through a work around.
 First a data point is created, only with the property 'Value' and the annotation '@Common.QuickInfo', which defines the displayed tool tip.
@@ -1155,7 +1155,7 @@ annotate service.RootEntities with @(
 ```
 
 #### Adding a Smart Micro Chart to a Table
-<i>Search term:</i> `#MicroChart`
+<i>Search term:</i> [`#MicroChart`](../../search?q=MicroChart)
 
 To add a smart micro chart to a table you have again to define a `@UI.DataPoint`. In the case of a radial chart, the properties value and target value are mandatory and the criticality is optional.
 ```
@@ -1203,7 +1203,7 @@ annotate service.RootEntities with @(
 ```
 The annotations of the example are in the [layouts_RootEntities.cds](app/featureShowcase/layouts_RootEntities.cds) file.
 #### Adding a Contact Quick View to a Table
-<i>Search term:</i> `#Contact`
+<i>Search term:</i> [`#Contact`](../../search?q=Contact)
 
 To have a data field which shows a contact with a contact quick view, the contact quick view needs to be implemented first. An Example would be:
 ```
@@ -1247,7 +1247,7 @@ annotate service.RootEntities with @(
 The contact card is referenced through the contact attribute of the entity.
 The annotations of the example are in the [layouts_RootEntities.cds](app/featureShowcase/layouts_RootEntities.cds) file. The contact card starts in Line 761.
 #### Adding a Quick View Facet to a Table
-<i>Search term:</i> `#QuickView`
+<i>Search term:</i> [`#QuickView`](../../search?q=QuickView)
 
 A quick view facet is a pop up, when you click on an entry in a column and get more information. Typically it is used in combination with associations to one, where the association name is displayed in the column and with a click on it, more information about the association entity can be consumed. To enable a quick view facet, the association entity needs to be annotated with `@UI.QuickViewFacet`. It is an array of reference facets, where you can reference field groups (a group of properties) to be shown in the quick view. For a better looking header of the quick view, the association entity gets typically also annotated with `@UI.HeaderInfo`.
 ```
@@ -1315,7 +1315,7 @@ childEntity2 @title : '{i18n>ChildEntity2}' @Common.Text : childEntity2.field @C
 ```
 The annotations are in the [labels.cds](app/featureShowcase/labels.cds) file.
 ##### Links to the apps of the entity
-<i>Search term:</i> `FeatureShowcaseChildEntity2`, `#Navigation`
+<i>Search term:</i> [`FeatureShowcaseChildEntity2`](../../search?q=FeatureShowcaseChildEntity2), [`#Navigation`](../../search?q=Navigation)
 
 The quick view facet also shows links to the apps of the entity, when the entity is annotated with `@Common.SemanticObject`.
 ```
@@ -1335,7 +1335,7 @@ The semantic object is the application name in the [html file](app/fiori.html). 
 Here "FeatureShowcaseChildEntity2" is the semantic object to be referenced. The second part of the name is the action of the app. As an example you may have the apps "SalesOrder-Manage", "SalesOrder-View" and so on. Semantic object and action have to be divided by a dash.
 The description of the app in the html file is the name of the app in the quick view facet.
 #### Adding Multiple Fields to one Column in Responsive Tables
-<i>Search term:</i> `#MultiFieldsCol`
+<i>Search term:</i> [`#MultiFieldsCol`](../../search?q=MultiFieldsCol)
 
 Multiple fields can be in one column, if a field group is added to table with the UI.DataFieldForAnnotation.
 First you have to define the field group.
@@ -1371,7 +1371,7 @@ annotate service.RootEntities with @(
 );
 ```
 #### Adding Images to a table
-<i>Search term:</i> `#Image`
+<i>Search term:</i> [`#Image`](../../search?q=Image)
 
 Images are typically the first column in a table and help to visually guide the user. An image can be added to a table by just adding a normal data field to the line items.
 ```
@@ -1391,13 +1391,13 @@ annotate service.RootEntities with @(
 ```
 The special thing is just, that the property, which contains the image url has to be annotated with `@UI.IsImageURL`. The example is annotated in the [labels.cds](app/featureShowcase/labels.cds) file.
 #### Adding Currency or UoM Fields to a table
-<i>Search term:</i> `#Units`
+<i>Search term:</i> [`#Units`](../../search?q=Units)
 
 The special thing about currency or unit of measure fields is, that they have an additional field with the unit. In order to not have to add both properties to the table, and may risk, that through personalisation one might be not visible, the property with the value can be annotated with the unit.
 For units of measure the annotation is ` @Measures.Unit`. For currencies the annotation is `@Measures.ISOCurrency` and for percentage value the annotation is `@Measures.Unit : '%'` .
 The examples from the feature showcase are in the [labels.cds](app/featureShowcase/labels.cds) file.
 #### Add custom column (Extensibility)
-<i>Search term:</i> `#CustomColumn`
+<i>Search term:</i> [`#CustomColumn`](../../search?q=CustomColumn)
 
 To fulfill business requirements, there might be the need, to add custom columns to a table. With the Fiori elements extension points this is possible.
 First the additional column needs to be created als a xml fragment. This fragment should be in a separate folder of the webapp. In this example, the fragment contains a label which consists of the validFrom and validTo property of the entity.
@@ -1454,7 +1454,7 @@ Additional information are available in the [SAP UI5 Documentation](https://sapu
 
 ### Annotations for data fields
 #### Communication properties
-<i>Search term:</i> `#CommunicationFields`
+<i>Search term:</i> [`#CommunicationFields`](../../search?q=CommunicationFields)
 
 To display emails and phone numbers as a link, they are annotated with `@Communication.IsEmailAddress` or `@Communication.IsPhoneNumber`
 
@@ -1467,7 +1467,7 @@ annotate schema.RootEntities with{
 ```
 
 #### Time and Date
-<i>Search term:</i> `#TimeAndDate`
+<i>Search term:</i> [`#TimeAndDate`](../../search?q=TimeAndDate)
 
 Fiori elements provides out of the box support for displaying and editing dates and times, as well as time stamps. No annotations are needed, the properties just need to have the corresponding data type.
 ```
@@ -1532,7 +1532,7 @@ Another option for "textMaxCharactersDisplay" is "Infinity", to display the text
 More information are available in the [SAP Fe Documentation](https://sapui5.hana.ondemand.com/1.94.1/#/topic/c18ada4bc56e427a9a2df2d1898f28a5.html).
 
 #### Placeholder values
-<i>Search term:</i> `#Placeholder`
+<i>Search term:</i> [`#Placeholder`](../../search?q=Placeholder)
 
 With `@UI.Placeholder` a placeholder value can be defined, for when the field is in edit mode.
 ```
@@ -1547,7 +1547,7 @@ The value can also be a property path.
 ## Header Area Object Page
 
 <i style="color:orange;">INFO: </i>We recommend that you use [SAP Fiori tools](http://help.sap.com/disclaimer?site=https://help.sap.com/viewer/product/SAP_FIORI_tools/Latest/en-US), which is a set of extensions for SAP Business Application Studio and Visual Studio Code, to configure the app using the Application Modeler tool. <br/>
-<i>Search term:</i> `"anchorBarVisible"`
+<i>Search term:</i> [`"anchorBarVisible"`](../../search?q=anchorBarVisible)
 
 By default, the header of an Object Page  and the anchor bar are enabled. Both can be disabled with the Fiori tools or in the manifest.json.
 ```
@@ -1571,7 +1571,7 @@ By default, the header of an Object Page  and the anchor bar are enabled. Both c
 
 ### Title and Subtitle
 
-<i>Search term:</i> `#HeaderInfo`
+<i>Search term:</i> [`#HeaderInfo`](../../search?q=HeaderInfo)
 
 The title and subtitle of an Object Page are defined with the annotation `@UI.HeaderInfo`.
 ```
@@ -1601,7 +1601,7 @@ If the optional "ImageUrl" property is given, then the picture will be visible o
 
 ### Header Facets
 
-<i>Search term:</i> `#HeaderFacets`
+<i>Search term:</i> [`#HeaderFacets`](../../search?q=HeaderFacets)
 
 The header facets are a collection of facets which are displayed in the header of an Object Page. Both `UI.ReferenceFacet` and `UI.CollectionFacet` are supported. The facets are added to the `@UI.HeaderFacets` annotation. Collection facets need to have an ID, to work properly.
 ```
@@ -1623,7 +1623,7 @@ annotate service.RootEntities with @(
 ```
 #### Plain Text
 
-<i>Search term:</i> `#PlainText`
+<i>Search term:</i> [`#PlainText`](../../search?q=PlainText)
 
 Plain text can be displayed, by adding a normal data field to a field group and use this field group as a target of a reference facet.
 ```
@@ -1656,7 +1656,7 @@ description     @UI.MultiLineText;
 
 #### Header Field Group Facet
 
-<i>Search term:</i> `#HeaderFieldGroup`
+<i>Search term:</i> [`#HeaderFieldGroup`](../../search?q=HeaderFieldGroup)
 
 Field groups can be part of a header.
 ```
@@ -1696,7 +1696,7 @@ annotate service.RootEntities with @(
 ##### Custom Field
 
 <i style="color:orange;">INFO: </i>We recommend that you use [SAP Fiori tools](http://help.sap.com/disclaimer?site=https://help.sap.com/viewer/product/SAP_FIORI_tools/Latest/en-US), which is a set of extensions for SAP Business Application Studio and Visual Studio Code, to configure the app using the Application Modeler tool. <br/>
-<i>Search term:</i> `"CustomFieldHeaderOP"`
+<i>Search term:</i> [`"CustomFieldHeaderOP"`](../../search?q=CustomFieldHeaderOP)
 
 With extension points, it is possible to add custom fields to existing field groups. Therefore the manifest.json file needs to be adapted.
 ```
@@ -1729,7 +1729,7 @@ Under control configuration an existing field group is extended through adding a
 
 #### Address Facet
 
-<i>Search term:</i> `#AddressFacet`
+<i>Search term:</i> [`#AddressFacet`](../../search?q=AddressFacet)
 
 The `@Communication.Address` annotation of an entity can be directly displayed. For this the label property of the annotation is used, therefore the label property needs to be fully formatted. Linebreaks can be achieved with '\n'. 
 ```
@@ -1759,7 +1759,7 @@ In this example the label is generated through a CAP function in the [service.js
 
 #### Data Points
 
-<i>Search term:</i> `#DataPoint`
+<i>Search term:</i> [`#DataPoint`](../../search?q=DataPoint)
 
 A data point represent a single point of data. Typically it is a number, but it can also be textual, like a status value.
 ```
@@ -1778,7 +1778,7 @@ If the data point is a number, the default scale and precision can be overridden
 The following types of data points are supported: Rating, Progress and Key value. Data points support tooltips with the annotation `@Common.QucikInfo`. The tooltip can either be a string or a property path.
 ##### Rating
 
-<i>Search term:</i> `#RatingIndicator`
+<i>Search term:</i> [`#RatingIndicator`](../../search?q=RatingIndicator)
 
 With the Visualization property set to "#Rating" the data point will be displayed as filled stars. The "TargetValue" property sets the maximal amount of stars.
 The value property is the amount of stars, which are filled. Values between x.25 and x.74 are displaced as a half star.
@@ -1795,7 +1795,7 @@ annotate service.RootEntities with @(
 
 ##### Progress
 
-<i>Search term:</i> `#ProgressIndicator`
+<i>Search term:</i> [`#ProgressIndicator`](../../search?q=ProgressIndicator)
 
 With the Visualization property set to "#Progress" the data point will be displayed as a bar surrounded by a container. The "TargetValue" property is the maximal value. If the value is higher or equals the target value, the container is filled.
 Additionally a criticality can be defined, which changes the color of the bar and container.
@@ -1813,7 +1813,7 @@ annotate service.RootEntities with @(
 
 ##### Key value
 
-<i>Search term:</i> `#KeyValue`
+<i>Search term:</i> [`#KeyValue`](../../search?q=KeyValue)
 
 A key value data point is the default data point, when the "Visualization" property is not specified.
 ```
@@ -1828,7 +1828,7 @@ annotate service.RootEntities with @(
 
 #### Micro chart Facet
 
-<i>Search term:</i> `#OPMicroChart`
+<i>Search term:</i> [`#OPMicroChart`](../../search?q=OPMicroChart)
 
 A micro chart facet consists of a title, a subtitle, a Microchart control, and a footer. <br/>The following Microchart controls are supported: Area, Bullet, Radial, Column, Line, Harvey, Stacked bar and Comparison micro chart. <br/>The micro chart is defined with the `@UI.Chart` annotation, which then is the target of a ReferenceFacet in the `@UI.HeaderFacets` annotation.
 ```
@@ -1864,7 +1864,7 @@ In the following examples, all used properties are mandatory.
 
 ##### Area Micro Chart
 
-<i>Search term:</i> `#microChartArea`
+<i>Search term:</i> [`#microChartArea`](../../search?q=microChartArea)
 
 The area micro chart is a trend chart, which provides information for the actual and target value for a specified dimension.
 The displayed values at the bottom of the chart are the boundary values of the dimension. The values above the chart are the boundary values of the measure attribute.
@@ -1910,7 +1910,7 @@ annotate service.ChartDataEntities with @(
 ```
 ##### Bullet Micro Chart
 
-<i>Search term:</i> `#microChartBullet`
+<i>Search term:</i> [`#microChartBullet`](../../search?q=microChartBullet)
 
 The bullet chart features a single measure and compares it to one or more other measures (e.g. value with target comparison). Both "Criticality" and "CriticalityCalculation" are supported, but if both are given "Criticality" overrides "CriticalityCalculation". The bullet chart does not support the criticality value of 5 (new item).
 The measures attribute, while it is mandatory, has no effect on the chart.
@@ -1955,7 +1955,7 @@ annotate service.RootEntities with @(
 
 ##### Radial Micro Chart
 
-<i>Search term:</i> `#microChartRadial`
+<i>Search term:</i> [`#microChartRadial`](../../search?q=microChartRadial)
 
 The radial micro chart displays a single percentage value.
 The measures attribute, while it is mandatory, has no effect on the chart.
@@ -1997,7 +1997,7 @@ The unit of measure label will not be rendered, as the chart displays percentage
 
 ##### Line Micro Chart
 
-<i>Search term:</i> `#microChartLine`
+<i>Search term:</i> [`#microChartLine`](../../search?q=microChartLine)
 
 The line chart displays a series of data points as a line. The bottom values are the border values of the dimension. The upper left value is the smallest value of the first measure property and the upper right value is the largest value of the last measure property. The shown unit of measure is from the first entry.
 ```
@@ -2052,7 +2052,7 @@ annotate service.ChartDataEntities with @(
 
 ##### Column Micro Chart
 
-<i>Search term:</i> `#microChartColumn`
+<i>Search term:</i> [`#microChartColumn`](../../search?q=microChartColumn)
 
 A column chart uses vertical bars to compare values of a dimension.
 The displayed values at the bottom of the chart are the boundary values of the dimension. The values above the chart are the boundary values of the measure attribute.
@@ -2094,7 +2094,7 @@ annotate service.ChartDataEntities with @(
 
 ##### Harvey Micro Chart
 
-<i>Search term:</i> `#microChartHarvey`
+<i>Search term:</i> [`#microChartHarvey`](../../search?q=microChartHarvey)
 
 A harvey chart plots a single measure value against a maximum value. 
 ```
@@ -2133,7 +2133,7 @@ annotate service.RootEntities with @(
 
 ##### Stacked Bar Micro Chart
 
-<i>Search term:</i> `#microChartStackedBar`
+<i>Search term:</i> [`#microChartStackedBar`](../../search?q=microChartStackedBar)
 
 A stacked bar chart uses vertical bars to compare values of a dimension.
 The displayed values at the bottom of the chart are the boundary values of the dimension. The values above the chart are the boundary values of the measure attribute.
@@ -2175,7 +2175,7 @@ annotate service.ChartDataEntities with @(
 
 ##### Comparison Micro Chart
 
-<i>Search term:</i> `#microChartComparision`
+<i>Search term:</i> [`#microChartComparision`](../../search?q=microChartComparision)
 
 A comparison chart uses three horizontal bars to compare values of a dimension. If more values are defined in the dimension, they will only show up in the tooltip.
 The displayed values on the left represent the dimension value of each data point. The values on the right are the actual values. If a unit of measure is shown, then it is from the first data point to be plotted.
@@ -2217,7 +2217,7 @@ annotate service.ChartDataEntities with @(
 #### Header Custom Facet 
 
 <i style="color:orange;">INFO: </i>We recommend that you use [SAP Fiori tools](http://help.sap.com/disclaimer?site=https://help.sap.com/viewer/product/SAP_FIORI_tools/Latest/en-US), which is a set of extensions for SAP Business Application Studio and Visual Studio Code, to configure the app using the Application Modeler tool. <br/>
-<i>Search term:</i> `"CustomHeaderFacet"`
+<i>Search term:</i> [`"CustomHeaderFacet"`](../../search?q=CustomHeaderFacet)
 
 Through extension points custom facets can be added to the header. In the Feature Showcase the Item1 Object Page has a custom header facet. The facet itself is a XML fragment, which then gets added through the [manifest.json](app/featureShowcase/webapp/manifest.json) file.
 ```
@@ -2255,7 +2255,7 @@ More information are available in the [SAP FE Documentation](https://sapui5.hana
 
 ### Object Page Actions
 
-<i>Search term:</i> `#OPHeaderAction`
+<i>Search term:</i> [`#OPHeaderAction`](../../search?q=OPHeaderAction)
 
 Actions for the Object Page in general are referenced in the `@UI.Identification` annotation, which is an array of data fields. The actions are referenced as `UI.DataFieldForAction`. The criticality only supports the values 0 (normal), 1 (red) and 3 (green). For bound actions the Object Page content is passed and for unbound actions, no context is passed. Navigation actions are also possible.
 ```
@@ -2275,7 +2275,7 @@ annotate service.RootEntities with @(
 The example is in the [layouts_RootEntities.cds](app/featureShowcase/layouts_RootEntities.cds) file.
 
 #### Custom Actions (Object Page Header)
-<i>Search term:</i> `"CustomActionOPHeader"`
+<i>Search term:</i> [`"CustomActionOPHeader"`](../../search?q=CustomActionOPHeader)
 
 Custom actions on the Object Page are added in the [manifest.json](app/featureShowcase/webapp/manifest.json) file under "options"->"settings"->"content"->"header"->"actions".
 
@@ -2308,13 +2308,13 @@ The custom action itself is described here: [Custom Actions](#custom-actions-obj
 
 ### Navigation from Header Facets
 
-<i>Search term:</i> `"targetSections"`, `#InboundNav`, `"ExternalNavigation"`
+<i>Search term:</i> [`"targetSections"`](../../search?q=targetSections), [`#InboundNav`](../../search?q=InboundNav), [`"ExternalNavigation"`](../../search?q=ExternalNavigation)
 
 It is possible to define in-page navigation or external navigation for data points, rating & progress indicators or micro chart facets of the header, so that the facet label will be rendered as a link. 
 
 #### In-page Navigation
 
-<i>Search term:</i> `"targetSections"`, `#InboundNav`
+<i>Search term:</i> [`"targetSections"`](../../search?q=targetSections), [`#InboundNav`](../../search?q=InboundNav)
 
 For the In-page navigation the header facet has the "navigation" property. "sectionId" defines which section of the Object Page is the target und the "subsectionId" defines which subsection of this, if the section has subsections. If no subsection ID is specified, the routing goes to the first subsection.
 The section ID is composed of the application ID + "--fe::FacetSection::" and then the ID of the section.
@@ -2366,7 +2366,7 @@ annotate service.RootEntities with @(
 
 #### External Navigation
 
-<i>Search term:</i> `"ExternalNavigation"`
+<i>Search term:</i> [`"ExternalNavigation"`](../../search?q=ExternalNavigation)
 
 The external navigation is implemented at two positions in the [manifest.json](app/featureShowcase/webapp/manifest.json) file.
 First the targeted app needs to be added to the "crossNavigation"->"outbounds" property.
@@ -2412,7 +2412,7 @@ Secondly the header facet, which shall offer external navigation needs the "navi
 ### Toggling the Editability of Header Fields
 
 <i style="color:orange;">INFO: </i>We recommend that you use [SAP Fiori tools](http://help.sap.com/disclaimer?site=https://help.sap.com/viewer/product/SAP_FIORI_tools/Latest/en-US), which is a set of extensions for SAP Business Application Studio and Visual Studio Code, to configure the app using the Application Modeler tool. <br/>
-<i>Search term:</i> `"editableHeaderContent"`
+<i>Search term:</i> [`"editableHeaderContent"`](../../search?q=editableHeaderContent)
 
 By default, the header of an Object Page is editable in edit-mode. However with the annotation `"editableHeaderContent": false` in the [manifest.json](app/featureShowcase/webapp/manifest.json) file this can be changed, so that the header is non-editable in edit- and display-mode. 
 ```
@@ -2430,7 +2430,7 @@ By default, the header of an Object Page is editable in edit-mode. However with 
 ### Adding Subpages
 
 <i style="color:orange;">INFO: </i>We recommend that you use [SAP Fiori tools](http://help.sap.com/disclaimer?site=https://help.sap.com/viewer/product/SAP_FIORI_tools/Latest/en-US), which is a set of extensions for SAP Business Application Studio and Visual Studio Code, to configure the app using the Application Modeler tool. <br/>
-<i>Search term:</i> `"childEntities1ObjectPage"`
+<i>Search term:</i> [`"childEntities1ObjectPage"`](../../search?q=childEntities1ObjectPage)
 
 To add a subpage, two objects are needed in the [manifest.json](app/featureShowcase/webapp/manifest.json) file.
 First an additional route needs to be added, which specifies the target.
@@ -2494,7 +2494,7 @@ For actual navigation the name of the navigation route has to be referenced as t
 
 ### Enabling the Related Apps Button 
 
-<i>Search term:</i> `"showRelatedApps"`
+<i>Search term:</i> [`"showRelatedApps"`](../../search?q=showRelatedApps)
 
 With the property `"showRelatedApps": true` in the [manifest.json](app/featureShowcase/webapp/manifest.json) file, the header action row on the Object Page will include a button "Related Apps", if there are any related apps. This enables the user to quickly navigate to related apps. Related apps are those, with the same semantic object.
 ```
@@ -2512,7 +2512,7 @@ With the property `"showRelatedApps": true` in the [manifest.json](app/featureSh
 
 ## Content Area Object Page
 
-<i>Search term:</i> `#OPContentArea`
+<i>Search term:</i> [`#OPContentArea`](../../search?q=OPContentArea)
 
 The content for the content area is added to the `@UI.Facet` annotation, which is an array of `@UI.ReferenceFacet` and `@UI.CollectionFacet`. A reference facet is a single form, chart or table. A collection facet is a collection of reference facets. The reference facets of a collection facet are displayed in a horizontal way with an automatic line-break. The facets of the `@UI.Facet` annotation are displayed either as different tabs or as different topics beneath each other on a single page. This can be changed in the [manifest.json](app/featureShowcase/webapp/manifest.json) file. The possible options are "Tabs" or "Page". The title of a subsection will not be displayed, when there is only one type of content in the subsection and the title of the subsection is the same as the title of the content. 
 ```
@@ -2533,11 +2533,11 @@ More information are available in the [SAP Fiori elements Documentation](https:/
 
 ### General features Content Area Object Page
 
-<i>Search term:</i> `#DisplayTextAndID`, `#HidingContent`, `#Preview`, `#SideContent`
+<i>Search term:</i> [`#DisplayTextAndID`](../../search?q=DisplayTextAndID), [`#HidingContent`](../../search?q=HidingContent), [`#Preview`](../../search?q=Preview), [`#SideContent`](../../search?q=SideContent)
 
 #### Displaying Text and ID for Value help Input fields
 
-<i>Search term:</i> `#DisplayTextAndID`
+<i>Search term:</i> [`#DisplayTextAndID`](../../search?q=DisplayTextAndID)
 
 Instead of showing unreadable long IDs, there is the option to replace the ID with another property value from the entity, for example a name property.
 The `@Common.Text` annotation specifies, which value should be displayed instead of the original value. The `@Common.TextArrangement` annotation defines how the new text is displayed. The options are '#TextOnly', '#TextFirst', '#TextLast', '#TextSeperate'.
@@ -2552,7 +2552,7 @@ The feature is not limited to replacing IDs, every property can be annotated wit
 
 #### Hiding features
 
-<i>Search term:</i> `#HidingContent`
+<i>Search term:</i> [`#HidingContent`](../../search?q=HidingContent)
 
 Any header facet, section or data field can be hidden with the annotation `@UI.Hidden`. The annotation only supports boolean values. Expression bindings, e.g. a '!' are not possible.
 ```
@@ -2573,7 +2573,7 @@ annotate service.RootEntities with @(
 
 #### Preview
 
-<i>Search term:</i> `#Preview`
+<i>Search term:</i> [`#Preview`](../../search?q=Preview)
 
 A reference facet in a collection facet is not shown after loading the app, when the reference facet has the `![@UI.PartOfPreview]` annotation and it is set to false. The sub section is then hidden beneath a "Show more" button on the UI.
 ```
@@ -2601,7 +2601,8 @@ annotate service.RootEntities with @(
 
 #### Side Content
 
-<i>Search terms:</i> `#SideContent`, `"sideContent"`
+<i>Search terms:</i> [`#SideContent`](../../search?q=SideContent)
+, [`"sideContent"`](../../search?q=sideContent)
 
 Sections and subsection on an Object Page can have toggleable side content, which is by default not shown.
 Such side content is defined by a XML fragment and the toggle is done with a custom action which calls the `this.showSideContent("[side-content-key]");` function.
@@ -2664,7 +2665,7 @@ The implementation of custom actions is described in other chapters.
 
 ### Forms
 
-<i>Search term:</i> `#Form`
+<i>Search term:</i> [`#Form`](../../search?q=Form)
 
 A form is a group of fields. The `@UI.FieldGroup` annotation is used to group the fields. The field group is added to the `@UI.Facets` annotation to be displayed.
 The data of the field group is added to the "Data" property. Normal data fields do not need the "$Type" property and the "Value" property is enough.
@@ -2702,7 +2703,7 @@ UI.Facets : [
 
 #### Connected Fields
 
-<i>Search term:</i> `#ConnectedFields`
+<i>Search term:</i> [`#ConnectedFields`](../../search?q=ConnectedFields)
 
 When two fields are semantically connected, they can be displayed next to each other under one label, to show their data relation.
 The connected field is defined with the annotation `@UI.ConnectedFields`. The "Template" property is a string, which defines in which order the fields are displayed and what is displayed between both fields, for example a slash. The field references are the qualifiers of the Data property, not the actual names of the property of the entity. The 'Data' property contains both fields. It is important that the field object has the "$Type" property set to "UI.DataField", else the connected field will not show up. 
@@ -2744,7 +2745,7 @@ Currently they cannot be rendered in tables or in header facets.
 #### Custom Content
 
 <i style="color:orange;">INFO: </i>We recommend that you use [SAP Fiori tools](http://help.sap.com/disclaimer?site=https://help.sap.com/viewer/product/SAP_FIORI_tools/Latest/en-US), which is a set of extensions for SAP Business Application Studio and Visual Studio Code, to configure the app using the Application Modeler tool. <br/>
-<i>Search term:</i> `"CustomContentFieldGroup"`
+<i>Search term:</i> [](../../search?q=)`"CustomContentFieldGroup"`
 
 Fiori elements provides the possibility to add custom data fields to forms. The additional field is created as a XML fragment and referenced in the [manifest.json](app/featureShowcase/webapp/manifest.json) file. 
 Under the property "controlConfiguration" the field group has to be referenced with its qualifier (e.g. #ShowWhenInEdit). An ID is defined for the custom field, in the example "DateRange". The property "template" is the namespace + name of the XML fragment and the "position" property defines, where the field is inserted. "placement" has the valid options "After" and "Before" and an anchor is another data field which is a part of the field group. Behind the two colons is the value property name of the data field, in this case "childEntity2_ID". 
@@ -2778,7 +2779,7 @@ Under the property "controlConfiguration" the field group has to be referenced w
 More information are available in the [SAP Fiori elements Documentation](https://sapui5.hana.ondemand.com/#/topic/4e49753530ad4a73a44a5f8efac238d6).
 
 #### Form Actions and Navigation
-<i>Search term:</i> `#FormActionsAndIBN`
+<i>Search term:</i> [`#FormActionsAndIBN`](../../search?q=FormActionsAndIBN)
 
 Forms can have their own actions, which show up in the upper right corner of the section by default. The actions and navigations are just added by adding the corresponding data field ("DataFieldForAction" or "DataFieldForIntentBasedNavigation") to the "Data" array of the field group from the form. If the action should be a part of the form toolbar instead of the section toolbar, the data field needs the additional property "Inline : true".
 ```
@@ -2822,7 +2823,7 @@ annotate service.RootEntities with @(
 ```
 
 ##### Custom Actions (Object Page Section Form)
-<i>Search term:</i> `"CustomActionSectionForm"`
+<i>Search term:</i> [`"CustomActionSectionForm"`](../../search?q=CustomActionSectionForm)
 
 Custom actions can also be added to the section of a form on the Object Page. The qualifier for the section is the annotated ID.
 
@@ -2927,7 +2928,7 @@ annotate service.RootEntities with @(
 #### Enable Variant Management Object Page
 
 <i style="color:orange;">INFO: </i>We recommend that you use [SAP Fiori tools](http://help.sap.com/disclaimer?site=https://help.sap.com/viewer/product/SAP_FIORI_tools/Latest/en-US), which is a set of extensions for SAP Business Application Studio and Visual Studio Code, to configure the app using the Application Modeler tool. <br/>
-<i>Search term:</i> `"Control"`
+<i>Search term:</i> [`"Control"`](../../search?q=Control)
 
 To enable Variant Management for a table on an Object Page, the property "variantManagement" needs to be set to "Control"` in the [manifest.json](app/featureShowcase/webapp/manifest.json) file.
 ```
@@ -2946,7 +2947,7 @@ To enable Variant Management for a table on an Object Page, the property "varian
 #### Enable Personalization
 
 <i style="color:orange;">INFO: </i>We recommend that you use [SAP Fiori tools](http://help.sap.com/disclaimer?site=https://help.sap.com/viewer/product/SAP_FIORI_tools/Latest/en-US), which is a set of extensions for SAP Business Application Studio and Visual Studio Code, to configure the app using the Application Modeler tool. <br/>
-<i>Search term:</i> `"personalization"`
+<i>Search term:</i> [`"personalization"`](../../search?q=personalization)
 
 Additionally you can turn on or off, if the personalization of columns or the sort order of the table should be possible or whether the user can filter the table. 
 ```
@@ -2980,7 +2981,7 @@ The annotation is in the [manifest.json](app/featureShowcase/webapp/manifest.jso
 #### Enable Full Screen Mode
 
 <i style="color:orange;">INFO: </i>We recommend that you use [SAP Fiori tools](http://help.sap.com/disclaimer?site=https://help.sap.com/viewer/product/SAP_FIORI_tools/Latest/en-US), which is a set of extensions for SAP Business Application Studio and Visual Studio Code, to configure the app using the Application Modeler tool. <br/>
-<i>Search term:</i> `"enableFullScreen"`
+<i>Search term:</i> [`"enableFullScreen"`](../../search?q=enableFullScreen)
 
 With the annotation `"enableFullScreen": true` in the [manifest.json](app/featureShowcase/webapp/manifest.json) file, you get an additional button on the top right of the table, to view the table in a full screen mode.
 
@@ -3009,7 +3010,7 @@ With the annotation `"enableFullScreen": true` in the [manifest.json](app/featur
 
 #### Adding Titles to Object Page Tables
 
-<i>Search term:</i> `#OPTableTitle`
+<i>Search term:</i> [`#OPTableTitle`](../../search?q=OPTableTitle)
 
 The title of an Object Page table is the "TypeNamePlural" property of the `@UI.HeaderInfo` annotation.
 ```
@@ -3025,7 +3026,7 @@ If the section title and the table title are identical or the `@UI.HeaderInfo` a
 
 #### Adding Segmented Buttons to a Table Toolbar
 
-<i>Search term:</i> `"quickVariantSelection"`
+<i>Search term:</i> [`"quickVariantSelection"`](../../search?q=quickVariantSelection)
 
 The segmented button in the table toolbar is used to switch between different views. If more then 3 views are specified for the table, then the segmented button will be replaced by a dropdown button. The view variants are specified in the [manifest.json](app/featureShowcase/webapp/manifest.json) file in the "tableSettings" property of the line item, which is the data source for the table.
 ```
@@ -3072,7 +3073,7 @@ Further information on [multiple views](#multiple-views) are in the List Report 
 #### Enabling Inline Creation of Table Entries on Object Page
 
 <i style="color:orange;">INFO: </i>We recommend that you use [SAP Fiori tools](http://help.sap.com/disclaimer?site=https://help.sap.com/viewer/product/SAP_FIORI_tools/Latest/en-US), which is a set of extensions for SAP Business Application Studio and Visual Studio Code, to configure the app using the Application Modeler tool. <br/>
-<i>Search term:</i> `"creationMode"`
+<i>Search term:</i> [`"creationMode"`](../../search?q=creationMode)
 
 The inline creation mode can be enabled in the [manifest.json](app/featureShowcase/webapp/manifest.json) file.
 Under the table settings the name of the creation mode has to be "Inline". The other option is "NewPage".
@@ -3106,7 +3107,7 @@ With the "createAtEnd" property, it can be defined, whether the new row in "Inli
 #### Using the 'Export to Spreadsheet' Feature
 
 <i style="color:orange;">INFO: </i>We recommend that you use [SAP Fiori tools](http://help.sap.com/disclaimer?site=https://help.sap.com/viewer/product/SAP_FIORI_tools/Latest/en-US), which is a set of extensions for SAP Business Application Studio and Visual Studio Code, to configure the app using the Application Modeler tool. <br/>
-<i>Search term:</i> `"enableExport"`
+<i>Search term:</i> [`"enableExport"`](../../search?q=enableExport)
 
 The "Export to Spreadsheet" feature is enabled on the Object Page, if the copy/paste feature is enabled. Else it is disabled by default. It can be enabled in the [manifest.json](app/featureShowacse/webapp/manifest.json) file for the wanted tables.
 ```
@@ -3134,7 +3135,7 @@ More information regarding the functionality and restrictions are available in t
 
 #### Custom Actions (Object Page Section Table)
 
-<i>Search term:</i> `"CustomActionOPTableToolbar"`
+<i>Search term:</i> [`"CustomActionOPTableToolbar"`](../../search?q=CustomActionOPTableToolbar)
 
 Custom actions can also be added to a table toolbar which is part of a section on the Object Page.
 
@@ -3168,7 +3169,7 @@ The custom action itself is described here: [Custom Actions](#custom-actions-obj
 
 ### Chart
 
-<i>Search term:</i> `#ChartSection`
+<i>Search term:</i> [`#ChartSection`](../../search?q=ChartSection)
 
 As an alternative to micro charts in the header, charts are also possible as sections. However the implementation is more complex.
 
@@ -3327,7 +3328,7 @@ More information about the chart section are available in the [SAP Fiori element
 ### Custom Section and Subsection
 
 <i style="color:orange;">INFO: </i>We recommend that you use [SAP Fiori tools](http://help.sap.com/disclaimer?site=https://help.sap.com/viewer/product/SAP_FIORI_tools/Latest/en-US), which is a set of extensions for SAP Business Application Studio and Visual Studio Code, to configure the app using the Application Modeler tool. <br/>
-<i>Search term:</i> `"customSectionQualifier"`
+<i>Search term:</i> [`"customSectionQualifier"`](../../search?q=customSectionQualifier)
 
 Custom sections and subsections can be also be implemented by adding the wanted XML fragment as a section to the "body" property of the "content" property in the [manifest.json](app/featureShowcase/webapp/manifest.json) file.
 ```
@@ -3364,7 +3365,7 @@ The ID of the custom section has to be unique. The "template" property is the pa
 #### Custom Subsection
 
 <i style="color:orange;">INFO: </i>We recommend that you use [SAP Fiori tools](http://help.sap.com/disclaimer?site=https://help.sap.com/viewer/product/SAP_FIORI_tools/Latest/en-US), which is a set of extensions for SAP Business Application Studio and Visual Studio Code, to configure the app using the Application Modeler tool. <br/>
-<i>Search term:</i> `"customSubSectionQualifier"`
+<i>Search term:</i> [`"customSubSectionQualifier"`](../../search?q=customSubSectionQualifier)
 
 Custom subsections are implemented in a similar way to custom sections. The qualifier for the section is the ID of the collection facet. The subsection is part of the property "subSections" and "template" is the path to the XML fragment. The string is a combination of the ID from the manifest ("sap.fe.featureShowcase.mainApp") and then the path to the fragment in the webapp folder ("ext" is the folder, "CustomSubSection" is the name of the fragment). The "visible" property also accepts binding expressions like `"enabled="{= ${ui>/editMode} === 'Editable'}"`. When no "position" property is given, the fragment is placed at the end.
 
@@ -3403,7 +3404,7 @@ Custom subsections are implemented in a similar way to custom sections. The qual
 
 ### Determining actions
 
-<i>Search term:</i> `#DeterminingAction`
+<i>Search term:</i> [`#DeterminingAction`](../../search?q=DeterminingAction)
 
 Determining actions are shown in the footer bar of the Object Page. These actions are part of the `@UI.Identification` array. The only difference to actions shown in the header is the additional property `Determining : true`.
 ```
@@ -3423,7 +3424,7 @@ annotate service.RootEntities with @(
 ```
 
 ### Custom Actions (Object Page Footer)
-<i>Search term:</i> `"CustomActionOPFooter"`
+<i>Search term:</i> [`"CustomActionOPFooter"`](../../search?q=CustomActionOPFooter)
 
 Of course, custom actions can also be added to the footer bar of the Object Page.
 
@@ -3456,7 +3457,7 @@ The custom action itself is described here: [Custom Actions](#custom-actions-obj
 ## Custom Object Page
 
 <i style="color:orange;">INFO: </i>We recommend that you use [SAP Fiori tools](http://help.sap.com/disclaimer?site=https://help.sap.com/viewer/product/SAP_FIORI_tools/Latest/en-US), which is a set of extensions for SAP Business Application Studio and Visual Studio Code, to configure the app using the Application Modeler tool. <br/>
-<i>Search term:</i> `"CustomObjectPage_childEntities3"`
+<i>Search term:</i> [`"CustomObjectPage_childEntities3"`](../../search?q=CustomObjectPage_childEntities3)
 
 When navigating from a table to a sub entity, the Object Page for the sub entity can be replaced with a custom one. Two steps are necessary to add a custom Object Page.
 After creating a XML fragment as the new Object Page for the sub entity, add a new target in the [manifest.json](app/featureShowcase/webapp/manifest.json) file.
