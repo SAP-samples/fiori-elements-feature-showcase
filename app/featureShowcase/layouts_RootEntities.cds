@@ -331,7 +331,7 @@ annotate service.RootEntities with @(
         ]
     },
     /**
-        Displaying Date, Time or TimeStamp values is done by Fiori elements out of the Box
+        Displaying Date, Time or TimeStamp values is done by SAP Fiori elements out of the Box
      */
     UI.FieldGroup #timeAndDate          : {
         Data : [

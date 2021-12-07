@@ -13,7 +13,7 @@ sap.ui.define([
 				label: 'Confirm',	
 				invocationGrouping: true 	
 			};
-			this.editFlow.invokeAction(sActionName, mParameters); ///Fiori elements EditFlow API
+			this.editFlow.invokeAction(sActionName, mParameters); //SAP Fiori elements EditFlow API
 		},
 
 		//Function for Micro Process Flow in Custom Column
