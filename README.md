@@ -7,11 +7,12 @@ The main focus of this project is to present features from the List Report & Obj
 <br/><br/>
 Start the app and search for features you might want to use or search through the content overview. When you find something you can look for the corresponding topic for more information regarding the implementation.
 <br/><br/>
-Some topics have a hint, that the implementation is possible using Fiori tools, which we recommend to use.
+Some topics have a hint, that the implementation is possible using SAP Fiori tools, which we recommend to use.
 <br/><br/>
 If you use CAP for the first time, please follow the instructions from the [CAP Getting started](https://cap.cloud.sap/docs/get-started/) <br/> <br/>
-Install the dependencies with `npm install`. <br/>
-Start the app with `cds watch`.
+To run the featue showcase locally install the dependencies in the [root folder](https://github.tools.sap/fiori-elements/feature-showcase) with `npm install`. <br/>
+Then start the app with `cds watch`. <br/>
+Open `http://localhost:4004/` in the Browser to get to the SAP Fiori launchpad sandbox from where you can navigate to the feature showcases.
 <br/>
 
 <b>Finding code: </b>Each of the following topics has search terms, to find the related code snippets in the repository.
@@ -44,6 +45,7 @@ Start the app with `cds watch`.
                 - [Dynamic CRUD Restrictions](#dynamic-crud-restrictions)
                 - [Navigation Button](#navigation-button)
                 - [Critical Actions](#critical-actions)
+                - [Message Toasts](#message-toasts)
                 - [Custom Actions](#custom-actions-table-list-report)
             - [Setting the Table Type](#setting-the-table-type)
             - [Multiple Views](#multiple-views)
@@ -136,7 +138,7 @@ Start the app with `cds watch`.
 
 ### Flexible Column Layout
 The Flexible Column Layout (FCL) enables the app, to display the Object Page and possibly a further Object Page next to the List Report on the same page instead of navigating to the next page.
-To enable the Flexible Column Layout please use the Application Modeler from the Fiori tools. The setting can be found in the Global Page Settings, which are part of the Page Map.
+To enable the Flexible Column Layout please use the Application Modeler from the SAP Fiori tools. The setting can be found in the Global Page Settings, which are part of the Page Map.
 <!---### Configuring Navigation --->
 
 ### Configure Draft
@@ -224,7 +226,7 @@ sap.ui.define([
 
 <i>Search term:</i> `#EditFlowAPI`
 
-It is also possible to invoke CAP actions out of a JavaScript function using the "invokeAction" function of the Fiori elements Edit flow API.
+It is also possible to invoke CAP actions out of a JavaScript function using the "invokeAction" function of the SAP Fiori elements Edit flow API.
 ```
 sap.ui.define([
 	"sap/m/MessageBox",
@@ -240,7 +242,7 @@ sap.ui.define([
 				label: 'Confirm',	
 				invocationGrouping: true 	
 			};
-			this.editFlow.invokeAction(sActionName, mParameters); ///Fiori elements EditFlow API
+			this.editFlow.invokeAction(sActionName, mParameters); //SAP Fiori elements EditFlow API
 		},
         ...
     };
@@ -425,13 +427,14 @@ Here the region property (which is an Association to a Code List) is annotated w
 
 #### Custom Filter
 
-<i>Search term:</i> `"customFilter"`
+<i>Search term:</i> `customFilter`
 
 Custom filter are useful, when the data value is in a special format, for example a rating. The implementation consists of multiple parts.
 First List Report in the [manifest.json](app/featureShowcase/webapp/manifest.json) is extended with the following lines.
 Under "controlConfiguration" the selection fields ("@com.sap.vocabularies.UI.v1.SelectionFields") are extended.
 The "property" property is the property of the entity set, which is filtered. The "template" property leads to a XML fragment, which is the filter.
 A "position" property with "placement" and "anchor" is also possible. When not given, the custom filter is placed at the end.
+The name of the custom filter has to be the property name, else it would cause errors.
 ```
 "RootEntityListReport": {
     ...
@@ -442,7 +445,7 @@ A "position" property with "placement" and "anchor" is also possible. When not g
                 ...
                 "@com.sap.vocabularies.UI.v1.SelectionFields": {
                     "filterFields": {
-                        "customFilter": {
+                        "starsValue": {
                             "label": "{i18n>customFilter}",
                             "property": "starsValue",
                             "template": "sap.fe.featureShowcase.mainApp.ext.CustomFilter-Rating"
@@ -514,7 +517,7 @@ With extension points custom actions can be added in the header area of the List
 },
 ```
 
-The custom action itself is described here: [Custom Actions](#custom-actions-list-report)
+The custom action itself is described here: [Custom Actions](#custom-actions)
 
 ## Content Area List Report
 ### Configuring Tables
@@ -738,13 +741,24 @@ Icons can be displayed as the label of the button instead of text, but only if t
 ##### Critical Actions
 <i>Search term:</i> `#CriticalAction`
 
-When an action is annotated with `@Common.IsActioNCritical : true`, a popover will appear before invoking the action, asking the user if he/she is sure about invoking the selected action.
+When an action is annotated with `@Common.IsActionCritical : true`, a popover will appear before invoking the action, asking the user if he/she is sure about invoking the selected action.
 
 ```
 annotate service1.criticalAction with @(
     Common.IsActionCritical : true
 );
 ```
+
+##### Message Toasts
+<i>Search term:</i> `#MessageToast`
+
+Message toasts are shown on the UI when the Backend sends a message with the severity equaling 1. If the severity is higher, a dialog will be shown.
+For more information regarding the sending of messages from a CAP Backend, please have a look at the [SAP CAP Documentation for messaging](https://cap.cloud.sap/docs/node.js/events#req-msg).
+
+```
+req.notify(`Critical action pressed`);
+```
+`notify` is the method to send a message with the severity of 1 and `req` is the request received by CAP.
 
 ##### Custom Actions (Table List Report)
 <i>Search term:</i> `"CustomActionLR"`
@@ -1001,7 +1015,7 @@ Without a sort order defined, the values are ascending. The implementation is in
 <i style="color:orange;">INFO: </i>We recommend that you use [SAP Fiori tools](http://help.sap.com/disclaimer?site=https://help.sap.com/viewer/product/SAP_FIORI_tools/Latest/en-US), which is a set of extensions for SAP Business Application Studio and Visual Studio Code, to configure the app using the Application Modeler tool. <br/>
 <i>Search term:</i> `"selectionMode"`
 
-Multiple Selection can be enabled in the List Report with the property `"selectionMode": "Multi"` in the table Settings. Other possible values are: Auto, Single or None. More Information about these are available in the [SAP FE Documentation](https://sapui5.hana.ondemand.com/#/topic/116b5d82e8c545e2a56e1b51b8b0a9bd).
+Multiple Selection can be enabled in the List Report with the property `"selectionMode": "Multi"` in the table Settings. Other possible values are: Auto, Single or None. More Information about these are available in the [SAP Fiori elements Documentation](https://sapui5.hana.ondemand.com/#/topic/116b5d82e8c545e2a56e1b51b8b0a9bd).
 ```
 "RootEntityListReport": {
     ...
@@ -1226,7 +1240,7 @@ annotate service1.Contacts with @(
     }
 );
 ```
-There are more supported properties for the Contact, which are listed in the [SAP FE Documentation](https://sapui5.hana.ondemand.com/#/topic/a6a8c0c4849b483eb10e87f6fdf9383c.html).
+There are more supported properties for the Contact, which are listed in the [SAP Fiori elements Documentation](https://sapui5.hana.ondemand.com/#/topic/a6a8c0c4849b483eb10e87f6fdf9383c.html).
 This contact card then needs to be a target of a DataFieldForAnnotation, which itself is a port of the `@UI.LineItem` annotation, to be shown in the table.
 ```
 annotate service.RootEntities with @(
@@ -1399,7 +1413,7 @@ The examples from the feature showcase are in the [labels.cds](app/featureShowca
 #### Add custom column (Extensibility)
 <i>Search term:</i> `#CustomColumn`
 
-To fulfill business requirements, there might be the need, to add custom columns to a table. With the Fiori elements extension points this is possible.
+To fulfill business requirements, there might be the need, to add custom columns to a table. With the SAP Fiori elements extension points this is possible.
 First the additional column needs to be created als a xml fragment. This fragment should be in a separate folder of the webapp. In this example, the fragment contains a label which consists of the validFrom and validTo property of the entity.
 ```
 <core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m">
@@ -1469,7 +1483,7 @@ annotate schema.RootEntities with{
 #### Time and Date
 <i>Search term:</i> `#TimeAndDate`
 
-Fiori elements provides out of the box support for displaying and editing dates and times, as well as time stamps. No annotations are needed, the properties just need to have the corresponding data type.
+SAP Fiori elements provides out of the box support for displaying and editing dates and times, as well as time stamps. No annotations are needed, the properties just need to have the corresponding data type.
 ```
 aspect rootBasis : {
     ...
@@ -1529,7 +1543,7 @@ Another option for "textMaxCharactersDisplay" is "Infinity", to display the text
 },
 ```
 
-More information are available in the [SAP Fe Documentation](https://sapui5.hana.ondemand.com/1.94.1/#/topic/c18ada4bc56e427a9a2df2d1898f28a5.html).
+More information are available in the [SAP Fiori elements Documentation](https://sapui5.hana.ondemand.com/1.94.1/#/topic/c18ada4bc56e427a9a2df2d1898f28a5.html).
 
 #### Placeholder values
 <i>Search term:</i> `#Placeholder`
@@ -1549,7 +1563,7 @@ The value can also be a property path.
 <i style="color:orange;">INFO: </i>We recommend that you use [SAP Fiori tools](http://help.sap.com/disclaimer?site=https://help.sap.com/viewer/product/SAP_FIORI_tools/Latest/en-US), which is a set of extensions for SAP Business Application Studio and Visual Studio Code, to configure the app using the Application Modeler tool. <br/>
 <i>Search term:</i> `"anchorBarVisible"`
 
-By default, the header of an Object Page  and the anchor bar are enabled. Both can be disabled with the Fiori tools or in the manifest.json.
+By default, the header of an Object Page  and the anchor bar are enabled. Both can be disabled with the SAP Fiori tools or in the manifest.json.
 ```
 "RootEntityObjectReport": {
     ...
@@ -1774,7 +1788,7 @@ annotate service.RootEntities with @(
     ],
 );
 ```
-If the data point is a number, the default scale and precision can be overridden. More information are available in the [SAP FE Documentation](https://sapui5.hana.ondemand.com/#/topic/c2a389a11a704b00886440031a3d43f9).
+If the data point is a number, the default scale and precision can be overridden. More information are available in the [SAP Fiori elements Documentation](https://sapui5.hana.ondemand.com/#/topic/c2a389a11a704b00886440031a3d43f9).
 The following types of data points are supported: Rating, Progress and Key value. Data points support tooltips with the annotation `@Common.QucikInfo`. The tooltip can either be a string or a property path.
 ##### Rating
 
@@ -2251,7 +2265,7 @@ Through extension points custom facets can be added to the header. In the Featur
 ```
 The "template" property is the path to the XML fragment. The property "stashed" specifies, whether the facet is directly visible or if the facet is not visible from the beginning, but can be added through the key user adaptation feature. The "position.anchor" property is the ID of the anchor facet. The "flexSettings" property specifies, which options key users have, when adapting the UI.
 The "templateEdit" property is the path to a fragment, which is then shown during edit mode. It is important to use the "sap.ui.layout.FormElement" for structuring the content, because the FormElements will be displayed inside a FormContainer.
-More information are available in the [SAP FE Documentation](https://sapui5.hana.ondemand.com/#/topic/61cf0ee828824903907464c80dd0d88c)
+More information are available in the [SAP Fiori elements Documentation](https://sapui5.hana.ondemand.com/#/topic/61cf0ee828824903907464c80dd0d88c)
 
 ### Object Page Actions
 
@@ -2746,7 +2760,7 @@ Currently they cannot be rendered in tables or in header facets.
 <i style="color:orange;">INFO: </i>We recommend that you use [SAP Fiori tools](http://help.sap.com/disclaimer?site=https://help.sap.com/viewer/product/SAP_FIORI_tools/Latest/en-US), which is a set of extensions for SAP Business Application Studio and Visual Studio Code, to configure the app using the Application Modeler tool. <br/>
 <i>Search term:</i> `"CustomContentFieldGroup"`
 
-Fiori elements provides the possibility to add custom data fields to forms. The additional field is created as a XML fragment and referenced in the [manifest.json](app/featureShowcase/webapp/manifest.json) file. 
+SAP Fiori elements provides the possibility to add custom data fields to forms. The additional field is created as a XML fragment and referenced in the [manifest.json](app/featureShowcase/webapp/manifest.json) file. 
 Under the property "controlConfiguration" the field group has to be referenced with its qualifier (e.g. #ShowWhenInEdit). An ID is defined for the custom field, in the example "DateRange". The property "template" is the namespace + name of the XML fragment and the "position" property defines, where the field is inserted. "placement" has the valid options "After" and "Before" and an anchor is another data field which is a part of the field group. Behind the two colons is the value property name of the data field, in this case "childEntity2_ID". 
 ```
 "RootEntityObjectReport": {
@@ -3475,7 +3489,7 @@ After creating a XML fragment as the new Object Page for the sub entity, add a n
 ```
 The "Id" property should be unique and the "viewName" property is the namespace + name of the XML view, which shall be the Object Page.
 The "entitySet" property should be the sub entity, to access the data of it in the XML view.
-It is very important the the "type" is "Component" and that the "name" is "sap.fe.core.fpm", in order to use the Building Blocks and Flexible programming model from Fiori elements.
+It is very important the the "type" is "Component" and that the "name" is "sap.fe.core.fpm", in order to use the Building Blocks and Flexible programming model from SAP Fiori elements.
 <br/>
 
 The second step is to add the route in the [manifest.json](app/featureShowacse/webapp/manifest.json) to the sub Object Page.

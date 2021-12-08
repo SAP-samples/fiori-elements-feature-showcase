@@ -1,7 +1,7 @@
 {
     "name": "featureShowcase",
     "version": "0.0.1",
-    "description": "A Fiori application.",
+    "description": "A SAP Fiori application.",
     "keywords": [
         "ui5",
         "openui5",

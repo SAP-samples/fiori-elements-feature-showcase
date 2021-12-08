@@ -113,14 +113,14 @@ module.exports = async (srv) => {
         return UPDATE(RootEntities,headerID).with({integerValue})
     });
 
-    //Return the input parameter as a message to the front end - message will show up in a dialog
+    //Returns the input parameter as a message to the front end. The message will show up in a dialog.
     srv.on("unboundAction", async req => {
         return req.info(`INPUT: ${req.data.input}`);
     });
 
-    //Return a message pop up at the bottom of the screen, indicating that the action was triggered
+    //Returns a message toast at the bottom of the screen, indicating that the action was triggered.
     srv.on("criticalAction", async req => {
-        return req.notify(`Critical action pressed`);
+        return req.notify(`Critical action pressed`); //Search-Term: #MessageToast
     });
 
     //Reseting all entities to there default state
@@ -174,9 +174,9 @@ module.exports = async (srv) => {
                 fieldWithURLtext: 'SAP',
                 description: 'Lorem ipsum dolor sit amet, \n consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
                 //Compositions to many:
-                childEntities1: createChildEntities1(3,uuid),
-                childEntities3: createChildEntities3(2,uuid),
-                chartEntities: createChartEntities(10,uuid),
+                childEntities1: await createChildEntities1(3,uuid),
+                childEntities3: await createChildEntities3(2,uuid),
+                chartEntities: await createChartEntities(10,uuid),
             });
         }
         await cds.tx(req).run(INSERT.into(RootEntities).entries(rootEntities));
@@ -253,6 +253,7 @@ module.exports = async (srv) => {
                     criticality_code : i % 4
                 });
             }
+        console.log("Created Chart Data Entities!");
         return chartEntities;
     }
 
