@@ -422,7 +422,7 @@ annotate schema.RootEntities with{
     });
 };
 ```
-Here the region property (which is an Association to a Code List) is annotated with the `ValueList` annotation. To achieve the filtering, the country_code property from the header is mapped against the country_code property of the region via the `Common.ValueListParameterIn` parameter. The implementation can be found in the [value-helps.cds](app/featureShowcase/value-helps-cds).
+Here the region property (which is an Association to a Code List) is annotated with the `ValueList` annotation. To achieve the filtering, the country_code property from the header is mapped against the country_code property of the region via the `Common.ValueListParameterIn` parameter. The implementation can be found in the [value-helps.cds](app/featureShowcase/value-helps.cds#L71).
 
 
 #### Custom Filter
