@@ -1,13 +1,11 @@
-<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:control="sap.fe.core.controls">
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:l="sap.ui.layout">
 	<!-- Search-Term: "customFilter" -->
-	<control:FormElementWrapper>
-		<HBox alignItems="Center" core:require="{handler: 'sap/fe/featureShowcase/mainApp/ext/CustomFilter-Rating'}" width="100%">
+	<HBox alignItems="Center" core:require="{handler: 'sap/fe/featureShowcase/mainApp/ext/CustomFilter-Rating'}" width="100%" >
 			<!--     Example for adapting the used operator, using GT (greater than) instead of default EQ -->
 			<RatingIndicator
-				id="MyCustomRatingIndicatorId" maxValue="4"
+				id="MyCustomRatingIndicatorId" maxValue="4" class="sapUiTinyMarginBegin"
 				value="{path: 'filterValues>', type: 'sap.fe.macros.filter.type.Value', formatOptions: { operator: 'GE' }}"
 			/>
 			<core:Icon src="sap-icon://reset" press="handler.onReset" class="sapUiSmallMarginBegin" />
-		</HBox>
-	</control:FormElementWrapper>
+	</HBox>
 </core:FragmentDefinition>

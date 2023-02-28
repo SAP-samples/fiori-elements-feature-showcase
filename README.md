@@ -459,19 +459,19 @@ The name of the custom filter has to be the property name, else it would cause e
 },
 ```
 
-The content of the XML fragment needs to be wrapped in the 'FormElementWrapper'. The recommended way is to bind the filter value directly with `value="{path: 'filterValues>', type: 'sap.fe.macros.filter.type.Value'}"` and using a filter value type (Value or Range for example).
+The recommended way is to bind the filter value directly with `value="{path: 'filterValues>', type: 'sap.fe.macros.filter.type.Value'}"` and using a filter value type (Value or Range for example).
 Additionally format options are possible to use another operator instead of the default 'EQ'.
 ```
-<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:control="sap.fe.core.controls">
-	<control:FormElementWrapper>
-		<HBox alignItems="Center" core:require="{handler: 'sap/fe/featureShowcase/mainApp/ext/CustomRating'}" width="100%">
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:l="sap.ui.layout">
+	<!-- Search-Term: "customFilter" -->
+	<HBox alignItems="Center" core:require="{handler: 'sap/fe/featureShowcase/mainApp/ext/CustomFilter-Rating'}" width="100%" >
+			<!--     Example for adapting the used operator, using GT (greater than) instead of default EQ -->
 			<RatingIndicator
-				id="MyCustomRatingIndicatorId" maxValue="4"
+				id="MyCustomRatingIndicatorId" maxValue="4" class="sapUiTinyMarginBegin"
 				value="{path: 'filterValues>', type: 'sap.fe.macros.filter.type.Value', formatOptions: { operator: 'GE' }}"
 			/>
 			<core:Icon src="sap-icon://reset" press="handler.onReset" class="sapUiSmallMarginBegin" />
-		</HBox>
-	</control:FormElementWrapper>
+	</HBox>
 </core:FragmentDefinition>
 ```
 
