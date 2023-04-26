@@ -101,8 +101,13 @@ service service1 @(path : '/srv1') {
     @readonly
     entity UnitOfMeasureCodeList as projection on common.UnitOfMeasureCodeList;
 
-    @odata.singleton @readonly
-    entity Singleton {
-        createHidden: Boolean;
-    }
+    @odata.singleton
+    @readonly
+    entity Singleton as projection on persistence.Singleton;
+
+    @Core.OperationAvailable: {$edmJson: {$Path: '/service1.EntityContainer/Singleton/disabled'}}
+    action unboundSingletonDisabled();
+    @Core.OperationAvailable: {$edmJson: {$Path: '/service1.EntityContainer/Singleton/enabled'}}
+    action unboundSingletonEnabled();
+
 }

@@ -124,3 +124,9 @@ entity Contacts : cuid {
     addressLabel                : String;
     photoUrl                    : String;
 }
+
+entity Singleton {
+    enabled      : Boolean default true;
+    disabled     : Boolean default false;
+    createHidden : Boolean;
+}
