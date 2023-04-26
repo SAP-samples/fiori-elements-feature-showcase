@@ -158,6 +158,16 @@ annotate service.RootEntities with @(
             },
             {
                 $Type               : 'UI.DataFieldForAction',
+                Action              : 'service1.EntityContainer/unboundSingletonDisabled', //Unbound actions need to be referenced through the entity container (Action import)
+                Label               : '{i18n>unboundSingletonDisabled}',
+            },
+            {
+                $Type               : 'UI.DataFieldForAction',
+                Action              : 'service1.EntityContainer/unboundSingletonEnabled', //Unbound actions need to be referenced through the entity container (Action import)
+                Label               : '{i18n>unboundSingletonEnabled}',
+            },
+            {
+                $Type               : 'UI.DataFieldForAction',
                 Action              : 'service1.EntityContainer/unboundAction', //Unbound actions need to be referenced through the entity container (Action import)
                 Label               : '{i18n>unboundAction}',
             },
