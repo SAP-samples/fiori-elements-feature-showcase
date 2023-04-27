@@ -195,7 +195,7 @@
                                 },
                                 "@com.sap.vocabularies.UI.v1.SelectionFields": {
                                     "filterFields": {
-                                        "customFilter": {
+                                        "starsValue": {
                                             "label": "{i18n>customFilter}",
                                             "property": "starsValue",
                                             "template": "sap.fe.featureShowcase.mainApp.ext.CustomFilter-Rating"
