@@ -9,7 +9,7 @@
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {
-    "@sap/cds": "^5.4.6",
+    "@sap/cds": "^7.2",
     "content-disposition": "^0.5.3",
     "express": "^4"
   },
