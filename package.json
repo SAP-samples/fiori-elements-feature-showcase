@@ -15,20 +15,10 @@
   },
   "devDependencies": {
     "@sap/ux-specification": "^1.90.12",
-    "sqlite3": "^5.0.2"
+    "@cap-js/sqlite": "^1.1.0"
   },
   "scripts": {
     "start": "cds run"
-  },
-  "cds": {
-    "requires": {
-      "db": {
-        "kind": "sqlite",
-        "credentials": {
-          "database": ":memory:"
-        }
-      }
-    }
   },
   "eslintConfig": {
     "extends": "eslint:recommended",
