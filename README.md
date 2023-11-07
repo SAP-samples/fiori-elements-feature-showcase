@@ -1347,7 +1347,8 @@ The semantic object is the application name in the [html file](app/fiori.html). 
 },
 ```
 Here "FeatureShowcaseChildEntity2" is the semantic object to be referenced. The second part of the name is the action of the app. As an example you may have the apps "SalesOrder-Manage", "SalesOrder-View" and so on. Semantic object and action have to be divided by a dash.
-The description of the app in the html file is the name of the app in the quick view facet.
+The description of the app in the html file is the name of the app in the quick view facet. In the deployed version with a SAP WorkZone the subtitle of the app is used.
+
 #### Adding Multiple Fields to one Column in Responsive Tables
 <i>Search term:</i> [`#MultiFieldsCol`](../../search?q=MultiFieldsCol)
 
@@ -1395,7 +1396,7 @@ annotate service.RootEntities with @(
             {
                 $Type : 'UI.DataField',
                 Value : imageUrl,
-                ![@UI.Importance] : #High,
+                @UI.Importance : #High,
             },
             ...
         ],
