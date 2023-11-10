@@ -11,8 +11,6 @@ annotate schema.RootEntities with{
     forecastValue               @title : '{i18n>forecastValue}';
     targetValue                 @title : '{i18n>targetValue}';
     dimensions                  @title : '{i18n>dimensions}';
-    sumIntegerValue             @title : '{i18n>sumIntegerValue}';
-    sumTargetValue              @title : '{i18n>sumTargetValue}';
     starsValue                  @title : '{i18n>stars}';
     isoCurrency                 @title : '{i18n>currencyForFieldWithPrice}';
     fieldWithCriticality        @title : '{i18n>fieldWithCriticality}';
