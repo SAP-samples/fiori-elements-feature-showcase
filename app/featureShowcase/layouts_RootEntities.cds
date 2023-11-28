@@ -622,6 +622,7 @@ annotate service.RootEntities with @(
 annotate service.RootEntities with @(
     //Shown filters for the given fields after opening the application
     UI.SelectionFields : [
+        country_code,
         stringProperty,
         fieldWithPrice,
         criticality_code,
@@ -696,6 +697,32 @@ annotate service.RootEntities with @(
             ],
             //Add Visualizations property can contain different line items then the default one
             Visualizations  : ['@UI.LineItem#simplified'],
+        },
+    },
+    UI.SelectionPresentationVariant #DefaultFilter : {
+        SelectionVariant    : {
+            SelectOptions   : [
+                {
+                    PropertyName    : country_code,
+                    Ranges          : [
+                        {
+                            Sign    : #I,
+                            Option  : #EQ,
+                            Low     : 'DE',
+                        },
+                        {
+                            Sign    : #I,
+                            Option  : #EQ,
+                            Low     : 'FR',
+                        },
+                    ],
+                },
+            ],
+        },
+        PresentationVariant : {
+            SortOrder       : [
+            ],
+            Visualizations  : ['@UI.LineItem'],
         },
     },
 );

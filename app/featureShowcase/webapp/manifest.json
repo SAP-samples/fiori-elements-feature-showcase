@@ -111,6 +111,7 @@
                             "entitySet": "RootEntities",
                             "variantManagement": "Page",
                             "enhanceI18n": "i18n/customI18N.properties",
+                            "defaultTemplateAnnotationPath": "com.sap.vocabularies.UI.v1.SelectionPresentationVariant#DefaultFilter",
                             "navigation": {
                                 "RootEntities": {
                                     "detail": {
@@ -119,7 +120,7 @@
                                 }
                             },
                             "initialLoad": true,
-                            "views": {
+                            "XviewsX": {
                                 "paths": [
                                     {
                                         "key": "tab1",
