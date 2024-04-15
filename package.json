@@ -10,12 +10,13 @@
   "private": true,
   "dependencies": {
     "@sap/cds": "^7.2",
+    "cds-launchpad-plugin": "^2.0.1",
     "content-disposition": "^0.5.3",
     "express": "^4"
   },
   "devDependencies": {
-    "@sap/ux-specification": "^1.90.12",
-    "@cap-js/sqlite": "^1.1.0"
+    "@cap-js/sqlite": "^1.1.0",
+    "@sap/ux-specification": "^1.90.12"
   },
   "scripts": {
     "start": "cds run"

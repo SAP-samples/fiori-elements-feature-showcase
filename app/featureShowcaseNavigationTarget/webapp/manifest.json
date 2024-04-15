@@ -23,6 +23,20 @@
         "sourceTemplate": {
             "id": "ui5template.fiorielements.v4.lrop",
             "version": "1.0.0"
+        },
+        "crossNavigation": {
+            "inbounds": {
+				"feature-showcase": {
+					"signature": {
+						"parameters": {},
+						"additionalParameters": "allowed"
+					},
+					"semanticObject": "FeatureShowcaseChildEntity2",
+					"action": "manage",
+					"title": "Navigation Target",
+					"subTitle": "Manage"
+				}
+			}
         }
     },
     "sap.ui": {

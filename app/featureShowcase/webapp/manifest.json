@@ -26,6 +26,18 @@
             "version": "1.0.0"
         },
         "crossNavigation": {
+            "inbounds": {
+				"feature-showcase": {
+					"signature": {
+						"parameters": {},
+						"additionalParameters": "allowed"
+					},
+					"semanticObject": "FeatureShowcase",
+					"action": "manage",
+					"title": "Feature Showcase List Report and Object Page",
+					"subTitle": "SAP Fiori elements V4 CAP"
+				}
+			},
             "outbounds": {
                 "ExternalNavigation": {
                     "semanticObject": "FeatureShowcaseChildEntity2",
