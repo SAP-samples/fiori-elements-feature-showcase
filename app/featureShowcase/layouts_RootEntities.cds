@@ -13,6 +13,11 @@ annotate service.RootEntities with @(
     Common.SemanticKey  : [stringProperty],                 //field in bold, editing status displayed, when possible and it effects navigation 
     UI.Identification   : [
         {
+            $Type               : 'UI.DataFieldForAction',
+            Action              : 'service1.copy', //Reference to the action of the CAP service
+            Label               : '{i18n>copy}',
+        },
+        {
             //Search-Term: #OPHeaderAction
             $Type                       : 'UI.DataFieldForAction',  //Action in the RootEntities of the object page next to the edit button
             Action                      : 'service1.changeCriticality',
