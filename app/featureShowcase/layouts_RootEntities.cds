@@ -125,6 +125,12 @@ annotate service.RootEntities with @(
             {
                 //Action button in the table toolbar
                 $Type               : 'UI.DataFieldForAction',
+                Action              : 'service1.copy', //Reference to the action of the CAP service
+                Label               : '{i18n>copy}',
+            },
+            {
+                //Action button in the table toolbar
+                $Type               : 'UI.DataFieldForAction',
                 Action              : 'service1.changeCriticality', //Reference to the action of the CAP service
                 Label               : '{i18n>changeCriticality}',
             },
