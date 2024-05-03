@@ -499,7 +499,7 @@
                 },
                 "CustomObjectPage_childEntities3": {
                     "type": "Component",
-                    "Id": "CustomObjectPageView",
+                    "id": "CustomObjectPage_childEntities3",
                     "name": "sap.fe.core.fpm",
                     "options": {
                         "settings": {

@@ -1,15 +1,17 @@
 sap.ui.define([
-	"sap/ui/core/mvc/Controller",
+	"sap/fe/core/PageController",
 	"sap/ui/model/json/JSONModel",
 	"sap/suite/ui/microchart/ComparisonMicroChart",
 	"sap/suite/ui/microchart/ComparisonMicroChartData"
-], function (Controller, JSONModel, ComparisonMicroChart, ComparisonMicroChartData) {
-	var oPageController = Controller.extend("sap.fe.featureShowcase.mainApp.ext.controller.CustomObjectPage", {
+], function (PageController, JSONModel, ComparisonMicroChart, ComparisonMicroChartData) {
+	return PageController.extend("sap.fe.featureShowcase.mainApp.ext.controller.CustomObjectPage", {
 		onInit: function () {
+			PageController.prototype.onInit.apply(this);
+
 			var oModel = new JSONModel(sap.ui.require.toUrl("sap/fe/featureShowcase/mainApp/ext/controller/data.json"));
 			var that = this;
 
-			this.getView().setModel(oModel);
+			this.getView().setModel(oModel, 'graph');
 
 			this._oModelSettings = new JSONModel({
 				source: "atomicCircle",
@@ -75,5 +77,4 @@ sap.ui.define([
 			this._oModelSettings.setProperty("/nodeSpacing", Number(oEvent.getSource().getProperty("selectedKey")));
 		}
 	});
-	return oPageController;
 });
