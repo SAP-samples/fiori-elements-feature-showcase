@@ -6,10 +6,10 @@ using service1 as service from '../../srv/service';
 annotate service1.ChildEntities2 with @(
     UI.FieldGroup #data : {
         Data    : [
-            {Value : stringProperty},
-            {Value : integerProperty},
-            {Value : decimalProperty},
-            {Value : country_code}
+            {Value : stringProperty, @Common.FieldControl : #ReadOnly},
+            {Value : integerProperty, @Common.FieldControl : #ReadOnly},
+            {Value : decimalProperty, @Common.FieldControl : #ReadOnly},
+            {Value : country_code, @Common.FieldControl : #ReadOnly}
         ],
     },
 ) {

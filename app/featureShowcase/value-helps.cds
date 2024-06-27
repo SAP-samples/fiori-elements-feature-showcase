@@ -51,7 +51,7 @@ annotate schema.RootEntities with{
     childEntity2 @(Common : {
         ValueListWithFixedValues: true,
         ValueList       : {
-            Label          : '{i18n>customer}',
+            Label          : '{i18n>ChildEntity2}',
             CollectionPath : 'ChildEntities2',
             Parameters     : [
                 {
@@ -60,9 +60,20 @@ annotate schema.RootEntities with{
                     LocalDataProperty   : childEntity2_ID
                 },
                 {
-                    $Type               : 'Common.ValueListParameterOut',
+                    $Type               : 'Common.ValueListParameterDisplayOnly',
                     ValueListProperty   : 'stringProperty',
-                    LocalDataProperty   : childEntity2.stringProperty,
+                },
+                {
+                    $Type               : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty   : 'integerProperty',
+                },
+                {
+                    $Type               : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty   : 'decimalProperty',
+                },
+                {
+                    $Type               : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty   : 'country_code',
                 }
                 
             ]

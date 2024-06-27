@@ -561,6 +561,7 @@ annotate service.RootEntities with @(
             $Type   : 'UI.ReferenceFacet',
             Target  : 'childEntity2/@UI.FieldGroup#data',
             Label   : '{i18n>ChildEntity2}',
+            @UI.Hidden : {$edmJson: {$Not: {$Path : 'IsActiveEntity'}}}
         },
         {
             $Type   : 'UI.ReferenceFacet',
