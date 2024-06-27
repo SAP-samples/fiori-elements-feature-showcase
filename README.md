@@ -1312,7 +1312,7 @@ annotate service.RootEntities with @(
             ...
             {
                 $Type : 'UI.DataField',
-                Value : childEntity2_ID,
+                Value : association2one_ID,
                 Label : '{i18n>ChildEntity2}',
                 ![@UI.Importance] : #High,
             },
@@ -1325,7 +1325,7 @@ annotate service.RootEntities with @(
 The annotations of the example are in the [layouts_RootEntities.cds](app/featureShowcase/layouts_RootEntities.cds) file.
 Additionally the `@Common.Text` and `@Common.TextArrangement` might be used, to replace the ID value with a name property, so that the column is easier to understand.
 ```
-childEntity2 @title : '{i18n>ChildEntity2}' @Common.Text : childEntity2.field @Common.TextArrangement : #TextOnly;
+association2one @title : '{i18n>ChildEntity2}' @Common.Text : association2one.field @Common.TextArrangement : #TextOnly;
 ```
 The annotations are in the [labels.cds](app/featureShowcase/labels.cds) file.
 ##### Links to the apps of the entity
@@ -1333,7 +1333,7 @@ The annotations are in the [labels.cds](app/featureShowcase/labels.cds) file.
 
 The quick view facet also shows links to the apps of the entity, when the entity is annotated with `@Common.SemanticObject`.
 ```
-childEntity2 @Common.SemanticObject : 'FeatureShowcaseChildEntity2';
+association2one @Common.SemanticObject : 'FeatureShowcaseChildEntity2';
 ```
 The semantic object is the application name in the [html file](app/fiori.html). The application property in this contains the following code snippet:
 ```
@@ -1696,7 +1696,7 @@ annotate service.RootEntities with @(
             {Value : field},
             {Value : fieldWithCriticality, Criticality : criticality_code},
             {Value : fieldWithUoM},
-            {Value : childEntity2_ID},
+            {Value : association2one_ID},
             {
                 $Type : 'UI.DataFieldForAnnotation',
                 Target : 'contact/@Communication.Contact',
@@ -2695,7 +2695,7 @@ annotate service.RootEntities with @(
             {Value : fieldWithPrice},
             {Value : criticality_code},
             {Value : contact_ID},
-            {Value : childEntity2_ID},
+            {Value : association2one_ID},
         ]
     },
     ...
@@ -2763,7 +2763,7 @@ Currently they cannot be rendered in tables or in header facets.
 <i>Search term:</i> [](../../search?q=)`"CustomContentFieldGroup"`
 
 SAP Fiori elements provides the possibility to add custom data fields to forms. The additional field is created as a XML fragment and referenced in the [manifest.json](app/featureShowcase/webapp/manifest.json) file. 
-Under the property "controlConfiguration" the field group has to be referenced with its qualifier (e.g. #ShowWhenInEdit). An ID is defined for the custom field, in the example "DateRange". The property "template" is the namespace + name of the XML fragment and the "position" property defines, where the field is inserted. "placement" has the valid options "After" and "Before" and an anchor is another data field which is a part of the field group. Behind the two colons is the value property name of the data field, in this case "childEntity2_ID". 
+Under the property "controlConfiguration" the field group has to be referenced with its qualifier (e.g. #ShowWhenInEdit). An ID is defined for the custom field, in the example "DateRange". The property "template" is the namespace + name of the XML fragment and the "position" property defines, where the field is inserted. "placement" has the valid options "After" and "Before" and an anchor is another data field which is a part of the field group. Behind the two colons is the value property name of the data field, in this case "association2one_ID". 
 ```
 "RootEntityObjectReport": {
     ...

@@ -59,7 +59,7 @@ aspect rootBasis : {
 entity RootEntities : cuid, managed, rootBasis {
     childEntities1              : Composition of many ChildEntities1
                                     on childEntities1.parent = $self;
-    childEntity2                : Association to one ChildEntities2;
+    association2one                : Association to one ChildEntities2;
     childEntities3              : Composition of many ChildEntities3
                                     on childEntities3.parent = $self;
     chartEntities               : Composition of many ChartDataEntities

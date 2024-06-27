@@ -24,7 +24,7 @@ annotate schema.RootEntities with{
     fieldWithUoM                @title : '{i18n>fieldWithUoM}'              @(Measures.Unit : uom_code); //Search-Term: #Units
     imageUrl                    @title : '{i18n>image}'                     @UI.IsImageURL; //Displaying the image instead of the link //Search-Term: #Image
     
-    childEntity2                @title : '{i18n>ChildEntity2}'              @Common.Text : childEntity2.stringProperty  @Common.TextArrangement : #TextOnly;
+    association2one                @title : '{i18n>ChildEntity2}'              @Common.Text : association2one.stringProperty  @Common.TextArrangement : #TextOnly;
     criticality_code            @title : '{i18n>criticality}'               @Common.Text : criticality.name             @Common.TextArrangement : #TextFirst; //Search-Term: #DisplayTextAndID
     country                     @title : '{i18n>country}'                   @Common.Text : country.name                 @Common.TextArrangement : #TextFirst;
 

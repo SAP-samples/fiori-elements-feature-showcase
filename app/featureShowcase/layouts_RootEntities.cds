@@ -1,7 +1,7 @@
 using service1                      as service          from '../../srv/service';
 using service1.ChartDataEntities    as chartEntities    from './layouts_ChartDataEntities';
 using service1.ChildEntities1       as childEntities1   from './layouts_ChildEntities1';
-using service1.ChildEntities2       as childEntity2     from './layouts_ChildEntities2';
+using service1.ChildEntities2       as association2one     from './layouts_ChildEntities2';
 using service1.ChildEntities3       as childEntities3   from './layouts_ChildEntities3';
 using service1.Contacts             as contact          from './layouts_contacts';
 
@@ -97,7 +97,7 @@ annotate service.RootEntities with @(
             {
                 //Search-Term: #QuickView
                 $Type               : 'UI.DataField',
-                Value               : childEntity2_ID,
+                Value               : association2one_ID,
                 Label               : '{i18n>ChildEntity2}',
                 ![@UI.Importance]   : #High,
             },
@@ -284,7 +284,7 @@ annotate service.RootEntities with @(
             {Value : fieldWithPrice},
             {Value : criticality_code},
             {Value : contact_ID},
-            {Value : childEntity2_ID},
+            {Value : association2one_ID},
         ]
     },
     UI.FieldGroup #chartData            : {
@@ -309,7 +309,7 @@ annotate service.RootEntities with @(
             {Value : stringProperty},
             {Value : fieldWithCriticality, Criticality : criticality_code},
             {Value : fieldWithUoM},
-            {Value : childEntity2_ID}, //Displaying a quick view facet
+            {Value : association2one_ID}, //Displaying a quick view facet
             {
                 //Displaying a contect card
                 $Type   : 'UI.DataFieldForAnnotation',
@@ -559,7 +559,7 @@ annotate service.RootEntities with @(
         
         {
             $Type   : 'UI.ReferenceFacet',
-            Target  : 'childEntity2/@UI.FieldGroup#data',
+            Target  : 'association2one/@UI.FieldGroup#data',
             Label   : '{i18n>ChildEntity2}',
             @UI.Hidden : {$edmJson: {$Not: {$Path : 'IsActiveEntity'}}}
         },

@@ -129,7 +129,7 @@ module.exports = async (srv) => {
         await cleanUpDatabaseEntities();
         //Create new entities
         const countRootEntities = 4;
-        const childEntity2IDs = await createChildEntities2(countRootEntities);
+        const association2oneIDs = await createChildEntities2(countRootEntities);
         const rootEntities = [];
         const imageUrls = ['sap-icon://lab','/media/crate.png','/media/bigBen.png','sap-icon://cart']
         const contacts = await SELECT.from(Contacts).columns('ID');
@@ -145,7 +145,7 @@ module.exports = async (srv) => {
             rootEntities.push({
                 ID: uuid,
                 contact_ID: (i >= contacts.length) ? contacts[0].ID : contacts[i].ID,
-                childEntity2_ID: childEntity2IDs[i],
+                association2one_ID: association2oneIDs[i],
                 imageUrl: (i >= imageUrls.length) ? imageUrls[0] : imageUrls[i],
                 uom_code: (i >= unitOfMeasures.length) ? unitOfMeasures[0].code : unitOfMeasures[i].code,
                 isoCurrency_code: (i >= currencies.length) ? currencies[0].code : currencies[i].code,
@@ -199,7 +199,7 @@ module.exports = async (srv) => {
             });
         }
         await INSERT.into(ChildEntities2).entries(childEntities2);
-        //Returns the IDs, so they can be assigned to the childEntity2_ID property of the RootEntities
+        //Returns the IDs, so they can be assigned to the association2one_ID property of the RootEntities
         return childEntities2IDs;
     }
 

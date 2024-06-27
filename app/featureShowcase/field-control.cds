@@ -9,7 +9,7 @@ annotate service1.RootEntities {
     stringProperty             @Core.Immutable  @mandatory @UI.ExcludeFromNavigationContext; //Search-Term: #CreationDialog
     uom             @UI.Hidden;
 
-    childEntity2 @(
+    association2one @(
         //Search-Term: #Navigation
         //Semantic Object annotation in order to show the links to the semantic object apps in the quick view facet
         Common.SemanticObject : 'FeatureShowcaseChildEntity2',

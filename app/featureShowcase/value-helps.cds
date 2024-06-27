@@ -48,7 +48,7 @@ annotate schema.RootEntities with{
             ]
         }
     });
-    childEntity2 @(Common : {
+    association2one @(Common : {
         ValueListWithFixedValues: true,
         ValueList       : {
             Label          : '{i18n>ChildEntity2}',
@@ -57,7 +57,7 @@ annotate schema.RootEntities with{
                 {
                     $Type               : 'Common.ValueListParameterInOut',
                     ValueListProperty   : 'ID',
-                    LocalDataProperty   : childEntity2_ID
+                    LocalDataProperty   : association2one_ID
                 },
                 {
                     $Type               : 'Common.ValueListParameterDisplayOnly',
