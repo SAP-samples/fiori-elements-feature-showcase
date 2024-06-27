@@ -624,8 +624,8 @@ annotate service.RootEntities with @(
     //Shown filters for the given fields after opening the application
     UI.SelectionFields : [
         stringProperty,
-        fieldWithPrice,
-        criticality_code,
+        validFrom,
+        childEntities1.criticalityValue_code //Search-Term: #NavigationProperties
     ],
 );
 

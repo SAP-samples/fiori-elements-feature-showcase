@@ -14,11 +14,26 @@ annotate service1.RootEntities with @(
     }, */
     UI.UpdateHidden : updateHidden,//Search-Term: #DynamicCRUD
 
-    /* Capabilities.FilterRestrictions : {
-        RequiredProperties : [
-            stringProperty //Search-Term: #RequiredFilter    
+    UI.CreateHidden: { $edmJson: { $Path: '/service1.EntityContainer/Singleton/createHidden' } }, //Search-Term: #DynamicCRUD
+
+    Capabilities.FilterRestrictions : {
+        FilterExpressionRestrictions : [
+            {
+                //Search-Term: #SemanticDateFilter
+                Property : 'validFrom',
+                AllowedExpressions : 'SingleRange' //Other option: SingleValue
+            },
         ],
-    }, */
+        // RequiredProperties : [
+        //     stringProperty //Search-Term: #RequiredFilter    
+        // ]
+    },
+);
+
+annotate service1 with @(
+    Capabilities.FilterFunctions : [
+        'tolower' //Search-Term: #CaseInsensitiveFiltering
+    ],
 );
 
 annotate service1.ChartDataEntities with @(

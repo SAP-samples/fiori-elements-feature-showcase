@@ -31,6 +31,9 @@ Open `http://localhost:4008/$launchpad` in the Browser to get to the SAP Fiori l
             - [Hide filters](#hide-filters)
             - [Filter facets](#filter-facets)
             - [Selection Fields](#selection-fields)
+            - [Mandatory filter fields](#mandatory-filter-fields)
+            - [Enable semantic dates for filter fields of type Date](#enable-semantic-dates-for-filter-fields-of-type-date)
+            - [Case insensitive filtering](#case-insensitive-filtering)
             - [Value Help](#value-help)
             - [Dependent Filtering (Value Help)](#dependent-filtering-value-help)
             - [Custom Filter](#custom-filter)
@@ -135,6 +138,25 @@ Open `http://localhost:4008/$launchpad` in the Browser to get to the SAP Fiori l
 # [List Report](https://experience.sap.com/fiori-design-web/list-report-floorplan-sap-fiori-element/)
 
 ## General Features
+
+### Live mode
+
+<i>Search term:</i> [`"enhanceI18n"`](../../search?q=liveMode)
+
+With live mode the Go button is no longer shown on the UI, initial load is used and all filter changes are directly applied. Live mode can be enabled in the [manifest.json](app/featureShowcase/webapp/manifest.json) file.
+
+```
+"RootEntityListReport": {
+    ...
+    "options": {
+        "settings": {
+            ...
+            "liveMode": true,
+            ...
+        }
+    }
+},
+```
 
 ### Flexible Column Layout
 The Flexible Column Layout (FCL) enables the app, to display the Object Page and possibly a further Object Page next to the List Report on the same page instead of navigating to the next page.
@@ -344,6 +366,98 @@ annotate service.RootEntities with @(
 );
 ```
 Further information are available in the [UI5 Dokumentation](https://sapui5.hana.ondemand.com/#/topic/4de40b31324e4876a8421f6f642e0140).
+
+#### Mandatory filter fields
+<i>Search term:</i> [`#RequiredFilter`](../../search?q="#RequiredFilter")
+
+With the annotation `@Capabilities.FilterRestrictions.RequiredProperties` an array of mandatory filter fields can be defined. In the Feature showcase only the property 'stringProperty' is required for demonstration purposes. The annotation can be found in the [capabilities.cds](app/featureShowcase/capabilities.cds) file.
+
+```
+annotate service1.RootEntities with @(
+    ...
+    Capabilities.FilterRestrictions : {
+        ...
+        RequiredProperties : [
+            stringProperty 
+        ],
+
+    },
+);
+```
+
+#### Enable semantic dates for filter fields of type Date
+
+<i>since UI5 Version: 1.99.0</i>
+<i>Search term:</i> [`#SemanticDateFilter`](../../search?q="#SemanticDateFilter"), [`useSemanticDateRange`](../../search?q=useSemanticDateRange)
+
+For filter fields of type Date, semantic dates can be activated with the annotation `@Capabilities.FilterRestrictions.FilterExpressionRestrictions`. The annotation expects an array. Each object is for one field. The "Property" value has to be the name of the date field and the "AllowedExpressions" value is either 'SingleValue' or 'SingleRange'. 
+SingleValue currently gives the options to select a date or select 'Today', 'Yesterday' or 'Tomorrow'.
+SingleRange additionally adds the options 'From/To', 'From', 'To' and 'Year To Date'.
+
+```
+annotate service1.RootEntities with @(
+    Capabilities.FilterRestrictions : {
+        FilterExpressionRestrictions : [
+            {
+                Property : 'validFrom',
+                AllowedExpressions : 'SingleRange'
+            }
+        ],
+        ...
+    },
+);
+```
+
+If you want to disable semantic dates entirely you can do so, by setting the `useSemanticDateRange` property to false in the manifest.json file. The default value is true. In addition you can specify the default value for semantic date ranges in the manifest. The documentation link below lists all options. Please note, that they have to be fully in uppercase.
+
+```
+"RootEntityListReport": {
+    ...
+    "options": {
+        "settings": {
+            ...
+            "controlConfiguration": {
+                ...
+                "@com.sap.vocabularies.UI.v1.SelectionFields": {
+                    "useSemanticDateRange":  true,
+                    "filterFields": {
+                        "validFrom": { 
+                            "settings": {
+                                "defaultValues": [{"operator": "LASTYEARS", "values": [10]}]
+                            }
+                        }
+                    }
+                    ...
+                }
+            },
+            ...
+        }
+    }
+},
+```
+
+More information are available in the [SAP UI5 Documentation](https://sapui5.hana.ondemand.com/#/topic/fef65d03d01a4b2baca28983a5449cf7.html).
+
+#### Case insensitive filtering
+
+<i>Search term:</i> [`#CaseInsensitiveFiltering`](../../search?q="#CaseInsensitiveFiltering")
+
+Case insensitive filtering can be activated with the annotation `@Capabilities.FilterFunctions` and the string 'tolower' as part of the array.
+It can only be applied to the whole service and is then valid for filtering with the filter bar, with table personalization filters and within value helps.
+
+```
+annotate service1 with @(
+    Capabilities.FilterFunctions : [
+        'tolower'
+    ],
+);
+```
+
+If the annotation does not exists, case sensitive filtering is active and the backend decides on the default behavior.
+The example is in the [capabilities.cds](app/featureShowcase/capabilities.cds) file.
+
+More information are available in the [SAP UI5 Documentation](https://sapui5.hana.ondemand.com/sdk/#/topic/609c39a7498541559dbef503c1ffd194.html).
+
 #### Value Help
 <i>Search term:</i> [](../../search?q=)`#ValueHelps`
 
@@ -424,6 +538,41 @@ annotate schema.RootEntities with{
 ```
 Here the region property (which is an Association to a Code List) is annotated with the `ValueList` annotation. To achieve the filtering, the country_code property from the header is mapped against the country_code property of the region via the `Common.ValueListParameterIn` parameter. The implementation can be found in the [value-helps.cds](app/featureShowcase/value-helps.cds#L71).
 
+#### Adding navigation properties
+
+<i>Search term:</i> [`navigationProperties`](../../search?q=navigationProperties), [`#NavigationProperties`](../../search?q="#NavigationProperties")
+
+Navigation properties can be as well added to the filter bar. For this the navigation path has to be added to the `@UI.SelectionFields` annotation.
+```
+annotate service.RootEntities with @(
+    UI.SelectionFields : [
+        ...
+        childEntities1.criticalityValue_code
+    ],
+);
+```
+If you want to add navigation properties to the "Adapt Filters" dialog as filter facets, they have to be referenced in the [manifest.json](app/featureShowcase/webapp/manifest.json) file.
+```
+"RootEntityListReport": {
+    ...
+    "options": {
+        "settings": {
+            ...
+            "controlConfiguration": {
+                ...
+                "@com.sap.vocabularies.UI.v1.SelectionFields": {
+                    "navigationProperties":  [ "childEntities1", "childEntity2/decimalProperty" ],
+                    ...
+                }
+            },
+            ...
+        }
+    }
+},
+```
+When only the association is referenced, all fields of it will be available in a separate filter facet for the specified association. Defining a path to a specific property of the association, will only add the specified property to the "Adapt Filters" dialog.
+
+More information regarding navigation properties as filter fields are in the [SAP Fiori elements Documentation](https://sapui5.hana.ondemand.com/#/topic/609c39a7498541559dbef503c1ffd194).
 
 #### Custom Filter
 
@@ -674,15 +823,20 @@ A dropdown menu to group actions is possible with an annotation in the [manifest
 ```
 In the control configuration of the List Report, the line item annotation of the table (it does not affect other line item definitions which may be used in other table views) has a property `"actions"` under which the menu button needs to be added. `"MenuActions"` is in this case just the identifier of this specific menu button. The text property is the actual label of the menu button and the `"menu"` property contains all actions, which should be included. "changeCriticality" is a bound action and can be directly accessed through the service. The unbound action on the other side, needs to be accessed through the EntityContainer. The slash is replaced with two colons in the identifier for the action.
 ##### Dynamic CRUD Restrictions
-<i>Search term:</i> [`#DynamicCRUD`](../../search?q=DynamicCRUD)
+<i>Search term:</i> [`#DynamicCRUD`](../../search?q="#DynamicCRUD")
 
 The visibility of the "Edit", "Create" and "Delete" actions can be dynamically adjusted. For example the delete operation can be dependent on a field of the entity, through the annotation `@Capabilities.DeleteRestrictions`. Fixed values are also possible.
+
+Since UI5 Version 1.100 also Singleton are supported as values. 
+The Syntax for Singletons is special, as it can be seen in the code snippet. The path value starts with a '/' followed by the service name, defined in the cds service file, and a '.EntityContainer/'. Afterwards the name of the singleton follows, in the Feature Showcase it is 'Singleton', and the last part is the property path. 
+
 ```
 annotate service1.RootEntityVariants with @(
     Capabilities.DeleteRestrictions : {
         Deletable : deletePossible,
     },
-    UI.UpdateHidden : updateHidden
+    UI.UpdateHidden : updateHidden,
+    UI.CreateHidden: { $edmJson: { $Path: '/service1.EntityContainer/Singleton/createHidden' } },
 );
 ```
 [capabilities.cds](app/featureShowcase/capabilities.cds)

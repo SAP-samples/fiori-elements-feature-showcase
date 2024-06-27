@@ -100,4 +100,9 @@ service service1 @(path : '/srv1') {
     entity Criticality           as projection on common.Criticality;
     @readonly
     entity UnitOfMeasureCodeList as projection on common.UnitOfMeasureCodeList;
+
+    @odata.singleton @readonly
+    entity Singleton {
+        createHidden: Boolean;
+    }
 }

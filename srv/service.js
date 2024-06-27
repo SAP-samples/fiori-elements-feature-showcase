@@ -2,7 +2,14 @@ const cds = require("@sap/cds");
 
 module.exports = async (srv) => {
 
-    const {RootEntities,ChildEntities1,ChildEntities2,ChildEntities3,GrandChildEntities,ChartDataEntities, Contacts, Countries,Criticality,Currencies,UnitOfMeasureCodeList} = srv.entities;
+    const {Singleton, RootEntities,ChildEntities1,ChildEntities2,ChildEntities3,GrandChildEntities,ChartDataEntities, Contacts, Countries,Criticality,Currencies,UnitOfMeasureCodeList} = srv.entities;
+
+    srv.on('READ', Singleton, (req) => {
+        const response = {
+            createHidden: false
+        }
+        req.reply(response)
+    })
 
     srv.after(["READ"],RootEntities, async (response) => {
         //To avoid issues with cds watch when it is reloading

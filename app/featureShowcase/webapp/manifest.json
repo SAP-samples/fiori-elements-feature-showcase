@@ -131,6 +131,7 @@
                                 }
                             },
                             "initialLoad": true,
+                            "liveMode": true,
                             "views": {
                                 "paths": [
                                     {
@@ -206,11 +207,33 @@
                                     }
                                 },
                                 "@com.sap.vocabularies.UI.v1.SelectionFields": {
+                                    "useSemanticDateRange": true,
+                                    "navigationProperties": [
+                                        "childEntities1",
+                                        "childEntity2/decimalProperty"
+                                    ],
                                     "filterFields": {
                                         "starsValue": {
                                             "label": "{i18n>customFilter}",
                                             "property": "starsValue",
                                             "template": "sap.fe.featureShowcase.mainApp.ext.CustomFilter-Rating"
+                                        },
+                                        "validFrom": { 
+                                            "settings": {
+                                                "defaultValues": [{"operator": "LASTYEARS", "values": [10]}],
+                                                "operatorConfiguration": [
+                                                    {
+                                                        "path": "key",
+                                                         "equals": "TODAY",
+                                                         "exclude": false
+                                                     },
+                                                     {
+                                                       "path": "key",
+                                                        "equals": "TODAYXYDAYS",
+                                                        "exclude": true
+                                                     }
+                                               ]
+                                            }
                                         }
                                     }
                                 }
