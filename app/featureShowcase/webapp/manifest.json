@@ -120,7 +120,7 @@
                     "name": "sap.fe.templates.ListReport",
                     "options": {
                         "settings": {
-                            "entitySet": "RootEntities",
+                            "contextPath": "/RootEntities",
                             "variantManagement": "Page",
                             "enhanceI18n": "i18n/customI18N.properties",
                             "navigation": {
@@ -259,7 +259,7 @@
                     "name": "sap.fe.templates.ObjectPage",
                     "options": {
                         "settings": {
-                            "entitySet": "RootEntities",
+                            "contextPath": "/RootEntities",
                             "enhanceI18n": "i18n/customI18N.properties",
                             "sectionLayout": "Tabs",
                             "variantManagement": "Control",
