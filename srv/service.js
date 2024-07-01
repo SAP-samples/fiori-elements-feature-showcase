@@ -89,6 +89,8 @@ module.exports = async (srv) => {
         const newRootEntity = await SELECT.one.from(RootEntities,headerID);
         newRootEntity.ID = cds.utils.uuid();
         newRootEntity.stringProperty = newRootEntity.stringProperty + " (Copy)";
+        newRootEntity.HasActiveEntity = true;
+        newRootEntity.IsActiveEntity = true;
         await INSERT.into(RootEntities).entries(newRootEntity);
         return newRootEntity;
         //return UPDATE(RootEntities,headerID).with({criticality_code : criticality_code, fieldWithCriticality : determineFieldWithCriticalityValue(criticality_code)});
