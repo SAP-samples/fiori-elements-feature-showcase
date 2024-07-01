@@ -6,7 +6,8 @@ module.exports = async (srv) => {
 
     srv.on('READ', Singleton, (req) => {
         const response = {
-            createHidden: false
+            createHidden: false,
+            enabled: true
         }
         req.reply(response)
     })

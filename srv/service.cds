@@ -8,9 +8,8 @@ service service1 @(path : '/srv1') {
         //Search-Terms: #BoundAction, #SideEffect
         @(
             //Update the UI after action
-            cds.odata.bindingparameter.name : '_it',
             Common.SideEffects              : {
-                TargetProperties : ['_it/criticality_code','_it/fieldWithCriticality']
+                TargetProperties : ['in/criticality_code','in/fieldWithCriticality']
             }
         )
         action changeCriticality (
@@ -18,7 +17,7 @@ service service1 @(path : '/srv1') {
             //Search-Term: #ValueHelpParameter
             @(
                 title                       : '{i18n>newCriticality}',
-                UI.ParameterDefaultValue    : _it.criticality_code,
+                UI.ParameterDefaultValue    : in.criticality_code,
                 Common : {
                     ValueListWithFixedValues : true,
                     ValueList : {
@@ -44,10 +43,10 @@ service service1 @(path : '/srv1') {
         //Search-Terms: #BoundAction, #SideEffect, #ParameterDefaultValue
         @(
             //Update the UI after action
-            cds.odata.bindingparameter.name : '_it',
             Common.SideEffects              : {
-                TargetProperties : ['_it/integerValue']
-            }
+                TargetProperties : ['in/integerValue']
+            },
+            Core.OperationAvailable: {$edmJson: {$If: [{$Ge: [{$Path: 'in/integerValue'}, 0]}, true, false]}}
         )
         action changeProgress (
             @(
@@ -59,15 +58,16 @@ service service1 @(path : '/srv1') {
 
         @(
             //Update the UI after action
-            cds.odata.bindingparameter.name : '_it',
-            cds.odata.bindingparameter.collection,
             Common.SideEffects              : {
-                TargetEntities : [_it]
+                TargetEntities : [in]
             }
         )
-        action resetEntities();
+        action resetEntities(
+            in: many $self
+        );
     };
     //Search-Terms: #UnboundAction
+    @Core.OperationAvailable: {$edmJson: {$Path: '/Singleton/enabled'}}
     action unboundAction(@(title : '{i18n>inputValue}')input : String);
 
     action criticalAction();
@@ -103,11 +103,8 @@ service service1 @(path : '/srv1') {
 
     @odata.singleton
     @readonly
-    entity Singleton as projection on persistence.Singleton;
-
-    @Core.OperationAvailable: {$edmJson: {$Path: '/service1.EntityContainer/Singleton/disabled'}}
-    action unboundSingletonDisabled();
-    @Core.OperationAvailable: {$edmJson: {$Path: '/service1.EntityContainer/Singleton/enabled'}}
-    action unboundSingletonEnabled();
-
+    entity Singleton {
+        createHidden: Boolean;
+        enabled: Boolean;
+    };
 }
