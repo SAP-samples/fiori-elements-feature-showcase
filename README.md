@@ -728,6 +728,26 @@ annotate service.RootEntities with @(
     },
 );
 ```
+
+With `@Core.OperationAvailable` actions can by enabled or disabled. This can be done dynamically by using $edmJson for its value, like:
+```
+@Core.OperationAvailable: {$edmJson: {$Path: '/Singleton/enabled'}}
+action unboundAction(@(title : '{i18n>inputValue}')input : String);
+```
+
+The path can be absolute like in the example pointing to a singleton or also for bound actions relative to the bound context, like:
+
+```
+@(
+    ...
+    Core.OperationAvailable: {$edmJson: {$If: [{$Ge: [{$Path: 'in/integerValue'}, 0]}, true, false]}}
+)
+action changeProgress (
+    ...
+);
+```
+'in' refers to the bound context. Without 'in' the path would refer to an action parameter.
+
 ##### Side Effects of actions
 <i>Search term:</i> [`#SideEffect`](../../search?q=SideEffect)
 
@@ -736,9 +756,9 @@ If your action triggers changes on the entities, you need side effects so that t
 entity RootEntities as select from persistence.RootEntities actions {
     ...
     @(
-        cds.odata.bindingparameter.name : '_it',
+        cds.odata.bindingparameter.name : 'in',
         Common.SideEffects              : {
-            TargetProperties : ['_it/integerValue']
+            TargetProperties : ['in/integerValue']
         }
     )
     action changeProgress (@(title : '{i18n>newProgress}', UI.ParameterDefaultValue : 50)newProgress : Integer);
