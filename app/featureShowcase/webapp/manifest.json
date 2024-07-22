@@ -131,7 +131,6 @@
                                 }
                             },
                             "initialLoad": true,
-                            "liveMode": true,
                             "views": {
                                 "paths": [
                                     {

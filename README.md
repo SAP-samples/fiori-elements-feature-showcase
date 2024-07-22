@@ -139,25 +139,6 @@ Open `http://localhost:4008/$launchpad` in the Browser to get to the SAP Fiori l
 
 ## General Features
 
-### Live mode
-
-<i>Search term:</i> [`"enhanceI18n"`](../../search?q=liveMode)
-
-With live mode the Go button is no longer shown on the UI, initial load is used and all filter changes are directly applied. Live mode can be enabled in the [manifest.json](app/featureShowcase/webapp/manifest.json) file.
-
-```
-"RootEntityListReport": {
-    ...
-    "options": {
-        "settings": {
-            ...
-            "liveMode": true,
-            ...
-        }
-    }
-},
-```
-
 ### Flexible Column Layout
 The Flexible Column Layout (FCL) enables the app, to display the Object Page and possibly a further Object Page next to the List Report on the same page instead of navigating to the next page.
 To enable the Flexible Column Layout please use the Application Modeler from the SAP Fiori tools. The setting can be found in the Global Page Settings, which are part of the Page Map.
