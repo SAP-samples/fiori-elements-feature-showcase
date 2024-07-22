@@ -82,6 +82,21 @@ module.exports = async (srv) => {
     //      Actions
     //=============================================================================================================
 
+    srv.on("copy",RootEntities, async (req) => {
+        //Req.params contains IDs and Draft IDs of the entity
+        const headerID = req.params[0].ID;
+        console.log("Copy Action called");
+        //Update the current RootEntity with the new value for ciritcality_code and fieldWithCriticality
+        const newRootEntity = await SELECT.one.from(RootEntities,headerID);
+        newRootEntity.ID = cds.utils.uuid();
+        newRootEntity.stringProperty = newRootEntity.stringProperty + " (Copy)";
+        newRootEntity.HasActiveEntity = true;
+        newRootEntity.IsActiveEntity = true;
+        await INSERT.into(RootEntities).entries(newRootEntity);
+        return newRootEntity;
+        //return UPDATE(RootEntities,headerID).with({criticality_code : criticality_code, fieldWithCriticality : determineFieldWithCriticalityValue(criticality_code)});
+    });
+
     srv.on("changeCriticality",RootEntities, async (req) => {
         //Req.data contains the parameter values of the action
         //Req.params contains IDs and Draft IDs of the entity

@@ -12,6 +12,7 @@ service service1 @(path : '/srv1') {
                 TargetProperties : ['in/criticality_code','in/fieldWithCriticality']
             }
         )
+        action copy() returns RootEntities;
         action changeCriticality (
             //Value Helper for the Input Parameter
             //Search-Term: #ValueHelpParameter
