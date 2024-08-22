@@ -266,10 +266,10 @@ annotate service.RootEntities with @(
                 Inline  : true, //Action in the Form toolbar instead of the section toolbar
             },
             {
-		    $Type             : 'UI.DataField',
-            Label			  : '{i18n>MultiInputField}',
-            Value             : childEntities1.field,
-        },
+                $Type             : 'UI.DataField',
+                Label			  : '{i18n>MultiInputField}',
+                Value             : childEntities1.field,
+            }
         ]
     },
 
@@ -322,6 +322,11 @@ annotate service.RootEntities with @(
         Data : [
             {Value : country_code},
             {Value : region_code},
+            {
+                //Search-Term: #MultiValueWithDependentFilter
+                Value : regions.region_code,
+                Label : '{i18n>MultiInputFieldWithVH}'
+            }
         ]
     },
     UI.FieldGroup #communication        : {
