@@ -658,55 +658,46 @@ In CAP, actions can be bound to a specific entity or unbound and just be a part 
 If an action shall be visible, the `UI.DataFieldForAction` has to be added to the `UI.LineItem` annotation of the table. The action is called through the service.
 ```
 annotate service.RootEntities with @(
-    UI.LineItem : {
-        $value : [
-            ...
-            {
-                $Type : 'UI.DataFieldForAction',
-                Action : 'service1.changeCriticality',
-                Label : '{i18n>changeCriticality}',
-            },
-            ...
-        ],
+    UI.LineItem : [
         ...
-    },
+        {
+            $Type : 'UI.DataFieldForAction',
+            Action : 'service1.changeCriticality',
+            Label : '{i18n>changeCriticality}',
+        },
+        ...
+    ],
 );
 ``` 
 [layouts_RootEntities.cds](app/featureShowcase/layouts_RootEntities.cds)
 With this default annotation, the action is displayed above the table on the right, with other possible actions. If you want to display the action inline, the property `Inline : true` has to be added. Additionally instead of the action name, an icon can be displayed, if the action is in line.
 ```
 annotate service.RootEntities with @(
-    UI.LineItem : {
-        $value : [
-            ...
-            {
-                $Type : 'UI.DataFieldForAction',
-                Action : 'service1.changeProgress',
-                Label : '{i18n>changeProgess}',
-                IconUrl : 'sap-icon://status-critical',
-                Inline : true,
-            },
-            ...
-        ],
+    UI.LineItem : [
         ...
-    },
+        {
+            $Type : 'UI.DataFieldForAction',
+            Action : 'service1.changeProgress',
+            Label : '{i18n>changeProgess}',
+            IconUrl : 'sap-icon://status-critical',
+            Inline : true,
+        },
+        ...
+    ],
 );
 ```
 While you can add the property `Determining : true`, determining actions are not supported and the action will just disappear from the UI. <br/> The action annotations so far were for bound actions. If you want to add unbound actions, you have to change the action annotation slightly. Instead of referring to `service1.unboundAction` you have to refer to `service1.EntityContainer/unboundAction` in order to have a working unbound action. The other path will display an action on the UI, but it would not work, if you click it.
 ```
 annotate service.RootEntities with @(
-    UI.LineItem : {
-        $value : [
-            ...
-            {
-                $Type : 'UI.DataFieldForAction',
-                Action : 'service1.EntityContainer/unboundAction',
-                Label : '{i18n>unboundAction}',
-            },
-            ...
-        ],
+    UI.LineItem : [
         ...
-    },
+        {
+            $Type : 'UI.DataFieldForAction',
+            Action : 'service1.EntityContainer/unboundAction',
+            Label : '{i18n>unboundAction}',
+        },
+        ...
+    ],
 );
 ```
 
@@ -850,30 +841,27 @@ While `@Capabilities.UpdateRestrictions` would restrict the update possibilities
 A navigation action navigating to an associated entity can be added, through adding the `UI.DataFieldForIntentBasedNavigation` as a line item.
 ```
 annotate service.RootEntities with @(
-    UI.LineItem : {
-        $value : [
-            ...
-            {
-                $Type : 'UI.DataFieldForIntentBasedNavigation',
-                Label : '{i18n>inboundNavigation}',
-                SemanticObject : 'FeatureShowcaseChildEntity2',
-                Action : 'manage',
-                RequiresContext : true,
-                Inline : true,
-                IconUrl : 'sap-icon://cart',
-                Mapping : [
-                    {
-                        $Type : 'Common.SemanticObjectMappingType',
-                        LocalProperty : integerValue,
-                        SemanticObjectProperty : 'integerProperty',
-                    },
-                ],
-                ![@UI.Importance] : #High,
-            },
-            ...
-        ],
+    UI.LineItem : [
         ...
-    },
+        {
+            $Type : 'UI.DataFieldForIntentBasedNavigation',
+            Label : '{i18n>inboundNavigation}',
+            SemanticObject : 'FeatureShowcaseChildEntity2',
+            Action : 'manage',
+            RequiresContext : true,
+            Inline : true,
+            IconUrl : 'sap-icon://cart',
+            Mapping : [
+                {
+                    $Type : 'Common.SemanticObjectMappingType',
+                    LocalProperty : integerValue,
+                    SemanticObjectProperty : 'integerProperty',
+                },
+            ],
+            ![@UI.Importance] : #High,
+        },
+        ...
+    ],
 );
 ```
 [layouts_RootEntities.cds](app/featureShowcase/layouts_RootEntities.cds) <br/>
@@ -1208,15 +1196,10 @@ annotate service.RootEntities with @(
 #### Highlighting Line Items Based on Criticality
 <i>Search term:</i> [`#LineItemHighlight`](../../search?q=LineItemHighlight)
 
-Line items can be highlighted based on there criticality with the annotation `![@UI.Criticality]`. The annotation has to be a part of the `@UI.LineItem` annotation.
+Line items can be highlighted based on there criticality with the annotation `@UI.Criticality`. The annotation has to be a part of the `@UI.LineItem` annotation.
 ```
 annotate service.RootEntities with @(
-    UI.LineItem : {
-        $value : [
-            ...
-        ],
-        ![@UI.Criticality] : criticality_code, 
-    },
+    UI.LineItem.@UI.Criticality : criticality_code,
 );
 ```
 #### Adding a Rating Indicator to a Table
@@ -1239,19 +1222,16 @@ annotate service.RootEntities with @(
 After creating the data point, it has to be added to the `@UI.LineItem` annotation. For that the UI.DataFieldForAnnotation type is used and the target is the data point.
 ```
 annotate service.RootEntities with @(
-    UI.LineItem : {
-        $value : [
-            ...
-            {
-                $Type : 'UI.DataFieldForAnnotation',
-                Label : '{i18n>ratingIndicator}',
-                Target : '@UI.DataPoint#ratingIndicator',
-                ![@UI.Importance] : #Low,
-            },
-            ...
-        ],
+    UI.LineItem : [
         ...
-    },
+        {
+            $Type : 'UI.DataFieldForAnnotation',
+            Label : '{i18n>ratingIndicator}',
+            Target : '@UI.DataPoint#ratingIndicator',
+            ![@UI.Importance] : #Low,
+        },
+        ...
+    ],
 );
 ```
 The annotations are in the [layouts_RootEntities.cds](app/featureShowcase/layouts_RootEntities.cds) file.
@@ -1274,19 +1254,16 @@ annotate service.RootEntities with @(
 After creating the data point, it has to be added to the `@UI.LineItem` annotation. For that the UI.DataFieldForAnnotation type is used and the target is the data point.
 ```
 annotate service.RootEntities with @(
-    UI.LineItem : {
-        $value : [
-            ...
-            {
-                $Type : 'UI.DataFieldForAnnotation',
-                Label : '{i18n>progressIndicator}',
-                Target : '@UI.DataPoint#progressIndicator',
-                ![@UI.Importance] : #Low,
-            },
-            ...
-        ],
+    UI.LineItem : [
         ...
-    },
+        {
+            $Type : 'UI.DataFieldForAnnotation',
+            Label : '{i18n>progressIndicator}',
+            Target : '@UI.DataPoint#progressIndicator',
+            ![@UI.Importance] : #Low,
+        },
+        ...
+    ],
 );
 ```
 The annotations are in the [layouts_RootEntities.cds](app/featureShowcase/layouts_RootEntities.cds) file.
@@ -1308,18 +1285,15 @@ annotate service.RootEntities with @(
 Secondly the data point is added as a line item with the '@UI.DataFieldForAnnotation' type to the table.
 ```
 annotate service.RootEntities with @(
-    UI.LineItem : {
-        $value : [
-            ...
-            {
-                $Type : 'UI.DataFieldForAnnotation',
-                Target : '@UI.DataPoint#fieldWithTooltip',
-                Label : '{i18n>fieldWithToolTip}',
-            },
-            ...
-        ],
+    UI.LineItem : [
         ...
-    },
+        {
+            $Type : 'UI.DataFieldForAnnotation',
+            Target : '@UI.DataPoint#fieldWithTooltip',
+            Label : '{i18n>fieldWithToolTip}',
+        },
+        ...
+    ],
 );
 ```
 
@@ -1356,18 +1330,15 @@ UI.Chart #radialChart : {
 The chart is then the target of a `DataFieldForAnnotation` in the `@UI.LineItem` annotation, to be shown in the table.
 ```
 annotate service.RootEntities with @(
-    UI.LineItem : {
-        $value : [
-            ...
-            {
-                $Type : 'UI.DataFieldForAnnotation',
-                Target : '@UI.Chart#radialChart',
-                Label   : '{i18n>radialChart}',
-            },
-            ...
-        ],
+    UI.LineItem : [
         ...
-    },
+        {
+            $Type : 'UI.DataFieldForAnnotation',
+            Target : '@UI.Chart#radialChart',
+            Label   : '{i18n>radialChart}',
+        },
+        ...
+    ],
 );
 ```
 The annotations of the example are in the [layouts_RootEntities.cds](app/featureShowcase/layouts_RootEntities.cds) file.
@@ -1399,18 +1370,15 @@ There are more supported properties for the Contact, which are listed in the [SA
 This contact card then needs to be a target of a DataFieldForAnnotation, which itself is a port of the `@UI.LineItem` annotation, to be shown in the table.
 ```
 annotate service.RootEntities with @(
-    UI.LineItem : {
-        $value : [
-            ...
-            {
-                $Type : 'UI.DataFieldForAnnotation',
-                Target : 'contact/@Communication.Contact',
-                Label : '{i18n>contactQuickView}'
-            },
-            ...
-        ],
+    UI.LineItem : [
         ...
-    },
+        {
+            $Type : 'UI.DataFieldForAnnotation',
+            Target : 'contact/@Communication.Contact',
+            Label : '{i18n>contactQuickView}'
+        },
+        ...
+    ],
 );
 ```
 The contact card is referenced through the contact attribute of the entity.
@@ -1462,19 +1430,16 @@ annotate service1.ChildEntities2 with @(
 The last step is, that a `UI.DataField` has to be added to the `@UI.LineItem` annotation. The value of the data field is the key attribute and then the quick view facet will be automatically visible.
 ```
 annotate service.RootEntities with @(
-    UI.LineItem : {
-        $value : [
-            ...
-            {
-                $Type : 'UI.DataField',
-                Value : association2one_ID,
-                Label : '{i18n>ChildEntity2}',
-                ![@UI.Importance] : #High,
-            },
-            ...
-        ],
+    UI.LineItem : [
         ...
-    },
+        {
+            $Type : 'UI.DataField',
+            Value : association2one_ID,
+            Label : '{i18n>ChildEntity2}',
+            ![@UI.Importance] : #High,
+        },
+        ...
+    ],
 );
 ```
 The annotations of the example are in the [layouts_RootEntities.cds](app/featureShowcase/layouts_RootEntities.cds) file.
@@ -1525,19 +1490,16 @@ annotate service.RootEntities with @(
 Secondly you have to add a DataField For Annotation to the `@UI.LineItem` annotation.
 ```
 annotate service.RootEntities with @(
-    UI.LineItem : {
-        $value : [
-            ...
-            {
-                $Type : 'UI.DataFieldForAnnotation',
-                Target : '@UI.FieldGroup#AdminData', 
-                Label : '{i18n>adminData}',
-                ![@UI.Importance] : #High,
-            },
-            ...
-        ],
+    UI.LineItem : [
         ...
-    },
+        {
+            $Type : 'UI.DataFieldForAnnotation',
+            Target : '@UI.FieldGroup#AdminData', 
+            Label : '{i18n>adminData}',
+            ![@UI.Importance] : #High,
+        },
+        ...
+    ],
 );
 ```
 #### Adding Images to a table
@@ -1546,17 +1508,14 @@ annotate service.RootEntities with @(
 Images are typically the first column in a table and help to visually guide the user. An image can be added to a table by just adding a normal data field to the line items.
 ```
 annotate service.RootEntities with @(
-    UI.LineItem : {
-        $value : [
-            {
-                $Type : 'UI.DataField',
-                Value : imageUrl,
-                @UI.Importance : #High,
-            },
-            ...
-        ],
+    UI.LineItem : [
+        {
+            $Type : 'UI.DataField',
+            Value : imageUrl,
+            @UI.Importance : #High,
+        },
         ...
-    },
+    ],
 );
 ```
 The special thing is just, that the property, which contains the image url has to be annotated with `@UI.IsImageURL`. The example is annotated in the [labels.cds](app/featureShowcase/labels.cds) file.

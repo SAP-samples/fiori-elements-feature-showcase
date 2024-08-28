@@ -1,27 +1,25 @@
 using service1 as service           from '../../srv/service';
 
 annotate service.ChartDataEntities with @(
-    UI.LineItem : {
-        $value: [
-            {
-                $Type : 'UI.DataField',
-                Value : integerValue,
-            },
-            {
-                $Type : 'UI.DataField',
-                Value : forecastValue,
-            },
-            {
-                $Type : 'UI.DataField',
-                Value : targetValue,
-            },
-            {
-                $Type : 'UI.DataField',
-                Value : dimensions,
-            },
-        ],
-        ![@UI.Criticality] : criticality_code,
-    },
+    UI.LineItem : [
+        {
+            $Type : 'UI.DataField',
+            Value : integerValue,
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : forecastValue,
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : targetValue,
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : dimensions,
+        },
+    ],
+    UI.LineItem.@UI.Criticality : criticality_code,
     //Search-Term: #ChartSection
     UI.Chart : {
         Title       : '{i18n>chart}',
