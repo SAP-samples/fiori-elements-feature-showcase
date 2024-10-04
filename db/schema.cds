@@ -64,6 +64,7 @@ entity RootEntities : cuid, managed, rootBasis {
                                     on childEntities3.parent = $self;
     chartEntities               : Composition of many ChartDataEntities
                                     on chartEntities.parent = $self;
+    regions : Composition of many AssignedRegions on regions.root = $self;
 };
 
 //Entity only used to demonstrate Multiple Views on List Report with multiple entities
@@ -123,4 +124,9 @@ entity Contacts : cuid {
     postCode                    : String;
     addressLabel                : String;
     photoUrl                    : String;
+}
+
+entity AssignedRegions : cuid {
+    root : Association to one RootEntities;
+    region: Region;
 }

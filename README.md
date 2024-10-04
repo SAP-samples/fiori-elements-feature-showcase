@@ -36,6 +36,7 @@ Open `http://localhost:4008/$launchpad` in the Browser to get to the SAP Fiori l
             - [Case insensitive filtering](#case-insensitive-filtering)
             - [Value Help](#value-help)
             - [Dependent Filtering (Value Help)](#dependent-filtering-value-help)
+            - [Dependent Filtering from parent (Value Help)](#dependent-filtering-multi-input-value-help)
             - [Custom Filter](#custom-filter)
         - [Custom Actions](#custom-actions-global-list-report)
     - [Content Area](#content-area-list-report)
@@ -518,6 +519,58 @@ annotate schema.RootEntities with{
 };
 ```
 Here the region property (which is an Association to a Code List) is annotated with the `ValueList` annotation. To achieve the filtering, the country_code property from the header is mapped against the country_code property of the region via the `Common.ValueListParameterIn` parameter. The implementation can be found in the [value-helps.cds](app/featureShowcase/value-helps.cds#L71).
+
+#### Dependent filtering (Multi-Input Value Help)
+<i>Search term:</i> [`#MultiValueWithDependentFilter`](../../search?q=MultiValueWithDependentFilter)
+
+Dependent filters can also use properties from the parent entity. This is especially useful for multi-input fields, which have a value help. In the example the root entity has a country assigned and multiple regions shall be assigned to the root entity. For that an assignment entity is being used. To only show regions of the selected country a reference to the root entity can be used.
+
+```cds
+annotate schema.AssignedRegions with {
+    region @(Common : {
+        Text            : region.name,
+        TextArrangement : #TextFirst,
+        ValueListWithFixedValues: true,
+        ValueList       : {
+            Label          : '{i18n>Region}',
+            CollectionPath : 'Regions',
+            Parameters     : [
+                {
+                    $Type               : 'Common.ValueListParameterInOut',
+                    ValueListProperty   : 'code',
+                    LocalDataProperty   : region_code
+                },
+                {
+                    $Type               : 'Common.ValueListParameterIn',
+                    LocalDataProperty   : root.country_code,
+                    ValueListProperty   : 'country_code',
+                },
+                
+            ]
+        }
+    });
+}
+```
+
+In the code snippet the 'LocalDataProperty' refers to the country reference and maps it to the 'country_code' property of the 'Regions' entity, which is the target of the value help.
+
+The value help itself is annotated on the property within the assignment entity. This is also the target property of the DataField value path.
+
+```cds
+annotate service.RootEntities with @(
+    ...
+    UI.FieldGroup #location             : {
+        Data : [
+            ...
+            {
+                Value : regions.region_code,
+                Label : '{i18n>MultiInputFieldWithVH}'
+            }
+        ]
+    },
+    ...
+)
+```
 
 #### Adding navigation properties
 

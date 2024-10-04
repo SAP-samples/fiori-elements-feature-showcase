@@ -113,3 +113,29 @@ annotate schema.RootEntities with{
         }
     });
 };
+
+annotate schema.AssignedRegions with {
+    //Search-Term: #MultiValueWithDependentFilter
+    region @(Common : {
+        Text            : region.name,
+        TextArrangement : #TextFirst,
+        ValueListWithFixedValues: true,
+        ValueList       : {
+            Label          : '{i18n>Region}',
+            CollectionPath : 'Regions',
+            Parameters     : [
+                {
+                    $Type               : 'Common.ValueListParameterInOut',
+                    ValueListProperty   : 'code',
+                    LocalDataProperty   : region_code
+                },
+                {
+                    $Type               : 'Common.ValueListParameterIn', //Input parameter used for filtering
+                    LocalDataProperty   : root.country_code,
+                    ValueListProperty   : 'country_code',
+                },
+                
+            ]
+        }
+    });
+}
