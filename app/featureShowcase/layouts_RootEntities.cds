@@ -171,6 +171,7 @@ annotate service.RootEntities with @(
             Label : '{i18n>resetEntities}',
         },
         {
+            //Search-Term: #Link
             $Type               : 'UI.DataFieldWithUrl',
             Url                 : fieldWithURL, //Target, when pressing the text
             Value               : fieldWithURLtext, //Visible text

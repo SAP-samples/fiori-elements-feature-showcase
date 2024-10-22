@@ -72,6 +72,7 @@ Open `http://localhost:4008/$launchpad` in the Browser to get to the SAP Fiori l
             - [Adding Multiple Fields to one Column in Responsive Tables](#adding-multiple-fields-to-one-column-in-responsive-tables)
             - [Adding Images to a table](#adding-images-to-a-table)
             - [Adding Currency or UoM Fields to a table](#adding-currency-or-uom-fields-to-a-table)
+            - [Adding a link to a table](#adding-a-link-to-a-table)
             - [Add custom column (Extensibility)](#add-custom-column-extensibility)
 - [Object Page](#object-page)
     - [General Features](#general-features-object-page)
@@ -1578,6 +1579,34 @@ The special thing is just, that the property, which contains the image url has t
 The special thing about currency or unit of measure fields is, that they have an additional field with the unit. In order to not have to add both properties to the table, and may risk, that through personalisation one might be not visible, the property with the value can be annotated with the unit.
 For units of measure the annotation is ` @Measures.Unit`. For currencies the annotation is `@Measures.ISOCurrency` and for percentage value the annotation is `@Measures.Unit : '%'` .
 The examples from the feature showcase are in the [labels.cds](app/featureShowcase/labels.cds) file.
+
+#### Adding a link to a table
+
+<i>Search term:</i> [`#Link`](../../search?q=Link)
+
+With a `UI.DataFieldWithUrl` a link can be added to the table. The 'Value' property is the visible text and the 'Url' is the target.
+
+```cds
+@UI.LineItem : [
+    {
+        $Type               : 'UI.DataFieldWithUrl',
+        Url                 : fieldWithURL, //Target, when pressing the text
+        Value               : fieldWithURLtext, //Visible text
+        Label               : '{i18n>dataFieldWithURL}',
+        ![@UI.Importance]   : #Medium,
+    },
+]
+```
+Since UI5 1.129.0 the 'Value' property can also be annotated to determine how the link opens.
+
+```cds
+annotate service.RootEntities with {
+    fieldWithURLtext @HTML5.LinkTarget : '_blank';
+}
+```
+
+The annotation is documented [here](https://sap.github.io/odata-vocabularies/vocabularies/HTML5.html#LinkTarget).
+
 #### Add custom column (Extensibility)
 <i>Search term:</i> [`#CustomColumn`](../../search?q=CustomColumn)
 
@@ -1656,12 +1685,22 @@ SAP Fiori elements provides out of the box support for displaying and editing da
 aspect rootBasis : {
     ...
     validFrom   : Date;
-    validTo     : Date;
+    validTo     : DateTime;
     time        : Time;
     timeStamp   : Timestamp;
     ...
 };
 ```
+
+Since UI5 1.129.0 you can use `@UI.DateTimeStyle` to modify how the date is displayed.
+
+```cds
+annotate service.RootEntities with {
+    validTo @UI.DateTimeStyle : 'short'
+}
+```
+
+Allowed values are 'short', 'medium', 'long' and 'full'.
 
 #### Multi line text
 <i>Search terms:</i> `#MultiLineText`, `"formatOptions"`

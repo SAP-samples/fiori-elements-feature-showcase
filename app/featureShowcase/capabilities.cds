@@ -28,7 +28,9 @@ annotate service1.RootEntities with @(
         //     stringProperty //Search-Term: #RequiredFilter    
         // ]
     },
-);
+) {
+    validTo @UI.DateTimeStyle : 'short'
+};
 
 annotate service1 with @(
     Capabilities.FilterFunctions : [

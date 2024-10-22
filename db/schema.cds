@@ -48,7 +48,7 @@ aspect rootBasis : {
     region                      : Region;
 
     validFrom                   : Date; //Search-Term: #TimeAndDate
-    validTo                     : Date;
+    validTo                     : DateTime;
     time                        : Time;
     timeStamp                   : Timestamp;
 

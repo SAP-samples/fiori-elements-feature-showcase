@@ -28,7 +28,7 @@ annotate service1.RootEntities {
     areaChartDeviationUpperBoundValue   @UI.HiddenFilter;
     areaChartToleranceLowerBoundValue   @UI.HiddenFilter;
     areaChartToleranceUpperBoundValue   @UI.HiddenFilter;
-    fieldWithURLtext                    @UI.HiddenFilter;
+    fieldWithURLtext                    @UI.HiddenFilter @HTML5.LinkTarget : '_blank'; //Search-Term: #Link
 
     /** Search-Term: #FilterDefault
         For a default filter value in the list report. Does not support complex values */ 
