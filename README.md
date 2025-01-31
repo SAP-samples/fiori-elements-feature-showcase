@@ -297,10 +297,7 @@ To reduce the amount of available filters in a List Report, properties can be an
 ```
 annotate service1.RootEntities {
     ...
-    areaChartDeviationLowerBoundValue @UI.HiddenFilter;
-    areaChartDeviationUpperBoundValue @UI.HiddenFilter;
-    areaChartToleranceLowerBoundValue @UI.HiddenFilter;
-    areaChartToleranceUpperBoundValue @UI.HiddenFilter;
+    fieldWithURLtext @UI.HiddenFilter;
     ...
 };
 ```

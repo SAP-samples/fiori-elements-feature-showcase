@@ -39,6 +39,7 @@ annotate schema.ChildEntities1 with @title : '{i18n>childEntities1}' {
     field                       @title : '{i18n>field}';
     booleanProperty             @title : '{i18n>booleanProperty}';
     fieldWithPerCent            @title : '{i18n>fieldWithPerCent}'          @(Measures.Unit : '%'); //Search-Term: #Units
+    criticalityValue            @title : '{i18n>criticality}'               @Common.Text : criticalityValue.name             @Common.TextArrangement : #TextFirst;
 };
 
 annotate schema.GrandChildEntities with @title : '{i18n>grandChildren}' {

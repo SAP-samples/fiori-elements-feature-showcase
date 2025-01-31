@@ -9,7 +9,7 @@
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {
-    "@sap/cds": "^7.2",
+    "@sap/cds": "^8.2",
     "cds-launchpad-plugin": "^2.0.1",
     "content-disposition": "^0.5.3",
     "express": "^4"
@@ -52,7 +52,7 @@
   ],
   "cds": {
     "launchpad": {
-      "version": "1.127.1"
+      "version": "1.132.0"
     }
   }
 }

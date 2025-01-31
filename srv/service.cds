@@ -40,14 +40,7 @@ service service1 @(path : '/srv1') {
             newCriticality : Integer
         );
 
-        //Search-Terms: #BoundAction, #SideEffect, #ParameterDefaultValue
-        @(
-            //Update the UI after action
-            Common.SideEffects              : {
-                TargetProperties : ['in/integerValue']
-            },
-            Core.OperationAvailable: {$edmJson: {$If: [{$Ge: [{$Path: 'in/integerValue'}, 0]}, true, false]}}
-        )
+        //Search-Term: #BoundAction
         action changeProgress (
             @(
                 title                       : '{i18n>newProgress}', 
@@ -89,7 +82,7 @@ service service1 @(path : '/srv1') {
     @odata.draft.enabled : false
     @readonly
     entity RootEntitySemanticKeys as select from RootEntities {
-        stringProperty
+        key stringProperty
     };
 
     @readonly

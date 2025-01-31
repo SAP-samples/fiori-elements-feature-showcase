@@ -24,23 +24,30 @@ annotate service1.RootEntities {
         ], 
     );
     
-    areaChartDeviationLowerBoundValue   @UI.HiddenFilter; //Search-Term: #HideFilter
-    areaChartDeviationUpperBoundValue   @UI.HiddenFilter;
-    areaChartToleranceLowerBoundValue   @UI.HiddenFilter;
-    areaChartToleranceUpperBoundValue   @UI.HiddenFilter;
-    fieldWithURLtext                    @UI.HiddenFilter @HTML5.LinkTarget : '_blank'; //Search-Term: #Link
+    fieldWithURLtext                    @UI.HiddenFilter @HTML5.LinkTarget : '_blank'; //Search-Term: #HideFilter, #Link
 
     /** Search-Term: #FilterDefault
         For a default filter value in the list report. Does not support complex values */ 
     //stringProperty @Common.FilterDefaultValue : 'Root entity 4'; 
     
-    region_country_code                 @UI.HiddenFilter; //Filter not available in the list report
+    region                              @UI.HiddenFilter; //Filter not available in the list report
     deletePossible                      @UI.Hidden;
     updateHidden                        @UI.Hidden;
     fieldWithURL                        @UI.Hidden;
 
     email @mandatory;
 };
+
+annotate service1.RootEntities actions {
+    //Search-Terms: #SideEffect, #ParameterDefaultValue
+    changeProgress  @(
+        //Update the UI after action
+        Common.SideEffects              : {
+            TargetProperties : ['in/integerValue']
+        },
+        Core.OperationAvailable: {$edmJson: {$If: [{$Ge: [{$Path: 'in/integerValue'}, 0]}, true, false]}}
+    )
+}
 
 
 annotate service1.ChildEntities1 {
@@ -65,4 +72,9 @@ annotate service1.ChildEntities2 {
 annotate service1.ChartDataEntities {
     ID      @UI.Hidden @readonly @mandatory;
     parent  @UI.Hidden @Core.Immutable;
+
+    areaChartDeviationLowerBoundValue   @UI.HiddenFilter;
+    areaChartDeviationUpperBoundValue   @UI.HiddenFilter;
+    areaChartToleranceLowerBoundValue   @UI.HiddenFilter;
+    areaChartToleranceUpperBoundValue   @UI.HiddenFilter;
 }
