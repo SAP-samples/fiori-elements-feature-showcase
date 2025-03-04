@@ -30,12 +30,17 @@ annotate service.ChildEntities1 with @(
         TypeName        : '{i18n>childEntities1}',
         TypeNamePlural  : '{i18n>childEntities1.typeNamePlural}', //Search-Term: #OPTableTitle
         Title           : {
-            $Type : 'UI.DataField',
             Value : '{i18n>childEntities1}',
         },
         Description     : {
-            $Type : 'UI.DataField',
-            Value : field,
+            //Search-Term: #ODataConcat
+            Value : {$edmJson: {
+                $Apply : [
+                    'Using odata.concat - Field: ',
+                    {$Path: 'field'},
+                ],
+                $Function : 'odata.concat'
+            }},
         },
         ImageUrl        : '',
         TypeImageUrl    : 'sap-icon://blank-tag',

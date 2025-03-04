@@ -1817,6 +1817,54 @@ The "Title" of the Object Page, displayed in the actual header on the left side 
 The "Description" is beneath the "Title" and displays normally the product title in SAP back-end systems.
 If the optional "ImageUrl" property is given, then the picture will be visible on the left side of the "Title" and "Description". If no url is given for the "ImageUrl", but "TypeImageUrl" is defined, it will be displayed instead.
 
+#### Dynamic title or subtitle 
+
+<i>Search term:</i> [`#ODataConcat`](../../search?q=ODataConcat)
+
+It is possible to use the edmJson function `odata.concat` in the `@UI.HeaderInfo` annotation for the "Title" and "Description" values to concat multiple references together.
+
+```cds
+annotate service.ChildEntities1 with @(
+    UI.HeaderInfo : {
+        ...
+        Description     : {
+            Value : {$edmJson: {
+                $Apply : [
+                    'Using odata.concat - Field: ',
+                    {$Path: 'field'}
+                ],
+                $Function : 'odata.concat'
+            }},
+        },
+        ...
+    },
+);
+```
+
+In this sample a string is concatenated to the value of the 'field' property. More complex scenarios, using the "$If" are also possible, like:
+
+```cds
+annotate service.ChildEntities1 with @(
+    UI.HeaderInfo : {
+        ...
+        Description     : {
+            Value : {$edmJson: {
+                $Apply : [
+                    'Using odata.concat - Field: ',
+                    {$If: [
+                        {$Eq: [{$Path: 'field'}, 'child entity 1']},
+                        {$Path: 'field'},
+                        'Other child entities'
+                    ]}
+                ],
+                $Function : 'odata.concat'
+            }},
+        },
+        ...
+    },
+);
+```
+
 ### Header Facets
 
 <i>Search term:</i> [`#HeaderFacets`](../../search?q=HeaderFacets)
