@@ -406,6 +406,15 @@
                                         }
                                     }
                                 },
+                                "@com.sap.vocabularies.UI.v1.FieldGroup#ShowWhenInEdit": {
+                                    "fields": {
+                                        "DataField::criticality_code": {
+                                            "formatOptions": {
+                                                "radioButtonsHorizontalLayout": false
+                                            }
+                                        }
+                                    }
+                                },
                                 "childEntities3/@com.sap.vocabularies.UI.v1.LineItem": {
                                     "tableSettings": {
                                         "personalization": {

@@ -390,14 +390,11 @@ annotate service1.RootEntities with @(
 
 If you want to disable semantic dates entirely you can do so, by setting the `useSemanticDateRange` property to false in the manifest.json file. The default value is true. In addition you can specify the default value for semantic date ranges in the manifest. The documentation link below lists all options. Please note, that they have to be fully in uppercase.
 
-```
+```json
 "RootEntityListReport": {
-    ...
     "options": {
         "settings": {
-            ...
             "controlConfiguration": {
-                ...
                 "@com.sap.vocabularies.UI.v1.SelectionFields": {
                     "useSemanticDateRange":  true,
                     "filterFields": {
@@ -407,10 +404,8 @@ If you want to disable semantic dates entirely you can do so, by setting the `us
                             }
                         }
                     }
-                    ...
                 }
             },
-            ...
         }
     }
 },
@@ -439,12 +434,11 @@ The example is in the [capabilities.cds](app/featureShowcase/capabilities.cds) f
 More information are available in the [SAP UI5 Documentation](https://sapui5.hana.ondemand.com/sdk/#/topic/609c39a7498541559dbef503c1ffd194.html).
 
 #### Value Help
-<i>Search term:</i> [](../../search?q=)`#ValueHelps`
+<i>Search terms:</i> [](../../search?q=)`#ValueHelps`, [](../../search?q=)`#RadioButtons`
 
 While CAP delivers the value help for Code Lists out of the box. For other associations this is not the case. To get a value help for a filter (and for the corresponding field on the Object Page), the entity has to be annotated with `@Common.ValueList`. 
-```
+```cds
 annotate schema.RootEntities with{
-    ...
     contact @(Common : {
         Text            : contact.name,
         TextArrangement : #TextOnly,
@@ -469,12 +463,49 @@ annotate schema.RootEntities with{
             ]
         }
     });
-    ...
 };
 ```
 The `Label` property will be shown as the title of the value help dialog und the `CollectionPath` property refers to the entity set of the service, which provides the values for the value help. If the value help is more complex and property names do not match or you want to configure, which fields should be visible in the value help, you can provide parameters to the `Parameters` property.
+
+##### Value help as a dropdown
 For smaller collections of possible values in the value help, it might be a good idea to have a dropdown instead of a dialog to choose the value. This can be achieved with the `@Common.ValueListWithFixedValues` annotation.
-The implementation is in the [value-helps.cds](app/featureShowcase/value-helps.cds) file.
+
+##### Value help as radio buttons
+If you, in addition, annotate the property with `@Common.ValueListWithFixedValues.@Common.ValueListShowValuesImmediately` the value help will not render as a dropdown, but instead with radio buttons. 
+```cds
+annotate schema.RootEntities with{
+    criticality_code @(Common : {
+        ValueListWithFixedValues,
+        ValueListWithFixedValues.@Common.ValueListShowValuesImmediately,
+    });
+};
+```
+
+By default the rendering is vertical and with a [manifest.json](app/featureShowcase/webapp/manifest.json) setting it can be adjusted to horizontal. 
+```json
+"RootEntityListReport": {
+    "options": {
+        "settings": {
+            "controlConfiguration": {
+                "@com.sap.vocabularies.UI.v1.FieldGroup#ShowWhenInEdit": {
+                    "fields": {
+                        "DataField::criticality_code": {
+                            "formatOptions": {
+                                "radioButtonsHorizontalLayout": false
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+```
+
+Rendering as radio buttons is currently only supported for fields on pages and not for fields in action dialogs.
+
+All value help annotations are in the [value-helps.cds](app/featureShowcase/value-helps.cds) file.
+
 #### Dependent Filtering (Value Help)
 <i>Search term:</i> [`#DependentFilter`](../../search?q=DependentFilter)
 

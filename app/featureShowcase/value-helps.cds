@@ -9,6 +9,8 @@ annotate schema.RootEntities with{
     uom         @Common.ValueListWithFixedValues; //Instead of dialog box, the value help is a dropdown
     criticality_code @(Common : {
         ValueListWithFixedValues: true,
+        // Search-Term: #RadioButtons | Render Value help with radio buttons
+        ValueListWithFixedValues.@Common.ValueListShowValuesImmediately,
         ValueList       : {
             Label          : '{i18n>criticality}',
             CollectionPath : 'Criticality',
@@ -17,8 +19,7 @@ annotate schema.RootEntities with{
                     $Type               : 'Common.ValueListParameterInOut',
                     ValueListProperty   : 'code',
                     LocalDataProperty   : criticality_code
-                }
-                
+                },
             ]
         }
     });
