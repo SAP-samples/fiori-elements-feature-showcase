@@ -1,58 +1,54 @@
 {
   "name": "feature-showcase",
   "version": "1.0.0",
-  "description": "A simple CAP project to demonstrate different FEv4 List Report & Oject Page features.",
+  "description": "A simple CAP project to demonstrate different FEv4 List Report & Object Page features.",
   "repository": {
     "type": "git",
     "url": "git@github.com:SAP-samples/fiori-elements-feature-showcase.git"
   },
-  "license": "UNLICENSED",
-  "private": true,
+  "license": "Apache-2.0",
+  "engines": {
+    "node": "^22"
+  },
   "dependencies": {
-    "@sap/cds": "^8.2",
+    "@sap/cds": "^9",
     "cds-launchpad-plugin": "^2.0.1",
     "content-disposition": "^0.5.3",
     "express": "^4"
   },
   "devDependencies": {
-    "@cap-js/sqlite": "^1.1.0",
-    "@sap/ux-specification": "^1.90.12"
+    "@cap-js/cds-typer": ">=0.1",
+    "@cap-js/cds-types": "^0.10.0",
+    "@cap-js/sqlite": "^2",
+    "@eslint/js": "^9.35.0",
+    "@eslint/json": "^0.13.2",
+    "@sap/eslint-plugin-cds": "^4.1.0",
+    "@sap/ux-specification": "^1.136.5",
+    "@types/node": "^22.0.0",
+    "cds-plugin-ui5": "^0.13.4",
+    "eslint": "^9.35.0",
+    "globals": "^16.4.0",
+    "jiti": "^2.5.1",
+    "tsx": "^4",
+    "typescript": "^5",
+    "typescript-eslint": "^8.43.0"
   },
   "scripts": {
     "start": "cds run"
   },
-  "eslintConfig": {
-    "extends": "eslint:recommended",
-    "env": {
-      "es2020": true,
-      "node": true,
-      "jest": true,
-      "mocha": true
-    },
-    "globals": {
-      "SELECT": true,
-      "INSERT": true,
-      "UPDATE": true,
-      "DELETE": true,
-      "CREATE": true,
-      "DROP": true,
-      "CDL": true,
-      "CQL": true,
-      "CXL": true,
-      "cds": true
-    },
-    "rules": {
-      "no-console": "off",
-      "require-atomic-updates": "off"
-    }
-  },
   "sapux": [
-    "app/featureShowcase",
-    "app/featureShowcaseNavigationTarget"
+    "app/listreport-objectpage",
+    "app/worklist"
   ],
   "cds": {
     "launchpad": {
-      "version": "1.132.0"
+      "version": "1.140.0"
     }
-  }
+  },
+  "imports": {
+    "#cds-models/*": "./@cds-models/*/index.js"
+  },
+  "workspaces": [
+    "app/*"
+  ]
 }
