@@ -7,7 +7,7 @@ using LROPODataService as srv from '../../srv/list-report-srv';
 annotate srv.RootEntities {
     ID              @UI.Hidden @readonly        @mandatory @UI.ExcludeFromNavigationContext;
     stringProperty             @Core.Immutable  @mandatory @UI.ExcludeFromNavigationContext; //Search-Term: #CreationDialog
-    uom             @UI.Hidden;
+    uom             @UI.Hidden; 
 
     association2one @(
         //Search-Term: #Navigation

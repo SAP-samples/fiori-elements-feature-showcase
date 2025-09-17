@@ -74,6 +74,7 @@ Open `http://localhost:4008/$launchpad` in the Browser to get to the SAP Fiori l
             - [Adding Multiple Fields to one Column in Responsive Tables](#adding-multiple-fields-to-one-column-in-responsive-tables)
             - [Adding Images to a table](#adding-images-to-a-table)
             - [Adding Currency or UoM Fields to a table](#adding-currency-or-uom-fields-to-a-table)
+                - [Customize UoM or Currency scale](#customize-uom-or-currency-scale)
             - [Adding a link to a table](#adding-a-link-to-a-table)
             - [Add custom column (Extensibility)](#add-custom-column-extensibility)
 - [Object Page](#object-page)
@@ -1853,6 +1854,39 @@ The special thing is just, that the property, which contains the image url has t
 The special thing about currency or unit of measure fields is, that they have an additional field with the unit. In order to not have to add both properties to the table, and may risk, that through personalisation one might be not visible, the property with the value can be annotated with the unit.
 For units of measure the annotation is ` @Measures.Unit`. For currencies the annotation is `@Measures.ISOCurrency` and for percentage value the annotation is `@Measures.Unit : '%'` .
 The examples from the feature showcase are in the [labels.cds](app/listreport-objectpage/labels.cds) file.
+
+##### Customize UoM or Currency scale
+
+<i>Search term:</i> [`#CustomUnitScale`](../../search?q=CustomUnitScale)
+
+By default the scale of a field annotated with a unit or currency, is the scale contained in the datatype. E.g. `Decimal(4,2)` will have to fractional digits while `Decimal(4,3)` will have three.
+
+If the shown fractional digits on the UI shall differ from the backend, you can customize the behaviour by adjusting the Units or Currency value list entity.
+
+```cds
+@CodeList.UnitsOfMeasure : {
+    Url : './$metadata',
+    CollectionPath : 'UnitOfMeasures',
+}
+service LROPODataService @(path : '/srv1') {
+    …
+    entity UnitOfMeasures as projection on persistence.UnitOfMeasures;
+}
+```
+
+In the sample the units are customized, by specifying the `@CodeList.UnitsOfMeasure` annotation. The url points to the metadata of the same service, but you could also point to an URL of another service and the CollectionPath points to the entity of the targeted service.
+
+The key property of the entity which is targeted then needs to be annotated with `@Common.UnitSpecificScale`, pointing to the property storing how many fractional digits should be shown for the respective unit. The fields referred to by `@Common.Text` and `@CodeList.ExternalCode` are shown in the value help when selecting a unit.
+
+```cds
+entity sap.common.UnitOfMeasures : CodeList {
+  // Search-Term: #CustomUnitScale
+    key code  : String(30) @Common.Text : descr @Common.UnitSpecificScale : scale @CodeList.ExternalCode : name;
+    scale: Integer;
+};
+```
+
+For further information check out the [documentation](https://sapui5.hana.ondemand.com/#/topic/4d1b9d44941f483f9b7f579873d38685).
 
 #### Adding a link to a table
 

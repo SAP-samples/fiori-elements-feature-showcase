@@ -1,5 +1,5 @@
 import cds from "@sap/cds";
-import { Singleton, RootEntities, OrganizationalUnits, OrganizationalUnit, RootEntity, ChildEntities2,ChildEntities2_,ChartDataEntities, Contacts, Countries,Criticality,Currencies,UnitOfMeasureCodeList, unboundAction, criticalAction } from '#cds-models/LROPODataService'
+import { Singleton, RootEntities, OrganizationalUnits, OrganizationalUnit, RootEntity, ChildEntities2,ChildEntities2_,ChartDataEntities, Contacts, Countries,Criticality,Currencies,UnitOfMeasures, unboundAction, criticalAction } from '#cds-models/LROPODataService'
 
 export class LROPODataService extends cds.ApplicationService { init() {
 
@@ -97,7 +97,7 @@ export class LROPODataService extends cds.ApplicationService { init() {
     });
 
     this.before('READ', OrganizationalUnits, req => {
-        if (req.query.SELECT.columns.some(c => c.ref && c.expand && c.ref[0] === 'category') && !req.query.SELECT.columns.some(c => c.ref && c.ref[0] === 'category_code')) {
+        if (req.query.SELECT.columns && req.query.SELECT.columns.some(c => c.ref && c.expand && c.ref[0] === 'category') && !req.query.SELECT.columns.some(c => c.ref && c.ref[0] === 'category_code')) {
             req.query.SELECT.columns.push({ref: ['category_code']})
         }
     })
@@ -141,7 +141,7 @@ export class LROPODataService extends cds.ApplicationService { init() {
         const rootEntities = [];
         const imageUrls = ['sap-icon://lab','/media/crate.png','/media/bigBen.png','sap-icon://cart']
         const contacts = await SELECT.from(Contacts).columns('ID');
-        const unitOfMeasures = await SELECT.from(UnitOfMeasureCodeList).columns('code');
+        const unitOfMeasures = await SELECT.from(UnitOfMeasures).columns('code');
         const currencies = await SELECT.from(Currencies).columns('code');
         const criticaityCodes = await SELECT.from(Criticality).columns('code');
         const countries = await SELECT.from(Countries).columns('code');

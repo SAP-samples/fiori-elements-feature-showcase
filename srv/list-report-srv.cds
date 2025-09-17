@@ -1,6 +1,11 @@
 using {sap.fe.showcase as persistence} from '../db/schema';
 using {sap.common as common} from '../db/common';
 
+// Search-Term: #CustomUnitScale
+@CodeList.UnitsOfMeasure : {
+    Url : './$metadata',
+    CollectionPath : 'UnitOfMeasures',
+}
 service LROPODataService @(path : '/srv1') {
 
     @Capabilities.SortRestrictions.NonSortableProperties : [createdAt,createdBy,modifiedAt,modifiedBy]
@@ -109,7 +114,7 @@ service LROPODataService @(path : '/srv1') {
     @readonly
     entity Criticality           as projection on common.Criticality;
     @readonly
-    entity UnitOfMeasureCodeList as projection on common.UnitOfMeasureCodeList;
+    entity UnitOfMeasures as projection on common.UnitOfMeasures;
 
     @odata.singleton
     @readonly
