@@ -87,10 +87,13 @@ annotate srv.OrganizationalUnits @(
         NodeProperty             : ID, // identifies a node, usually the key
     },
     Hierarchy.RecursiveHierarchyActions #OrgUnitsHierarchy : {
-        ChangeSiblingForRootsSupported: true, // Disables root node changes, e.g. a business unit cannot be changed to a division and vice versa
+        ChangeSiblingForRootsSupported: true, // Disables move up/down of root nodes. Does not disable promotion of child nodes!
         ChangeNextSiblingAction : 'LROPODataService.moveOrgUnit',
         CopyAction : 'LROPODataService.copyOrgUnit',
     },
+    // To disable cut, paste & drag & drop & move up & down. Copy & Paste still allowed
+    // Be aware this currently does only affect the UI but not enforce the restriction on API level!
+    // Capabilities: {UpdateRestrictions: {NonUpdatableNavigationProperties: [superOrdinateOrgUnit]}}
 );
 
 // Fiori expects the following to be defined explicitly, even though they're always the same

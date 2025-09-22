@@ -133,6 +133,7 @@ entity AssignedRegions : cuid {
 
 entity OrganizationalUnits : cuid {
     externalId              : String(128);
+    rank                    : Integer default 0; //Sorting order
     name                    : localized String(128);
     description             : localized String(256);
     isActive                : Boolean default true;

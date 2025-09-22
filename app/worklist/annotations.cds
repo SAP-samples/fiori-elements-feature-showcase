@@ -1,4 +1,4 @@
-using WorkListBackend as srv from '../../srv/worklist-srv';
+using WorkListODataService as srv from '../../srv/worklist-srv';
 annotate srv.ChildEntities2 with @(
     UI.LineItem : [
         {

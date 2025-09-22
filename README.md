@@ -1150,7 +1150,7 @@ The tree table works with draft-enabled entities, however some restrictions appl
 For all limitations checkout the [documentation](https://ui5.sap.com/#/topic/7cf7a31fd1ee490ab816ecd941bd2f1f).
 
 With `@Hierarchy.RecursiveHierarchyActions` some additional actions can be specified:
-- `ChangeSiblingForRootsSupported` is a boolean tag, which controls, whether root nodes can be moved up or down and whether nodes can be promoted to root nodes. If it is not defined, it is considered to be true.
+- `ChangeSiblingForRootsSupported` is a boolean tag, which controls, whether root nodes can be moved up or down and whether nodes can be placed between two root nodes. If it is not defined, it is considered to be true.
 - `ChangeNextSiblingAction` specifies a bound action which can be used to move a node up or down in the hierarchy. The bound action is called by the UI, passing a NextSibiling parameter, when a node is dropped onto another node for switching positions or when the Move Up/Down buttons are pressed to change the order of nodes, which are on the same level.
 - `CopyAction` specifies the bound action which is called to copy the bound entity to later paste it in the hierarchy.
 
@@ -1160,12 +1160,15 @@ annotate srv.OrganizationalUnits @(
     Hierarchy.RecursiveHierarchyActions #OrgUnitsHierarchy : {
         ChangeSiblingForRootsSupported,
         ChangeNextSiblingAction : 'LROPODataService.moveOrgUnit',
-        CopyAction : 'copyOrgUnit',
+        CopyAction : 'LROPODataService.copyOrgUnit',
     },
 );
 ```
 
 Using `Capabilities.UpdateRestrictions.NonUpdatableNavigationProperties` and providing the association of the parent disables all change actions on the hierarchy.
+
+> [!CAUTION]
+> The restriction is currently not enforced on the API level!
 
 ```cds
 annotate srv.OrganizationalUnits @(

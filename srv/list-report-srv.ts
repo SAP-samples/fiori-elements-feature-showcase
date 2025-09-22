@@ -93,7 +93,14 @@ export class LROPODataService extends cds.ApplicationService { init() {
     });
 
     this.on(moveOrgUnit, async req => {
-
+        const [nextSibling, orgUnit] = await Promise.all([
+            SELECT.one.from(OrganizationalUnit).where({ID: req.data.NextSibling.ID}).columns('rank'),
+            SELECT.one.from(req.subject).columns('rank')
+        ]);
+        await Promise.all([
+            UPDATE.entity(OrganizationalUnit).where({ID: req.data.NextSibling.ID}).set({rank: orgUnit.rank}),
+            UPDATE.entity(req.subject).set({rank: nextSibling.rank})
+        ])
     });
 
     this.before('READ', OrganizationalUnits, req => {

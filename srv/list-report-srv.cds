@@ -80,7 +80,7 @@ service LROPODataService @(path : '/srv1') {
     entity GrandChildEntities   as projection on persistence.GrandChildEntities;
 
     @odata.draft.bypass
-    entity OrganizationalUnits  as projection on persistence.OrganizationalUnits actions {
+    entity OrganizationalUnits  as projection on persistence.OrganizationalUnits order by rank actions {
         action copyOrgUnit() returns OrganizationalUnits;
 
         action moveOrgUnit(
