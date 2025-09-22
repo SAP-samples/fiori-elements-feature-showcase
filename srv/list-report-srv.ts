@@ -146,7 +146,7 @@ export class LROPODataService extends cds.ApplicationService { init() {
         const countRootEntities = 4;
         const association2oneIDs = await createChildEntities2(countRootEntities);
         const rootEntities = [];
-        const imageUrls = ['sap-icon://lab','/media/crate.png','/media/bigBen.png','sap-icon://cart']
+        const imageUrls = ['sap-icon://lab','sap-icon://geographic-bubble-chart','sap-icon://cart']
         const contacts = await SELECT.from(Contacts).columns('ID');
         const unitOfMeasures = await SELECT.from(UnitOfMeasures).columns('code');
         const currencies = await SELECT.from(Currencies).columns('code');
