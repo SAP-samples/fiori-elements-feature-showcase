@@ -21,6 +21,6 @@
       "../../node_modules/@sapui5/types"
     ]
   },
-  "include": ["./webapp/**/*", "../ControllerExtension.d.ts"],
+  "include": ["./webapp/**/*"],
   "exclude": ["node_modules/**"]
 }
