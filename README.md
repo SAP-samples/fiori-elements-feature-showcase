@@ -74,7 +74,7 @@ Open `http://localhost:4008/$launchpad` in the Browser to get to the SAP Fiori l
             - [Adding Multiple Fields to one Column in Responsive Tables](#adding-multiple-fields-to-one-column-in-responsive-tables)
             - [Adding Images to a table](#adding-images-to-a-table)
             - [Adding Currency or UoM Fields to a table](#adding-currency-or-uom-fields-to-a-table)
-                - [Customize UoM or Currency scale](#customize-uom-or-currency-scale)
+                - [Customize Currency or UoM scale](#customize-currency-or-uom-scale)
             - [Adding a link to a table](#adding-a-link-to-a-table)
             - [Add custom column (Extensibility)](#add-custom-column-extensibility)
 - [Object Page](#object-page)
@@ -228,7 +228,7 @@ export default class RootEntityLRExtension extends ControllerExtension<Extension
 
 <i>Search term:</i> [`#EditFlowAPI`](../../search?q=EditFlowAPI)
 
-It is also possible to invoke CAP actions out of a JavaScript function using the "invokeAction" function of the SAP Fiori elements Edit flow API.
+It is also possible to invoke CAP actions out of a JavaScript function using the "invokeAction" function of the SAP Fiori elements Edit-flow API.
 ```ts
 ...
 export default class RootEntityOPExtension extends ControllerExtension<ExtensionAPI> {
@@ -237,14 +237,12 @@ export default class RootEntityOPExtension extends ControllerExtension<Extension
     //Search-Term: #EditFlowAPI
     onChangeCriticality(oEvent: Button$PressEvent) {
         let sActionName = "LROPODataService.changeCriticality";
-        let mParameters = {
-            contexts: oEvent.getSource().getBindingContext(),
-            model: oEvent.getSource().getModel(),
+        this.base.getExtensionAPI().getEditFlow().invokeAction(sActionName, {
+            contexts: oEvent.getSource().getBindingContext()! as Context,
+            model: oEvent.getSource().getModel() as ODataModel,
             label: 'Confirm',	
-            invocationGrouping: true 	
-        };
-        // @ts-expect-error
-        this.editFlow.invokeAction(sActionName, mParameters); //SAP Fiori elements EditFlow API
+            invocationGrouping: "ChangeSet" 
+        }); //SAP Fiori elements EditFlow API
     }
 }
 ```
@@ -281,7 +279,7 @@ When the Variant Management is disabled, the App title will be shown instead at 
 
 <i>Search term:</i> [`"liveMode"`](../../search?q=liveMode)
 
-To simplify the user experience you can enable live mode in your apps, which removes the GO button from the filter bar and directly applies filters and search queries.
+To simplify the user experience you can enable live mode in your app, which removes the "GO" button from the filter bar and directly applies filters and search queries.
 
 It is enabled in the [manifest.json](app/listreport-objectpage/webapp/manifest.json):
 
@@ -296,7 +294,6 @@ It is enabled in the [manifest.json](app/listreport-objectpage/webapp/manifest.j
     }
 }
 ```
-
 
 ### Define Filters
 <i>Search term:</i> [`#FilterDefault`](../../search?q=FilterDefault), [`#HideFilter`](../../search?q=HideFilter),[`#FilterGrouping`](../../search?q=FilterGrouping), [`#VisibleFilters`](../../search?q=VisibleFilters), `#ValueHelps`, [`#DependentFilter`](../../search?q=DependentFilter)
@@ -710,8 +707,7 @@ export default class RootEntityLRExtension extends ControllerExtension<Extension
     ...
 
     onResetRating(oEvent: Button$PressEvent) {
-        // @ts-expect-error
-        this.setFilterValues("starsValue");
+        this.base.getExtensionAPI().setFilterValues("starsValue");
     }
 }
 ```
@@ -918,7 +914,7 @@ In the control configuration of the List Report, the line item annotation of the
 The visibility of the "Edit", "Create" and "Delete" actions can be dynamically adjusted. For example the delete operation can be dependent on a field of the entity, through the annotation `@Capabilities.DeleteRestrictions`. Fixed values are also possible.
 
 Since UI5 Version 1.100 also Singleton are supported as values. 
-The Syntax for Singletons is special, as it can be seen in the code snippet. The path value starts with a '/' followed by the name of the singleton, in the Feature Showcase it is 'Singleton', and the last part is the property path. 
+The Syntax for Singletons is special, as it can be seen in the code snippet. The path value starts with a '/' followed by the name of the singleton, in the Feature Showcase it is 'Singleton', ending with the property path segment. 
 
 ```cds
 annotate srv.RootEntities with @(
@@ -1217,11 +1213,11 @@ You can also customize the create button to show special options for different e
 }
 ```
 
-The sample uses the CreationDialog creation mode, but "NewPage" and "Inline" also work ("Inline" only on the Object Page).
+The sample uses the "CreationDialog" creation mode, but "NewPage" and "Inline" also work ("Inline" only on the Object Page).
 
 Tip: Use the "nodeType" property in the tree table to achieve a creation menu in which a separate option is shown for each key in the "values" object.
 
-The "values" object accepts two value types: strings (used directly as labels) or objects (for the CreationDialog only) that contain both a label and an alternative creation dialog, which overrides the original dialog, specified through "creationFields" in "creationMode".
+The "values" object accepts two value types: strings (used directly as labels) or objects, for the "CreationDialog" only, that contain both a label and an alternative creation dialog, which overrides the original dialog, specified through "creationFields" in "creationMode".
 
 Use the extension hook `isCreateEnabled` to control in which context the create button can be pressed to provide a callback function. It must return a Boolean value determining whether creation is allowed for a specific combination of a given value from the "values" object and a selected node in the tree table.
 
@@ -1854,13 +1850,13 @@ The special thing about currency or unit of measure fields is, that they have an
 For units of measure the annotation is ` @Measures.Unit`. For currencies the annotation is `@Measures.ISOCurrency` and for percentage value the annotation is `@Measures.Unit : '%'` .
 The examples from the feature showcase are in the [labels.cds](app/listreport-objectpage/labels.cds) file.
 
-##### Customize UoM or Currency scale
+##### Customize Currency or UoM scale
 
 <i>Search term:</i> [`#CustomUnitScale`](../../search?q=CustomUnitScale)
 
-By default the scale of a field annotated with a unit or currency, is the scale contained in the datatype. E.g. `Decimal(4,2)` will have to fractional digits while `Decimal(4,3)` will have three.
+By default the scale of a field annotated with a unit or currency, is the scale contained in the datatype. E.g. `Decimal(4,2)` will have two fractional digits while `Decimal(4,3)` will have three.
 
-If the shown fractional digits on the UI shall differ from the backend, you can customize the behaviour by adjusting the Units or Currency value list entity.
+If the shown fractional digits on the UI shall differ from the backend, you can customize the behaviour by adjusting the Units of Measure or Currency value list entity.
 
 ```cds
 @CodeList.UnitsOfMeasure : {
@@ -2132,7 +2128,7 @@ If the optional "ImageUrl" property is given, then the picture will be visible o
 
 <i>Search term:</i> [`#ODataConcat`](../../search?q=ODataConcat)
 
-It is possible to use an expression in the `@UI.HeaderInfo` annotation for the "Title" and "Description" values to concat multiple references together.
+It is possible to use an expression in the `@UI.HeaderInfo` annotation for the "Title" and "Description" values to concat multiple properties together.
 
 ```cds
 annotate service.ChildEntities1 with @(
@@ -3214,12 +3210,10 @@ This is how the toggle function may look. It is possible to provide a second boo
 export default class RootEntityOPExtension extends ControllerExtension<ExtensionAPI> {
     ...
     toggleSideContent(oBindingContext: ODataContextBinding) {
-        // @ts-expect-error
-        this.showSideContent("customSectionQualifier");
+        this.base.getExtensionAPI().showSideContent("customSectionQualifier");
     }
     toggleSideContentItem1(oContextInfo: ODataContextBinding) {
-        // @ts-expect-error
-        this.showSideContent("childEntities1Section");
+        this.base.getExtensionAPI().showSideContent("childEntities1Section");
     }
 }
 ```
@@ -4045,7 +4039,7 @@ For additional support, ask a question in SAP Community.
 
 <i>since UI5 Version: 1.99.0</i>
 
-In Fiori elements V4 the Worklist floorplan is just a flavor of the List Report. That means that all features described in the List Report part are applicable for the Worklist, expect for the Filter bar, which is disabled to get the Worklist floorplan.
+In SAP Fiori elements V4 the Worklist floorplan is just a flavor of the List Report. That means that all features described in the List Report part are applicable for the Worklist, expect for the filter bar, which is disabled to get the Worklist floorplan.
 
 You can disable the filter bar with a single setting in the [manifest.json](app/worklist/webapp/manifest.json) file.
 
@@ -4061,7 +4055,7 @@ You can disable the filter bar with a single setting in the [manifest.json](app/
 }
 ```
 
-More information regarding the Worklist are available in the [SAP Fiori elements Documentation](https://sapui5.hana.ondemand.com/#/topic/d1d588f1061b4bac96a1facb80d3f3a2).
+More information regarding the Worklist are available in the [SAP Fiori elements documentation](https://sapui5.hana.ondemand.com/#/topic/d1d588f1061b4bac96a1facb80d3f3a2).
 
 # How to obtain support
 

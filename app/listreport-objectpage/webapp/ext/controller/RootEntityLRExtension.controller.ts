@@ -24,8 +24,8 @@ export default class RootEntityLRExtension extends ControllerExtension<Extension
   }
 
   onResetRating(_: Button$PressEvent) {
-    // @ts-expect-error setFilterValues exists but not defined in Type
-    this.setFilterValues("starsValue");
+    // @ts-expect-error setFiltersValues has faulty type atm
+    this.base.getExtensionAPI().setFilterValues("starsValue");
   }
 
   isCreateEnabled(value: String, parentContext?: Context) {

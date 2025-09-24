@@ -3,8 +3,9 @@ import { Button$PressEvent } from 'sap/m/Button';
 import MessageBox from 'sap/m/MessageBox';
 import Controller from 'sap/ui/core/mvc/Controller';
 import ControllerExtension, { Overrides } from 'sap/ui/core/mvc/ControllerExtension';
-import Context from 'sap/ui/model/Context';
-import ODataContextBinding from 'sap/ui/model/odata/v2/ODataContextBinding';
+import Context from 'sap/ui/model/odata/v4/Context';
+import ODataContextBinding from 'sap/ui/model/odata/v4/ODataContextBinding';
+import ODataModel from 'sap/ui/model/odata/v4/ODataModel';
 
 /**
  * @namespace sap.fe.showcase.lrop.ext.controller
@@ -25,24 +26,21 @@ export default class RootEntityOPExtension extends ControllerExtension<Extension
     }
 
     toggleSideContent(_: ODataContextBinding) {
-        // @ts-expect-error showSideContent not yet defined in type but exists
-        this.showSideContent("customSectionQualifier");
+        this.base.getExtensionAPI().showSideContent("customSectionQualifier");
     }
     toggleSideContentItem1(_: ODataContextBinding) {
-        // @ts-expect-error showSideContent not yet defined in type but exists
-        this.showSideContent("childEntities1Section");
+        this.base.getExtensionAPI().showSideContent("childEntities1Section");
     }
 
     //Search-Term: #EditFlowAPI
     onChangeCriticality(oEvent: Button$PressEvent) {
         const sActionName = "LROPODataService.changeCriticality";
-        const mParameters = {
-            contexts: oEvent.getSource().getBindingContext(),
-            model: oEvent.getSource().getModel(),
+        
+        this.base.getExtensionAPI().getEditFlow().invokeAction(sActionName, {
+            contexts: oEvent.getSource().getBindingContext()! as Context,
+            model: oEvent.getSource().getModel() as ODataModel,
             label: 'Confirm',	
-            invocationGrouping: true 	
-        };
-        // @ts-expect-error editFlow not yet defined in type but exists
-        this.editFlow.invokeAction(sActionName, mParameters); //SAP Fiori elements EditFlow API
+            invocationGrouping: "ChangeSet" 
+        }); //SAP Fiori elements EditFlow API
     }
 }
