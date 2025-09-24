@@ -1145,7 +1145,7 @@ extend srv.OrganizationalUnits with @(
 };
 ```
 
-The tree table works with draft-enabled entities, however some restrictions apply, like only active entities being shown, having a draft indicator if a draft exists, instead of showing the draft. 
+The tree table works with draft-enabled entities, although some restrictions apply, such as only active entities being shown, and having a draft indicator if a draft exists, instead of showing the draft. 
 
 For all limitations checkout the [documentation](https://ui5.sap.com/#/topic/7cf7a31fd1ee490ab816ecd941bd2f1f).
 
