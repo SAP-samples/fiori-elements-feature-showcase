@@ -1177,7 +1177,7 @@ annotate srv.OrganizationalUnits @(
 );
 ```
 
-The create button can also be customized to show special options for different entities in the hierarchy via the [manifest.json](app/listreport-objectpage/webapp/manifest.json).
+You can also customize the create button to show special options for different entities in the hierarchy using the [manifest.json](app/listreport-objectpage/webapp/manifest.json).
 
 ```json
 "RootEntityListReport": {
