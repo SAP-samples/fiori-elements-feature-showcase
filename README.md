@@ -1223,7 +1223,7 @@ Tip: Use the "nodeType" property in the tree table to achieve a creation menu in
 
 The "values" object accepts two value types: strings (used directly as labels) or objects (for the CreationDialog only) that contain both a label and an alternative creation dialog, which overrides the original dialog, specified through "creationFields" in "creationMode".
 
-To control in which context the create button can be pressed the extension hook `isCreateEnabled` can be used, to provide a callback function. It must return a boolean value determining whether for a given value from the "values" object and a selected node in the tree table, the given value is allowed for creation.
+Use the extension hook `isCreateEnabled` to control in which context the create button can be pressed to provide a callback function. It must return a Boolean value determining whether creation is allowed for a specific combination of a given value from the "values" object and a selected node in the tree table.
 
 In the showcase, this allows you to specify that only business units can be created at root level, only divisions under business units, and only departments under divisions.
 
