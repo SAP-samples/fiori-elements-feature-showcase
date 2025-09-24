@@ -1149,7 +1149,7 @@ The tree table works with draft-enabled entities, although some restrictions app
 
 For a full list of restrictions, see the [documentation](https://ui5.sap.com/#/topic/7cf7a31fd1ee490ab816ecd941bd2f1f).
 
-With `@Hierarchy.RecursiveHierarchyActions` some additional actions can be specified:
+You can use `@Hierarchy.RecursiveHierarchyActions` to specify some additional actions:
 - `ChangeSiblingForRootsSupported` is a boolean tag, which controls, whether root nodes can be moved up or down and whether nodes can be placed between two root nodes. If it is not defined, it is considered to be true.
 - `ChangeNextSiblingAction` specifies a bound action which can be used to move a node up or down in the hierarchy. The bound action is called by the UI, passing a NextSibiling parameter, when a node is dropped onto another node for switching positions or when the Move Up/Down buttons are pressed to change the order of nodes, which are on the same level.
 - `CopyAction` specifies the bound action which is called to copy the bound entity to later paste it in the hierarchy.
