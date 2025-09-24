@@ -1225,7 +1225,7 @@ The value of the keys in the "values" object can either be a string, which is th
 
 To control in which context the create button can be pressed the extension hook `isCreateEnabled` can be used, to provide a callback function. It must return a boolean value determining whether for a given value from the "values" object and a selected node in the tree table, the given value is allowed for creation.
 
-In the showcase, this allows to specify, that only business units can be created at root level, only divisions under business units and only departments under divisions.
+In the showcase, this allows you to specify that only business units can be created at root level, only divisions under business units, and only departments under divisions.
 
 > [!CAUTION]
 > This only enables/disables the create buttons, backend restrictions are still necessary for enforcing this at an API level!
