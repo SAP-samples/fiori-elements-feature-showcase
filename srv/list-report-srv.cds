@@ -93,8 +93,6 @@ service LROPODataService @(path : '/srv1') {
     };
     
     @readonly
-    entity RootEntityVariants   as projection on persistence.RootEntityVariants;
-    @readonly
     entity Contacts             as projection on persistence.Contacts;
 
     //Entity used for semantic key filter

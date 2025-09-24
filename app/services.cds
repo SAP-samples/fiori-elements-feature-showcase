@@ -4,7 +4,6 @@ using from './listreport-objectpage/field-control';
 using from './listreport-objectpage/labels';
 using from './listreport-objectpage/layouts_RootEntities';
 using from './listreport-objectpage/layouts_contacts';
-using from './listreport-objectpage/layouts_RootEntityVariants';
 using from './listreport-objectpage/layouts_GrandChildEntities';
 using from './listreport-objectpage/layouts_ChildEntities3';
 using from './listreport-objectpage/layouts_ChildEntities1';

@@ -921,7 +921,7 @@ Since UI5 Version 1.100 also Singleton are supported as values.
 The Syntax for Singletons is special, as it can be seen in the code snippet. The path value starts with a '/' followed by the name of the singleton, in the Feature Showcase it is 'Singleton', and the last part is the property path. 
 
 ```cds
-annotate srv.RootEntityVariants with @(
+annotate srv.RootEntities with @(
     Capabilities.DeleteRestrictions : {
         Deletable : deletePossible,
     },
@@ -1347,16 +1347,12 @@ To implement the multiple table mode, you need to refer to the Selection- or Sel
                     },
                     {
                         "key": "tab2",
-                        "annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#variant2"
-                    },
-                    {
-                        "key": "tab3",
                         "annotationPath": "com.sap.vocabularies.UI.v1.SelectionPresentationVariant#SelectionPresentationVariant"
                     },
                     {
-                        "key": "tab4",
-                        "entitySet": "RootEntityVariants",
-                        "annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#variant3"
+                        "key": "tab3",
+                        "entitySet": "OrganizationalUnits",
+                        "annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#activeOrgUnits"
                     }
                 ],
                 "showCounts": false

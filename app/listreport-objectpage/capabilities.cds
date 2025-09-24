@@ -2,8 +2,6 @@ using LROPODataService as srv from '../../srv/list-report-srv';
 
 annotate srv.RootEntities with @odata.draft.enabled; //Search-Term: #Draft
 
-annotate srv.RootEntityVariants with @odata.draft.enabled; //Annotation has to exists, without no entites would be visible on view with other entity set of List Report 
-
 annotate srv.RootEntities with @(
     //Disables the delete option dependent of the fields value
     Capabilities.DeleteRestrictions : {

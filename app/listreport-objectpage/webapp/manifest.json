@@ -150,14 +150,9 @@
                                         "annotationPath": "com.sap.vocabularies.UI.v1.SelectionPresentationVariant#SelectionPresentationVariant"
                                     },
                                     {
-                                        "key": "tab5",
+                                        "key": "tab3",
                                         "entitySet": "OrganizationalUnits",
                                         "annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#activeOrgUnits"
-                                    },
-                                    {
-                                        "key": "tab4",
-                                        "contextPath": "/RootEntityVariants",
-                                        "annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#variant3"
                                     }
                                 ],
                                 "showCounts": false

@@ -67,9 +67,6 @@ entity RootEntities : cuid, managed, rootBasis {
     regions : Composition of many AssignedRegions on regions.root = $self;
 };
 
-//Entity only used to demonstrate Multiple Views on List Report with multiple entities
-entity RootEntityVariants : cuid, managed, rootBasis {};
-
 entity ChildEntities1 : cuid {
     parent                      : Association to one RootEntities;
     field                       : String;
