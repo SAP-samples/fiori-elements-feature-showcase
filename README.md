@@ -1249,7 +1249,7 @@ export default class RootEntityLRExtension extends ControllerExtension<Extension
 }
 ```
 
-Four further extension hooks can be used to customize the Tree Table behaviour.
+You can use further extension hooks to customize the tree table behavior.
 
 ```json
 "RootEntityListReport": {
