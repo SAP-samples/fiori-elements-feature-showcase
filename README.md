@@ -1221,7 +1221,7 @@ The sample uses the CreationDialog creation mode, but "NewPage" and "Inline" als
 
 Tip: Use the "nodeType" property in the tree table to achieve a creation menu in which a separate option is shown for each key in the "values" object.
 
-The value of the keys in the "values" object can either be a string, which is then the label, or in case of CreationDialog an object, to provide a label as well as an alternative creation dialog, which overrides the original creation dialog, specified via "creationFields" in "creationMode".
+The "values" object accepts two value types: strings (used directly as labels) or objects (for the CreationDialog only) that contain both a label and an alternative creation dialog, which overrides the original dialog, specified through "creationFields" in "creationMode".
 
 To control in which context the create button can be pressed the extension hook `isCreateEnabled` can be used, to provide a callback function. It must return a boolean value determining whether for a given value from the "values" object and a selected node in the tree table, the given value is allowed for creation.
 
