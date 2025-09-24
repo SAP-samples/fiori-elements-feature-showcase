@@ -1219,7 +1219,7 @@ You can also customize the create button to show special options for different e
 
 The sample uses the CreationDialog creation mode, but "NewPage" and "Inline" also work ("Inline" only on the Object Page).
 
-The special part for the tree table is the "nodeType" property, via which a creation menu can be achived, in which for each key in the "values" object, an option is shown.
+Tip: Use the "nodeType" property in the tree table to achieve a creation menu in which a separate option is shown for each key in the "values" object.
 
 The value of the keys in the "values" object can either be a string, which is then the label, or in case of CreationDialog an object, to provide a label as well as an alternative creation dialog, which overrides the original creation dialog, specified via "creationFields" in "creationMode".
 
