@@ -1107,7 +1107,7 @@ annotate srv.OrganizationalUnits @Aggregation.RecursiveHierarchy #OrgUnitsHierar
 };
 ```
 
-`ParentNavigationProperty` must have the association as its value, which points back to the same entity, e.g. `OrganizationalUnits` and determines the parent of a node, which the `NodeProperty` uniquely identifying a node in the hierarchy, usually being the UUID property of said entity.
+`ParentNavigationProperty` must have the association as its value, which points back to the same entity, for example `OrganizationalUnits`, and determines the parent of a node, where the `NodeProperty` uniquely identifies a node in the hierarchy, usually the UUID property of said entity.
 
 For CAP currently it is also required to add the following annotations and properties, as Fiori elements requires those for the Tree Table to work.
 
