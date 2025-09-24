@@ -1147,7 +1147,7 @@ extend srv.OrganizationalUnits with @(
 
 The tree table works with draft-enabled entities, although some restrictions apply, such as only active entities being shown, and having a draft indicator if a draft exists, instead of showing the draft. 
 
-For all limitations checkout the [documentation](https://ui5.sap.com/#/topic/7cf7a31fd1ee490ab816ecd941bd2f1f).
+For a full list of restrictions, see the [documentation](https://ui5.sap.com/#/topic/7cf7a31fd1ee490ab816ecd941bd2f1f).
 
 With `@Hierarchy.RecursiveHierarchyActions` some additional actions can be specified:
 - `ChangeSiblingForRootsSupported` is a boolean tag, which controls, whether root nodes can be moved up or down and whether nodes can be placed between two root nodes. If it is not defined, it is considered to be true.
