@@ -1098,7 +1098,7 @@ Tree tables allow you to display hierarchical data, namely parent-child hierarch
 }
 ```
 
-Importantly the 'hierarchyQualifier' in the manifest needs to match the qualifier of the `@Aggregation.RecursiveHierarchy` annotation, which specifies the parent-child hierarchy.
+Most importantly, the 'hierarchyQualifier' in the manifest needs to match the qualifier of the `@Aggregation.RecursiveHierarchy` annotation, which specifies the parent-child hierarchy.
 
 ```cds
 annotate srv.OrganizationalUnits @Aggregation.RecursiveHierarchy #OrgUnitsHierarchy : {
