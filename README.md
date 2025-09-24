@@ -1278,7 +1278,7 @@ You can use further extension hooks to customize the tree table behavior.
 
 `isNodeMovable` needs a callback function that provides the OData context and returns a Boolean value that determines whether a node can be moved around the hierarchy via drag & drop or the move up and down buttons. Furthermore, it determines if a node can be cut.
 
-`isMoveToPositionAllowed` needs again a callback function and is the counterpart to `isNodeMovable`, returning a boolean value, which determines if a node can be moved to a given position. To determine this, Fiori elements passes the OData context of the node to be moved and the OData context of the node under which the node should be moved or dropped.
+`isMoveToPositionAllowed` also needs a callback function and is the counterpart to `isNodeMovable`. It returns a Boolean value that determines if a node can be moved to a given position. To determine this, SAP Fiori elements passes the OData context of the node to be moved and the OData context of the node under which the node should be moved or dropped.
 
 `isNodeCopyable` and `isCopyToPositionAllowed` have the same signatures but `isNodeCopyable` specifies whether a node can be copied and `isCopyToPositionAllowed` whether the copied node can be pasted at a given position.
 
