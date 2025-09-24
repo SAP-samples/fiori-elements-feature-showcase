@@ -1076,7 +1076,7 @@ Supported table types are the <i>ResponsiveTable</i> and the <i>GridTable</i>. T
 
 <i>Search term:</i> [`#TreeTable`](../../search?q=`#TreeTable`), [`"TreeTable"`](../../search?q=TreeTable)
 
-Tree tables allow to display hierarchical data, namely parent-chield hierarchies. To enable those in the the table type has to be set in the [manifest.json](app/listreport-objectpage/webapp/manifest.json):
+Tree tables allow you to display hierarchical data, namely parent-child hierarchies. To enable those in the tree table, the table type has to be set in the [manifest.json](app/listreport-objectpage/webapp/manifest.json):
 
 ```json
 "RootEntityListReport": {
