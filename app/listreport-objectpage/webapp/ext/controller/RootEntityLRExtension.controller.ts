@@ -7,7 +7,6 @@ import ODataContextBinding from 'sap/ui/model/odata/v4/ODataContextBinding';
 
 /**
  * @namespace sap.fe.showcase.lrop.ext.controller
- * @controller
  */
 export default class RootEntityLRExtension extends ControllerExtension<ExtensionAPI> {
   messageBox() {

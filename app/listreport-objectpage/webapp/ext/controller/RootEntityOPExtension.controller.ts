@@ -9,7 +9,6 @@ import ODataModel from 'sap/ui/model/odata/v4/ODataModel';
 
 /**
  * @namespace sap.fe.showcase.lrop.ext.controller
- * @controller
  */
 export default class RootEntityOPExtension extends ControllerExtension<ExtensionAPI> {
     messageBox() {
