@@ -24,6 +24,7 @@ Open `http://localhost:4008/$launchpad` in the Browser to get to the SAP Fiori l
         - [Replacing Standard UI Texts](#replacing-standard-ui-texts)
         - [Custom Actions](#custom-actions)
             - [Invoking CAP actions out of a Custom Action](#invoking-cap-actions-out-of-a-custom-action)
+        - [Default sorting and filtering](#default-sorting-and-filtering)
     - [Header Area](#header-area-list-report)
         - [Enabling Variant Management](#enabling-variant-management)
         - [Enabling Live Mode](#enabling-live-mode)
@@ -247,6 +248,29 @@ export default class RootEntityOPExtension extends ControllerExtension<Extension
 }
 ```
 
+### Default sorting and filtering
+
+<i>Search terms:</i> [`"defaultTemplateAnnotationPath"`](../../search?q=defaultTemplateAnnotationPath), [`#DefaultSortFilter`](../../search?q=DefaultSortFilter)
+
+It is possible to apply advanced default filters and sorting by specifying a `@UI.SelectionPresentationVariant` and referencing it in the [manifest](app/worklist/webapp/manifest.json). Only a `@UI.SelectionPresentationVariant` can be referenced.
+
+```json
+"ChildEntities2List": {
+    ...
+    "options": {
+        "settings": {
+            "contextPath": "/ChildEntities2",
+            "defaultTemplateAnnotationPath": "com.sap.vocabularies.UI.v1.SelectionPresentationVariant#DefaultFilter",
+            ...
+        }
+    }
+}
+```
+
+The `SelectionVariant` part is ignored when it is applied to a WorkList.
+
+More information are available in the [SAP UI5 Dokumentation](https://sapui5.hana.ondemand.com/#/topic/49a6ba5b8d6946208322a9f7e16837c2.html)
+
 ## Header Area List Report
 
 ### Enabling Variant Management
@@ -301,7 +325,7 @@ It is enabled in the [manifest.json](app/listreport-objectpage/webapp/manifest.j
 #### Default Values
 <i>Search term:</i> [`#FilterDefault`](../../search?q=FilterDefault)
 
-With the annotation `@Common.FilterDefaultValue` default values can be defined, like in [field-control.cds](app/listreport-objectpage/field-control.cds). This Annotation does not allow complex values and when switching variants, the annotation is no longer considered. For complex values the [UI.SelectionVariant](#selection-variant) annotation is a better solution.
+With the annotation `@Common.FilterDefaultValue` default values can be defined, like in [field-control.cds](app/listreport-objectpage/field-control.cds). This Annotation does not allow complex values and when switching variants, the annotation is no longer considered. For complex values the [@UI.SelectionPresentationVariant], explained in [Default sorting and filtering](#default-sorting-and-filtering), is a better solution.
 More information are available in the [SAP UI5 Dokumentation](https://sapui5.hana.ondemand.com/#/topic/f27ad7bc1f9c4b0d947b1fb18c37e94c)
 #### Hide filters
 <i>Search term:</i> [`#HideFilter`](../../search?q=HideFilter)

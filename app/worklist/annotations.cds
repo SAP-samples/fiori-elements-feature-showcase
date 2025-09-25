@@ -2,21 +2,41 @@ using WorkListODataService as srv from '../../srv/worklist-srv';
 annotate srv.ChildEntities2 with @(
     UI.LineItem : [
         {
-            $Type : 'UI.DataField',
             Value : stringProperty,
         },
         {
-            $Type : 'UI.DataField',
             Value : integerProperty,
         },
         {
-            $Type : 'UI.DataField',
             Value : decimalProperty,
         },
+        {
+            Value : country_code,
+        },
     ],
-    UI.SelectionFields : [
-        stringProperty,
-        integerProperty,
-        decimalProperty  
-    ]
+    // Search-Term: #DefaultSortFilter
+    UI.SelectionPresentationVariant #DefaultFilter : {
+        SelectionVariant    : {
+            SelectOptions   : [
+                {
+                    PropertyName    : integerProperty,
+                    Ranges          : [
+                        {
+                            Sign    : #I,
+                            Option  : #GE,
+                            Low     : 0,
+                        },
+                    ],
+                },
+            ],
+        },
+        PresentationVariant : {
+            SortOrder       : [
+                {
+                    Property : country_code,
+                },
+            ],
+            Visualizations  : ['@UI.LineItem'],
+        },
+    },
 );

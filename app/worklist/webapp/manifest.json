@@ -101,6 +101,7 @@
                         "settings": {
                             "contextPath": "/ChildEntities2",
                             "variantManagement": "Page",
+                            "defaultTemplateAnnotationPath": "com.sap.vocabularies.UI.v1.SelectionPresentationVariant#DefaultFilter",
                             "navigation": {
                                 "ChildEntities2": {
                                     "detail": {
