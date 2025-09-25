@@ -1,0 +1,11 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:l="sap.ui.layout">
+	<!-- Search-Term: "customFilter" -->
+	<HBox alignItems="Center" width="100%" >
+			<!--     Example for adapting the used operator, using GT (greater than) instead of default EQ -->
+			<RatingIndicator
+				id="MyCustomRatingIndicatorId" maxValue="4" class="sapUiTinyMarginBegin"
+				value="{path: 'filterValues>', type: 'sap.fe.macros.filter.type.Value', formatOptions: { operator: 'GE' }}"
+			/>
+			<core:Icon src="sap-icon://reset" press=".extension.sap.fe.showcase.lrop.ext.controller.RootEntityLRExtension.onResetRating" class="sapUiSmallMarginBegin" />
+	</HBox>
+</core:FragmentDefinition>

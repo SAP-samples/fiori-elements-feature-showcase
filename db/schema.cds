@@ -12,7 +12,7 @@ using {
     sap.common.Criticality
 } from '../db/common.cds';
 
-namespace sap.fe.featureShowcase;
+namespace sap.fe.showcase;
 
 aspect rootBasis : {
     imageUrl                    : String;
@@ -66,9 +66,6 @@ entity RootEntities : cuid, managed, rootBasis {
                                     on chartEntities.parent = $self;
     regions : Composition of many AssignedRegions on regions.root = $self;
 };
-
-//Entity only used to demonstrate Multiple Views on List Report with multiple entities
-entity RootEntityVariants : cuid, managed, rootBasis {};
 
 entity ChildEntities1 : cuid {
     parent                      : Association to one RootEntities;
@@ -129,4 +126,20 @@ entity Contacts : cuid {
 entity AssignedRegions : cuid {
     root : Association to one RootEntities;
     region: Region;
+}
+
+entity OrganizationalUnits : cuid {
+    externalId              : String(128);
+    rank                    : Integer default 0; //Sorting order
+    name                    : localized String(128);
+    description             : localized String(256);
+    isActive                : Boolean default true;
+    category                : Association to one OrganizationalUnitCategoryCodes;
+    superOrdinateOrgUnit    : Association to one OrganizationalUnits;
+    subordinaryOrgUnits     : Association to many OrganizationalUnits on subordinaryOrgUnits.superOrdinateOrgUnit = $self;
+
+}
+
+entity OrganizationalUnitCategoryCodes : CodeList {
+    key code: String(2);
 }

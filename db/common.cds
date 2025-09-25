@@ -32,8 +32,10 @@ entity sap.common.Criticality : sap.common.CodeList {
   key code    : Integer default 0 @Common.Text : name @Common.TextArrangement : #TextFirst;
 }
 
-entity sap.common.UnitOfMeasureCodeList : CodeList {
-    key code  : String(30);
+entity sap.common.UnitOfMeasures : CodeList {
+  // Search-Term: #CustomUnitScale
+    key code  : String(30) @Common.Text : descr @Common.UnitSpecificScale : scale @CodeList.ExternalCode : name;
+    scale: Integer;
 };
 
-type sap.common.UnitOfMeasure : Association to one sap.common.UnitOfMeasureCodeList;
+type sap.common.UnitOfMeasure : Association to one sap.common.UnitOfMeasures;

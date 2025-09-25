@@ -1,0 +1,13 @@
+ID;externalId;rank;name;description;category_code;isActive;superOrdinateOrgUnit_ID
+f81edde0-7e25-4f9e-b6ca-bada268b66b1;001;0;Product Engineering;;03;true;
+f81edde0-7e25-4f9e-b6ca-bada268b66b2;008;0;SuccessFactors;;02;true;f81edde0-7e25-4f9e-b6ca-bada268b66b1
+f81edde0-7e25-4f9e-b6ca-bada268b66b5;011;0;Employee Central;;01;true;f81edde0-7e25-4f9e-b6ca-bada268b66b2
+f81edde0-7e25-4f9e-b6ca-bada268b66b6;012;1;Recruiting;;01;true;f81edde0-7e25-4f9e-b6ca-bada268b66b2
+f81edde0-7e25-4f9e-b6ca-bada268b66b3;009;1;S4/HANA;;02;true;f81edde0-7e25-4f9e-b6ca-bada268b66b1
+f81edde0-7e25-4f9e-b6ca-bada268b66b4;010;2;Ariba;;02;true;f81edde0-7e25-4f9e-b6ca-bada268b66b1
+ba1e3e55-d244-4885-a5fd-26c29e6d480f;004;3;Design;;02;true;f81edde0-7e25-4f9e-b6ca-bada268b66b1
+d5424f32-b73a-49e5-85f6-f33303d7f08c;005;0;Fiori elements;;01;true;ba1e3e55-d244-4885-a5fd-26c29e6d480f
+15cd7b89-a3c3-4d22-9413-bc920f8c66fe;002;1;Technology & Innovation;;03;true;
+941a3f04-3718-4830-a0d1-6402ecba0346;003;2;Finance;;03;true;
+6b0d427e-db02-4487-9527-f1c6ea66038b;006;3;OCEO;Office of the CEO;03;true;
+69c5b9b2-f20c-4db3-92e6-fc85c86b6b1f;007;0;Compilance;;02;true;6b0d427e-db02-4487-9527-f1c6ea66038b
