@@ -13,8 +13,6 @@ extend sap.common.Currencies with {
   minor    : String; //> e.g. 'Cent'
 }
 
-type sap.common.Region : Association to sap.common.Regions;
-
 entity sap.common.Regions : CodeList {
   key code    : String(10) @title : '{i18n>region}' @Common.Text : name @Common.TextArrangement : #TextFirst;
   key country : Country @UI.Hidden;
@@ -37,5 +35,3 @@ entity sap.common.UnitOfMeasures : CodeList {
     key code  : String(30) @Common.Text : descr @Common.UnitSpecificScale : scale @CodeList.ExternalCode : name;
     scale: Integer;
 };
-
-type sap.common.UnitOfMeasure : Association to one sap.common.UnitOfMeasures;

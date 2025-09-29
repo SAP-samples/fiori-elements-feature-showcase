@@ -1,0 +1,187 @@
+_schema-version: 3.3.0
+ID: feature-showcase
+version: 1.0.0
+description: "A simple CAP project to demonstrate different FEv4 List Report &amp; Object Page features."
+parameters:
+  enable-parallel-deployments: true
+  deploy_mode: html5-repo
+build-parameters:
+  before-all:
+    - builder: custom
+      commands:
+        - npm ci
+        - npx cds build --production
+modules:
+  - name: feature-showcase-srv
+    type: nodejs
+    path: gen/srv
+    parameters:
+      instances: 1
+      buildpack: nodejs_buildpack
+    build-parameters:
+      builder: npm-ci
+    provides:
+      - name: srv-api # required by consumers of CAP services (e.g. approuter)
+        properties:
+          srv-url: ${default-url}
+    requires:
+      - name: feature-showcase-destination
+      - name: feature-showcase-auth
+      - name: feature-showcase-db
+
+  - name: feature-showcase-app-deployer
+    type: com.sap.application.content
+    path: gen
+    requires:
+      - name: feature-showcase-auth
+      - name: srv-api
+      - name: feature-showcase-html5-repo-host
+        parameters:
+          content-target: true
+          config:
+            HTML5Runtime_enabled: true
+    build-parameters:
+      build-result: app/
+      requires:
+        - name: featureshowcaselistreportobjectpage
+          artifacts:
+            - listreport-objectpage.zip
+          target-path: app/
+        - name: featureshowcaseworklist
+          artifacts:
+            - worklist.zip
+          target-path: app/
+    parameters:
+      config:
+        HTML5Runtime_enabled: true
+        init_data:
+          instance:
+            existing_destinations_policy: update
+            destinations:
+              - Name: srv-api
+                URL: ~{srv-api/srv-url}
+                Authentication: NoAuthentication
+                Type: HTTP
+                ProxyType: Internet
+                HTML5.ForwardAuthToken: true
+                HTML5.DynamicDestination: true
+              - Name: ui5
+                URL: https://ui5.sap.com
+                Authentication: NoAuthentication
+                Type: HTTP
+                ProxyType: Internet
+
+  - name: featureshowcaselistreportobjectpage
+    type: html5
+    path: app/listreport-objectpage
+    build-parameters:
+      build-result: dist
+      builder: custom
+      commands:
+        - npm ci
+        - npm run build
+      supported-platforms:
+        []
+  - name: featureshowcaseworklist
+    type: html5
+    path: app/worklist
+    build-parameters:
+      build-result: dist
+      builder: custom
+      commands:
+        - npm ci
+        - npm run build
+      supported-platforms:
+        []
+
+  - name: feature-showcase-destinations
+    type: com.sap.application.content
+    requires:
+      - name: feature-showcase-auth
+        parameters:
+          service-key:
+            name: feature-showcase-auth-key
+      - name: feature-showcase-html5-repo-host
+        parameters:
+          service-key:
+            name: feature-showcase-html5-repo-host-key
+      - name: srv-api
+      - name: feature-showcase-destination
+        parameters:
+          content-target: true
+    build-parameters:
+      no-source: true
+    parameters:
+      content:
+        instance:
+          existing_destinations_policy: update
+          destinations:
+            - Name: feature-showcase-html5-repository
+              ServiceInstanceName: feature-showcase-html5-repo-host
+              ServiceKeyName: feature-showcase-html5-repo-host-key
+              sap.cloud.service: featureshowcase.service
+            - Name: feature-showcase-auth
+              Authentication: OAuth2UserTokenExchange
+              ServiceInstanceName: feature-showcase-auth
+              ServiceKeyName: feature-showcase-auth-key
+              sap.cloud.service: featureshowcase.service
+
+  - name: feature-showcase-db-deployer
+    type: hdb
+    path: gen/db
+    parameters:
+      buildpack: nodejs_buildpack
+    requires:
+      - name: feature-showcase-db
+
+resources:
+  - name: feature-showcase-destination
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: destination
+      service-plan: lite
+      config:
+        HTML5Runtime_enabled: true
+        init_data:
+          instance:
+            existing_destinations_policy: update
+            destinations:
+              - Name: srv-api
+                URL: ~{srv-api/srv-url}
+                Authentication: NoAuthentication
+                Type: HTTP
+                ProxyType: Internet
+                HTML5.ForwardAuthToken: true
+                HTML5.DynamicDestination: true
+    requires:
+      - name: srv-api
+        group: destinations
+        properties:
+          name: srv-api # must be used in xs-app.json as well
+          url: ~{srv-url}
+          forwardAuthToken: true
+
+  - name: feature-showcase-html5-repo-host
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: html5-apps-repo
+      service-plan: app-host
+  - name: feature-showcase-auth
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: xsuaa
+      service-plan: application
+      path: ./xs-security.json
+      config:
+        xsappname: feature-showcase-${org}-${space}
+        tenant-mode: dedicated
+  - name: feature-showcase-db
+    type: com.sap.xs.hdi-container
+    parameters:
+      service: hana
+      service-plan: hdi-shared
+  - name: feature-showcase-html5-runtime
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: html5-apps-repo
+      service-plan: app-runtime

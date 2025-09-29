@@ -9,7 +9,10 @@
     ],
     "main": "webapp/index.html",
     "scripts": {
-        "deploy-config": "npx -p @sap/ux-ui5-tooling fiori add deploy-config cf"
+        "deploy-config": "npx -p @sap/ux-ui5-tooling fiori add deploy-config cf",
+        "build": "ui5 build preload --clean-dest --config ui5-deploy.yaml",
+        "build-local": "ui5 build preload --clean-dest",
+        "start": "ui5 serve"
     },
     "devDependencies": {
         "@sap/ux-specification": "UI5-1.93",

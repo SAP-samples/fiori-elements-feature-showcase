@@ -28,3 +28,4 @@ mta_archives/
 .vscode
 .idea
 @cds-models
+dist/

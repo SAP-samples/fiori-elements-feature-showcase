@@ -26,17 +26,17 @@
         },
         "crossNavigation": {
             "inbounds": {
-				"feature-showcase-worklist": {
-					"signature": {
-						"parameters": {},
-						"additionalParameters": "allowed"
-					},
-					"semanticObject": "FeatureShowcaseChildEntity2",
-					"action": "manage",
-					"title": "Work List",
-					"subTitle": "Manage"
-				}
-			}
+                "feature-showcase-worklist": {
+                    "signature": {
+                        "parameters": {},
+                        "additionalParameters": "allowed"
+                    },
+                    "semanticObject": "FeatureShowcaseChildEntity2",
+                    "action": "manage",
+                    "title": "Work List",
+                    "subTitle": "Manage"
+                }
+            }
         }
     },
     "sap.ui": {
@@ -142,5 +142,9 @@
         "_version": "1.1.0",
         "registrationIds": [],
         "archeType": "transactional"
+    },
+    "sap.cloud": {
+        "public": true,
+        "service": "featureshowcase.service"
     }
 }

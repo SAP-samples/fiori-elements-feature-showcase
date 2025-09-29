@@ -7,8 +7,8 @@ using {
     sap,
 } from '@sap/cds/common';
 using {
-    sap.common.Region,
-    sap.common.UnitOfMeasure,
+    sap.common.Regions,
+    sap.common.UnitOfMeasures,
     sap.common.Criticality
 } from '../db/common.cds';
 
@@ -29,7 +29,7 @@ aspect rootBasis : {
     criticality                 : Association to one Criticality on criticality.code = criticality_code;
 
     fieldWithUoM                : Decimal(15,3);
-    uom                         : UnitOfMeasure;
+    uom                         : Association to one UnitOfMeasures;
 
     fieldWithPrice              : Decimal(12,3);     
     isoCurrency                 : Currency;
@@ -45,7 +45,7 @@ aspect rootBasis : {
     telephone                   : String;
 
     country                     : Country;
-    region                      : Region;
+    region                      : Association to one Regions;
 
     validFrom                   : Date; //Search-Term: #TimeAndDate
     validTo                     : DateTime;
@@ -100,7 +100,7 @@ entity ChartDataEntities : cuid {
     criticality                 : Association to one Criticality;
     integerValue                : Integer;
     integerValueWithUoM         : Integer;
-    uom                         : UnitOfMeasure;
+    uom                         : Association to one UnitOfMeasures;
     forecastValue               : Integer;
     targetValue                 : Integer default 30;
     dimensions                  : Integer;
@@ -125,7 +125,7 @@ entity Contacts : cuid {
 
 entity AssignedRegions : cuid {
     root : Association to one RootEntities;
-    region: Region;
+    region: Association to one Regions;
 }
 
 entity OrganizationalUnits : cuid {

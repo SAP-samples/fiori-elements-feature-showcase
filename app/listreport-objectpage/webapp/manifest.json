@@ -585,5 +585,9 @@
         "_version": "1.1.0",
         "registrationIds": [],
         "archeType": "transactional"
+    },
+    "sap.cloud": {
+        "public": true,
+        "service": "featureshowcase.service"
     }
 }

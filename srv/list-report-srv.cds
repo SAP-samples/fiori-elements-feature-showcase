@@ -6,6 +6,7 @@ using {sap.common as common} from '../db/common';
     Url : './$metadata',
     CollectionPath : 'UnitOfMeasures',
 }
+@requires : 'authenticated-user'
 service LROPODataService @(path : '/srv1') {
 
     @Capabilities.SortRestrictions.NonSortableProperties : [createdAt,createdBy,modifiedAt,modifiedBy]
