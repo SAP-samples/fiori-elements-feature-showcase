@@ -94,11 +94,6 @@ annotate schema.RootEntities with{
                     ValueListProperty   : 'code',
                     LocalDataProperty   : region_code
                 },
-                {
-                    $Type               : 'Common.ValueListParameterOut',
-                    ValueListProperty   : 'name',
-                    LocalDataProperty   : region.name,
-                },
                 //To only show the connected values
                 {
                     $Type               : 'Common.ValueListParameterFilterOnly',
@@ -110,6 +105,30 @@ annotate schema.RootEntities with{
                     ValueListProperty   : 'country_code',
                 },
                 
+            ]
+        }
+    });
+
+    regionWithConstantValueHelp @(Common : {
+        Text            : regionWithConstantValueHelp.name,
+        TextArrangement : #TextFirst,
+        ValueListWithFixedValues: true,
+        ValueList       : {
+            Label          : '{i18n>region}',
+            CollectionPath : 'Regions',
+            Parameters     : [
+                {
+                    $Type               : 'Common.ValueListParameterInOut',
+                    ValueListProperty   : 'code',
+                    LocalDataProperty   : region_code
+                },
+                //To only show regions for Germany
+                //Search-Term: #ConstantFilter
+                {
+                    $Type               : 'Common.ValueListParameterConstant',
+                    ValueListProperty   : 'country_code',
+                    Constant : 'DE',
+                },
             ]
         }
     });

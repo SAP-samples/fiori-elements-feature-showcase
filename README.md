@@ -544,7 +544,7 @@ Rendering as radio buttons is currently only supported for fields on pages and n
 All value help annotations are in the [value-helps.cds](app/listreport-objectpage/value-helps.cds) file.
 
 #### Dependent Filtering (Value Help)
-<i>Search term:</i> [`#DependentFilter`](../../search?q=DependentFilter)
+<i>Search term:</i> [`#DependentFilter`, `#ConstantFilter`](../../search?q=DependentFilter)
 
 Dependent filtering can be achieved with an input parameter for the value help. An example would be with countries and regions. The value help for the region should only show regions of the selected country, which is another property of the entity.
 ```cds
@@ -584,7 +584,35 @@ annotate schema.RootEntities with{
     });
 };
 ```
-Here the region property (which is an Association to a Code List) is annotated with the `ValueList` annotation. To achieve the filtering, the country_code property from the header is mapped against the country_code property of the region via the `Common.ValueListParameterIn` parameter. The implementation can be found in the [value-helps.cds](app/listreport-objectpage/value-helps.cds#L71).
+Here the region property (which is an Association to a Code List) is annotated with the `ValueList` annotation. To achieve the filtering, the "country_code" property from the header is mapped against the "country_code" property of the region via the `Common.ValueListParameterIn` parameter. The implementation can be found in the [value-helps.cds](app/listreport-objectpage/value-helps.cds#L71).
+
+If you want to statically filter for a value you can use `Common.ValueListParameterConstant`, where you need to provide the property to filter and a constant value to use for filtering. 
+
+```cds
+annotate schema.RootEntities with {
+    regionWithConstantValueHelp @(Common : {
+        Text            : regionWithConstantValueHelp.name,
+        TextArrangement : #TextFirst,
+        ValueListWithFixedValues: true,
+        ValueList       : {
+            Label          : '{i18n>region}',
+            CollectionPath : 'Regions',
+            Parameters     : [
+                {
+                    $Type               : 'Common.ValueListParameterInOut',
+                    ValueListProperty   : 'code',
+                    LocalDataProperty   : region_code
+                },
+                {
+                    $Type               : 'Common.ValueListParameterConstant',
+                    ValueListProperty   : 'country_code',
+                    Constant : 'DE',
+                },
+            ]
+        }
+    });
+}
+```
 
 #### Dependent filtering (Multi-Input Value Help)
 <i>Search term:</i> [`#MultiValueWithDependentFilter`](../../search?q=MultiValueWithDependentFilter)

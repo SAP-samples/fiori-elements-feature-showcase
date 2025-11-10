@@ -45,6 +45,7 @@ aspect rootBasis : {
     telephone                   : String;
 
     country                     : Country;
+    regionWithConstantValueHelp : Association to one Regions;
     region                      : Association to one Regions;
 
     validFrom                   : Date; //Search-Term: #TimeAndDate

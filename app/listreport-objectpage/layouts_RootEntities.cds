@@ -309,6 +309,7 @@ annotate srv.RootEntities with @(
         Data : [
             {Value : country_code},
             {Value : region_code},
+            {Value : regionWithConstantValueHelp_code},
             {
                 //Search-Term: #MultiValueWithDependentFilter
                 Value : regions.region_code,

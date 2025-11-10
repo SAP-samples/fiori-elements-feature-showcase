@@ -31,6 +31,7 @@ annotate schema.RootEntities with{
     description                 @title : '{i18n>description}'               @UI.MultiLineText;             //Search-Term: #MultiLineText
     description_customGrowing   @title : '{i18n>description2}'              @UI.MultiLineText   @UI.Placeholder : 'max.mustermann@sap.com';
     region                      @title : '{i18n>region}'                                        @UI.Placeholder : 'Select a region'; //Search-Term: #Placeholder
+    regionWithConstantValueHelp                      @title : '{i18n>region_with_constant_vh}';
     email                       @title : '{i18n>email}'                     @Communication.IsEmailAddress; //Search-Term: #CommunicationFields
     telephone                   @title : '{i18n>telephone}'                 @Communication.IsPhoneNumber; //Search-Term: #CommunicationFields
 };
