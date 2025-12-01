@@ -255,11 +255,11 @@ export default class RootEntityOPExtension extends ControllerExtension<Extension
 It is possible to apply advanced default filters and sorting by specifying a `@UI.SelectionPresentationVariant` and referencing it in the [manifest](app/worklist/webapp/manifest.json). Only a `@UI.SelectionPresentationVariant` can be referenced.
 
 ```json
-"ChildEntities2List": {
+"OrdersList": {
     ...
     "options": {
         "settings": {
-            "contextPath": "/ChildEntities2",
+            "contextPath": "/Orders",
             "defaultTemplateAnnotationPath": "com.sap.vocabularies.UI.v1.SelectionPresentationVariant#DefaultFilter",
             ...
         }
@@ -689,7 +689,7 @@ If you want to add navigation properties to the "Adapt Filters" dialog as filter
             "controlConfiguration": {
                 ...
                 "@com.sap.vocabularies.UI.v1.SelectionFields": {
-                    "navigationProperties":  [ "childEntities1", "childEntity2/decimalProperty" ],
+                    "navigationProperties":  [ "childEntities1", "Order/decimalProperty" ],
                     ...
                 }
             },
@@ -992,7 +992,7 @@ annotate srv.RootEntities with @(
         {
             $Type : 'UI.DataFieldForIntentBasedNavigation',
             Label : '{i18n>inboundNavigation}',
-            SemanticObject : 'FeatureShowcaseChildEntity2',
+            SemanticObject : 'FeatureShowcaseOrder',
             Action : 'manage',
             RequiresContext : true,
             Inline : true,
@@ -1023,7 +1023,7 @@ The semantic object and the action are in the [manifest.json](app/worklist/webap
                     "parameters": {},
                     "additionalParameters": "allowed"
                 },
-                "semanticObject": "FeatureShowcaseChildEntity2",
+                "semanticObject": "FeatureShowcaseOrder",
                 "action": "manage",
                 "title": "Work List",
                 "subTitle": "Manage"
@@ -1032,7 +1032,7 @@ The semantic object and the action are in the [manifest.json](app/worklist/webap
     }
 }
 ```
-Here "FeatureShowcaseChildEntity2" is the semantic object to be referenced. The second part of the name is the action of the app. As an example you may have the apps "SalesOrder-manage", "SalesOrder-view" and so on. Semantic object and action have to be divided by a dash.
+Here "FeatureShowcaseOrder" is the semantic object to be referenced. The second part of the name is the action of the app. As an example you may have the apps "SalesOrder-manage", "SalesOrder-view" and so on. Semantic object and action have to be divided by a dash.
 The property `RequiresContext` determines, whether an entry needs to be selected to enable the navigation button or not. If it is set to true, it may be needed, to add the `Mapping` property. This property is an array of mappings between local and semantic object properties and it is needed if local properties should be used to filter in the app of the semantic object, but the property names differ. In this example, the local property 'integerValue' is mapped to the semantic object property 'integerProperty', so when selecting an entity where integerValue equals 22, the navigation would filter for entries where the 'integerProperty' property equals 22 in the semantic object app.  
 Icons can be displayed as the label of the button instead of text, but only if the button is inline. When Icons are displayed, the criticality is being ignored.
 
@@ -1094,9 +1094,9 @@ The custom action itself is described here: [Custom Actions](#custom-actions-lis
 #### Setting the Table Type
 
 <i style="color:orange;">INFO: </i>We recommend that you use [SAP Fiori tools](http://help.sap.com/disclaimer?site=https://help.sap.com/viewer/product/SAP_FIORI_tools/Latest/en-US), which is a set of extensions for SAP Business Application Studio and Visual Studio Code, to configure the app using the Application Modeler tool. <br/>
-<i>Search term:</i> [`"tableSettings"`](../../search?q=tableSettings), [`"ResponsiveTable"`](../../search?q=ResponsiveTable), [`"GridTable"`](../../search?q=GridTable)
+<i>Search term:</i> [`"tableSettings"`](../../search?q=tableSettings), [`"ResponsiveTable"`](../../search?q=ResponsiveTable), [`"GridTable"`](../../search?q=GridTable), [`"AnalyticalTable"`](../../search?q=AnalyticalTable)
 
-Supported table types are the <i>ResponsiveTable</i> and the <i>GridTable</i>. The table type of the List Report can be adjusted in the [manifest.json](app/listreport-objectpage/webapp/manifest.json) file.
+Supported table types are the <i>ResponsiveTable</i>, the <i>GridTable</i>, the <i>AnalyticalTable</i> and the <i>TreeTable</i>. The table type of the List Report can be adjusted in the [manifest.json](app/listreport-objectpage/webapp/manifest.json) file.
 ```json
 "RootEntityListReport": {
     ...
@@ -1119,6 +1119,8 @@ Supported table types are the <i>ResponsiveTable</i> and the <i>GridTable</i>. T
     }
 },
 ```
+
+The analytical table sample is located on the Object Page in the WorkList application, defined in the WorkList [annotations.cds file](./app/worklist/annotations.cds#74).
 
 ##### Tree Table
 
@@ -1755,9 +1757,9 @@ The annotations of the example are in the [layouts_RootEntities.cds](app/listrep
 
 A quick view facet is a pop up, when you click on an entry in a column and get more information. Typically it is used in combination with associations to one, where the association name is displayed in the column and with a click on it, more information about the association entity can be consumed. To enable a quick view facet, the association entity needs to be annotated with `@UI.QuickViewFacet`. It is an array of reference facets, where you can reference field groups (a group of properties) to be shown in the quick view. For a better looking header of the quick view, the association entity gets typically also annotated with `@UI.HeaderInfo`.
 ```cds
-annotate srv.ChildEntities2 with @(
+annotate srv.Orders with @(
     UI.FieldGroup #data : {
-        Label : '{i18n>ChildEntity2}',
+        Label : '{i18n>Order}',
         Data : [
             {Value : field2},
             {Value : integerProperty},
@@ -1767,13 +1769,13 @@ annotate srv.ChildEntities2 with @(
 );
 ```
 ```cds
-annotate srv.ChildEntities2 with @(
+annotate srv.Orders with @(
     UI.HeaderInfo :{
-        TypeName : '{i18n>ChildEntity2}',
-        TypeNamePlural : '{i18n>ChildEntity2.typeNamePlural}',
+        TypeName : '{i18n>Order}',
+        TypeNamePlural : '{i18n>Order.typeNamePlural}',
         Title          : {
             $Type : 'UI.DataField',
-            Value : '{i18n>ChildEntity2}',
+            Value : '{i18n>Order}',
         },
         Description    : {
             $Type : 'UI.DataField',
@@ -1785,7 +1787,7 @@ annotate srv.ChildEntities2 with @(
 );
 ```
 ```cds
-annotate srv.ChildEntities2 with @(
+annotate srv.Orders with @(
     UI.QuickViewFacets : [
         {
             $Type : 'UI.ReferenceFacet',
@@ -1802,7 +1804,7 @@ annotate srv.RootEntities with @(
         {
             $Type : 'UI.DataField',
             Value : association2one_ID,
-            Label : '{i18n>ChildEntity2}',
+            Label : '{i18n>Order}',
             @UI.Importance : #High,
         },
         ...
@@ -1812,15 +1814,15 @@ annotate srv.RootEntities with @(
 The annotations of the example are in the [layouts_RootEntities.cds](app/listreport-objectpage/layouts_RootEntities.cds) file.
 Additionally the `@Common.Text` and `@Common.TextArrangement` might be used, to replace the ID value with a name property, so that the column is easier to understand.
 ```cds
-association2one @title : '{i18n>ChildEntity2}' @Common.Text : association2one.field @Common.TextArrangement : #TextOnly;
+association2one @title : '{i18n>Order}' @Common.Text : association2one.field @Common.TextArrangement : #TextOnly;
 ```
 The annotations are in the [labels.cds](app/listreport-objectpage/labels.cds) file.
 ##### Links to the apps of the entity
-<i>Search term:</i> [`FeatureShowcaseChildEntity2`](../../search?q=FeatureShowcaseChildEntity2), [`#Navigation`](../../search?q=Navigation)
+<i>Search term:</i> [`FeatureShowcaseOrder`](../../search?q=FeatureShowcaseOrder), [`#Navigation`](../../search?q=Navigation)
 
 The quick view facet also shows links to the apps of the entity, when the entity is annotated with `@Common.SemanticObject`.
 ```cds
-association2one @Common.SemanticObject : 'FeatureShowcaseChildEntity2';
+association2one @Common.SemanticObject : 'FeatureShowcaseOrder';
 ```
 The semantic object is the application name in the [manifest.json](app/worklist/webapp/manifest.json). The application property in this contains the following code snippet:
 ```json
@@ -1833,7 +1835,7 @@ The semantic object is the application name in the [manifest.json](app/worklist/
                     "parameters": {},
                     "additionalParameters": "allowed"
                 },
-                "semanticObject": "FeatureShowcaseChildEntity2",
+                "semanticObject": "FeatureShowcaseOrder",
                 "action": "manage",
                 "title": "Work List",
                 "subTitle": "Manage"
@@ -1842,7 +1844,7 @@ The semantic object is the application name in the [manifest.json](app/worklist/
     }
 }
 ```
-Here "FeatureShowcaseChildEntity2" is the semantic object to be referenced. The second part of the name is the action of the app. As an example you may have the apps "SalesOrder-Manage", "SalesOrder-View" and so on. Semantic object and action have to be divided by a dash.
+Here "FeatureShowcaseOrder" is the semantic object to be referenced. The second part of the name is the action of the app. As an example you may have the apps "SalesOrder-Manage", "SalesOrder-View" and so on. Semantic object and action have to be divided by a dash.
 The description of the app in the html file is the name of the app in the quick view facet. In the deployed version with a SAP WorkZone the subtitle of the app is used.
 
 #### Adding Multiple Fields to one Column in Responsive Tables
@@ -2988,7 +2990,7 @@ In the example "ExternalNavigation" is the qualifier.
     "crossNavigation": {
         "outbounds": {   )
             "ExternalNavigation": {           
-                "semanticObject": "FeatureShowcaseChildEntity2",   
+                "semanticObject": "FeatureShowcaseOrder",   
                 "action": "manage"                     
             }         
         }
@@ -3400,7 +3402,7 @@ annotate srv.RootEntities with @(
             {
                 $Type : 'UI.DataFieldForIntentBasedNavigation',
                 Label : '{i18n>inboundNavigation}',
-                SemanticObject : 'FeatureShowcaseChildEntity2',
+                SemanticObject : 'FeatureShowcaseOrder',
                 Action : 'manage',
                 RequiresContext : true,
                 IconUrl : 'sap-icon://cart',
@@ -4096,7 +4098,7 @@ In SAP Fiori elements V4 the Worklist floorplan is just a flavor of the List Rep
 You can disable the filter bar with a single setting in the [manifest.json](app/worklist/webapp/manifest.json) file.
 
 ```json
-"ChildEntities2List": {
+"OrdersList": {
     ...
     "options": {
         "settings": {

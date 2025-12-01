@@ -1,7 +1,7 @@
 using LROPODataService as srv from '../../srv/list-report-srv';
 
 // UI.FieldGroup
-annotate srv.ChildEntities2 with @(
+annotate srv.Orders with @(
     UI.FieldGroup #data : {
         Data    : [
             {Value : stringProperty, @Common.FieldControl : #ReadOnly},
@@ -16,14 +16,14 @@ annotate srv.ChildEntities2 with @(
 
 // UI.HeaderInfo
 // Search-Term: #QuickView
-annotate srv.ChildEntities2 with @(
+annotate srv.Orders with @(
     //Header Info is also displayed in a quick view facet
     UI.HeaderInfo : {
-        TypeName        : '{i18n>ChildEntity2}',
-        TypeNamePlural  : '{i18n>ChildEntity2.typeNamePlural}',
+        TypeName        : '{i18n>Order}',
+        TypeNamePlural  : '{i18n>Order.typeNamePlural}',
         Title           : {
             $Type : 'UI.DataField',
-            Value : '{i18n>ChildEntity2}',
+            Value : '{i18n>Order}',
         },
         Description     : {
             $Type : 'UI.DataField',
@@ -41,14 +41,14 @@ annotate srv.ChildEntities2 with @(
 
 // UI.QuickViewFacets
 // Search-Term: #QuickView
-annotate srv.ChildEntities2 with @(
+annotate srv.Orders with @(
     // When a semantic object for the entity is defined, the related apps will be shown 
     // below the quick view facet on the panel.
     UI.QuickViewFacets : [
         {
             $Type   : 'UI.ReferenceFacet',
             Target  : '@UI.FieldGroup#data',
-            Label   : '{i18n>ChildEntity2}',
+            Label   : '{i18n>Order}',
         }
     ],
 );

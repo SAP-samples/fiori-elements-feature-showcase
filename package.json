@@ -20,7 +20,7 @@
   "devDependencies": {
     "cds-launchpad-plugin": "^2.0.1",
     "@cap-js/cds-typer": ">=0.1",
-    "@cap-js/cds-types": "^0.14.0",
+    "@cap-js/cds-types": "^0.15.0",
     "@cap-js/sqlite": "^2",
     "@eslint/js": "^9.35.0",
     "@eslint/json": "^0.13.2",
@@ -28,7 +28,7 @@
     "@sap/eslint-plugin-cds": "^4.1.0",
     "@sap/ux-specification": "^1.136.5",
     "@types/node": "^22.0.0",
-    "cds-plugin-ui5": "^0.13.4",
+    "cds-plugin-ui5": "^0.15.0",
     "chai": "^6.2.0",
     "eslint": "^9.35.0",
     "globals": "^16.4.0",

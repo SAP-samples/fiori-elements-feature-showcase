@@ -1,5 +1,5 @@
 import cds from "@sap/cds";
-import { Singleton, RootEntities, OrganizationalUnits, OrganizationalUnit, RootEntity, ChildEntities2,ChildEntities2_,ChartDataEntities, Contacts, Countries,Criticality,Currencies,UnitOfMeasures, unboundAction, criticalAction } from '#cds-models/LROPODataService'
+import { Singleton, RootEntities, OrganizationalUnits, OrganizationalUnit, RootEntity, Orders,Orders_,ChartDataEntities, Contacts, Countries,Criticality,Currencies,UnitOfMeasures, unboundAction, criticalAction } from '#cds-models/LROPODataService'
 
 export class LROPODataService extends cds.ApplicationService { init() {
 
@@ -144,7 +144,7 @@ export class LROPODataService extends cds.ApplicationService { init() {
         await cleanUpDatabaseEntities();
         //Create new entities
         const countRootEntities = 4;
-        const association2oneIDs = await createChildEntities2(countRootEntities);
+        const association2oneIDs = await createOrders(countRootEntities);
         const rootEntities = [];
         const imageUrls = ['sap-icon://lab','sap-icon://geographic-bubble-chart','sap-icon://cart']
         const contacts = await SELECT.from(Contacts).columns('ID');
@@ -223,7 +223,7 @@ export class LROPODataService extends cds.ApplicationService { init() {
         return fieldWithCriticality;
     }
 
-    async function createChildEntities2(amountRootEntities: number) {
+    async function createOrders(amountRootEntities: number) {
         const childEntities2IDs = [];
         for(let i = 0; i <= amountRootEntities; i++) {
             childEntities2IDs.push(cds.utils.uuid());
@@ -238,7 +238,7 @@ export class LROPODataService extends cds.ApplicationService { init() {
                 country_code: 'FR',
             });
         }
-        await INSERT.into(ChildEntities2).entries(childEntities2);
+        await INSERT.into(Orders).entries(childEntities2);
         //Returns the IDs, so they can be assigned to the association2one_ID property of the RootEntities
         return childEntities2IDs;
     }
@@ -299,7 +299,7 @@ export class LROPODataService extends cds.ApplicationService { init() {
 
     async function cleanUpDatabaseEntities() {
         await DELETE.from(RootEntities);
-        await DELETE.from(ChildEntities2_);
+        await DELETE.from(Orders_);
     }
 
     // Add base class's handlers. Handlers registered above go first.

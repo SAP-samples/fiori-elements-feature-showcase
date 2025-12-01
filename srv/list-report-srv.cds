@@ -74,7 +74,7 @@ service LROPODataService @(path : '/srv1') {
 
     entity ChildEntities1       as projection on persistence.ChildEntities1;
     @cds.redirection.target
-    entity ChildEntities2       as projection on persistence.ChildEntities2;
+    entity Orders       as projection on persistence.Orders;
     entity ChildEntities3       as projection on persistence.ChildEntities3;
 
     entity ChartDataEntities    as projection on persistence.ChartDataEntities;

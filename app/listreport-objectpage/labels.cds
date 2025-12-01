@@ -24,7 +24,7 @@ annotate schema.RootEntities with{
     fieldWithUoM                @title : '{i18n>fieldWithUoM}'              @(Measures.Unit : uom_code); //Search-Term: #Units
     imageUrl                    @title : '{i18n>image}'                     @UI.IsImageURL; //Displaying the image instead of the link //Search-Term: #Image
     
-    association2one                @title : '{i18n>ChildEntity2}'              @Common.Text : association2one.stringProperty  @Common.TextArrangement : #TextOnly;
+    association2one                @title : '{i18n>Order}'              @Common.Text : association2one.stringProperty  @Common.TextArrangement : #TextOnly;
     criticality_code            @title : '{i18n>criticality}'               @Common.Text : criticality.name             @Common.TextArrangement : #TextFirst; //Search-Term: #DisplayTextAndID
     country                     @title : '{i18n>country}'                   @Common.Text : country.name                 @Common.TextArrangement : #TextFirst;
 
@@ -47,10 +47,20 @@ annotate schema.GrandChildEntities with @title : '{i18n>grandChildren}' {
     field                       @title : '{i18n>field}'
 };
 
-annotate schema.ChildEntities2 with @title : '{i18n>ChildEntity2}' {
+annotate schema.Orders with @title : '{i18n>Order}' {
     integerProperty             @title : '{i18n>integerProperty}';
     decimalProperty             @title : '{i18n>decimalProperty}';
     stringProperty              @title : '{i18n>stringProperty}'            @UI.MultiLineText; //MultiLineText for Descriptions (line break)
+    country                                                                 @Common.Text : country.name             @Common.TextArrangement : #TextFirst;
+};
+
+annotate schema.OrderItems with @title : '{i18n>OrderItems}' {
+  ID @UI.Hidden;
+  order @UI.Hidden;
+  product @title : '{i18n>Product}';
+  productCategory @title : '{i18n>ProductCategory}';
+  netValue @title : '{i18n>NetValue}';
+  currency @title : '{i18n>Currency}';
 };
 
 annotate schema.ChildEntities3 with @title : '{i18n>childEntities3}' {

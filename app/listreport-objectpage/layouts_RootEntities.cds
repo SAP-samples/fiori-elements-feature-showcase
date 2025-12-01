@@ -1,7 +1,7 @@
 using LROPODataService                      as srv          from '../../srv/list-report-srv';
 using from './layouts_ChartDataEntities';
 using from './layouts_ChildEntities1';
-using from './layouts_ChildEntities2';
+using from './layouts_Orders';
 using from './layouts_ChildEntities3';
 using from './layouts_contacts';
 
@@ -93,7 +93,7 @@ annotate srv.RootEntities with @(
             //Search-Term: #QuickView
             $Type               : 'UI.DataField',
             Value               : association2one_ID,
-            Label               : '{i18n>ChildEntity2}',
+            Label               : '{i18n>Order}',
             @UI.Importance   : #High,
         },
         {
@@ -136,7 +136,7 @@ annotate srv.RootEntities with @(
             //Search-Term: #NavAction
             $Type               : 'UI.DataFieldForIntentBasedNavigation',
             Label               : '{i18n>inboundNavigation}',
-            SemanticObject      : 'FeatureShowcaseChildEntity2', //Target entity
+            SemanticObject      : 'FeatureShowcaseOrder', //Target entity
             Action              : 'manage', //Specifies the app of the target entity
             RequiresContext     : true, //Wheather a row has to be selected or not
             Inline              : true, //Part of the table, when true
@@ -227,7 +227,7 @@ annotate srv.RootEntities with @(
                 //Search-Term: #NavAction
                 $Type   : 'UI.DataFieldForIntentBasedNavigation',
                 Label   : '{i18n>inboundNavigation}',
-                SemanticObject  : 'FeatureShowcaseChildEntity2', //Target entity
+                SemanticObject  : 'FeatureShowcaseOrder', //Target entity
                 Action  : 'manage',             //Specifies the app of the target entity
                 RequiresContext : true,         //If a row has to be selected or not
                 IconUrl : 'sap-icon://cart',    //Icons only supported for inline actions / intend based navigation
@@ -541,7 +541,7 @@ annotate srv.RootEntities with @(
         {
             $Type   : 'UI.ReferenceFacet',
             Target  : 'association2one/@UI.FieldGroup#data',
-            Label   : '{i18n>ChildEntity2}',
+            Label   : '{i18n>Order}',
             @UI.Hidden : (not $draft.IsActiveEntity)
         },
         {

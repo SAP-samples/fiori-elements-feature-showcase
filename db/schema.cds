@@ -60,7 +60,7 @@ aspect rootBasis : {
 entity RootEntities : cuid, managed, rootBasis {
     childEntities1              : Composition of many ChildEntities1
                                     on childEntities1.parent = $self;
-    association2one                : Association to one ChildEntities2;
+    association2one                : Association to one Orders;
     childEntities3              : Composition of many ChildEntities3
                                     on childEntities3.parent = $self;
     chartEntities               : Composition of many ChartDataEntities
@@ -84,11 +84,20 @@ entity GrandChildEntities : cuid {
 }
 
 //@cds.odata.valuelist -- enables automatic value list with keys on UI
-entity ChildEntities2 : cuid {
+entity Orders : cuid {
     stringProperty              : String;
     integerProperty             : Integer;
     decimalProperty             : Decimal(5, 3);
     country                     : Country;
+    items : Composition of many OrderItems on items.order = $self;
+}
+
+entity OrderItems : cuid {
+    order       : Association to one Orders;
+    product     : String;
+    productCategory: String;
+    netValue    : Decimal(5,3);
+    currency    : Currency;
 }
 
 entity ChildEntities3 : cuid {

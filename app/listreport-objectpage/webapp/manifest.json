@@ -40,7 +40,7 @@
             },
             "outbounds": {
                 "ExternalNavigation": {
-                    "semanticObject": "FeatureShowcaseChildEntity2",
+                    "semanticObject": "FeatureShowcaseOrder",
                     "action": "manage"
                 }
             }
@@ -201,7 +201,7 @@
                                     "useSemanticDateRange": true,
                                     "navigationProperties": [
                                         "childEntities1",
-                                        "childEntity2/decimalProperty"
+                                        "Order/decimalProperty"
                                     ],
                                     "filterFields": {
                                         "starsValue": {

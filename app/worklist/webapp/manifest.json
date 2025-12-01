@@ -31,7 +31,7 @@
                         "parameters": {},
                         "additionalParameters": "allowed"
                     },
-                    "semanticObject": "FeatureShowcaseChildEntity2",
+                    "semanticObject": "FeatureShowcaseOrder",
                     "action": "manage",
                     "title": "Work List",
                     "subTitle": "Manage"
@@ -83,29 +83,29 @@
             "routes": [
                 {
                     "pattern": ":?query:",
-                    "name": "ChildEntities2List",
-                    "target": "ChildEntities2List"
+                    "name": "OrdersList",
+                    "target": "OrdersList"
                 },
                 {
-                    "pattern": "ChildEntities2({key}):?query:",
-                    "name": "ChildEntities2ObjectPage",
-                    "target": "ChildEntities2ObjectPage"
+                    "pattern": "Orders({key}):?query:",
+                    "name": "OrdersObjectPage",
+                    "target": "OrdersObjectPage"
                 }
             ],
             "targets": {
-                "ChildEntities2List": {
+                "OrdersList": {
                     "type": "Component",
-                    "id": "ChildEntities2List",
+                    "id": "OrdersList",
                     "name": "sap.fe.templates.ListReport",
                     "options": {
                         "settings": {
-                            "contextPath": "/ChildEntities2",
+                            "contextPath": "/Orders",
                             "variantManagement": "Page",
                             "defaultTemplateAnnotationPath": "com.sap.vocabularies.UI.v1.SelectionPresentationVariant#DefaultFilter",
                             "navigation": {
-                                "ChildEntities2": {
+                                "Orders": {
                                     "detail": {
-                                        "route": "ChildEntities2ObjectPage"
+                                        "route": "OrdersObjectPage"
                                     }
                                 }
                             },
@@ -113,17 +113,25 @@
                         }
                     }
                 },
-                "ChildEntities2ObjectPage": {
+                "OrdersObjectPage": {
                     "type": "Component",
-                    "id": "ChildEntities2ObjectPage",
+                    "id": "OrdersObjectPage",
                     "name": "sap.fe.templates.ObjectPage",
                     "options": {
                         "settings": {
-                            "contextPath": "/ChildEntities2"
+                            "contextPath": "/Orders",
+                            "controlConfiguration": {
+                                "items/@com.sap.vocabularies.UI.v1.LineItem": {
+                                    "tableSettings": {
+                                        "type": "AnalyticalTable"
+                                    }
+                                }
+                            }
                         }
                     }
                 }
-            }
+            },
+            "config": {}
         },
         "contentDensities": {
             "compact": true,

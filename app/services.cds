@@ -7,7 +7,7 @@ using from './listreport-objectpage/layouts_contacts';
 using from './listreport-objectpage/layouts_GrandChildEntities';
 using from './listreport-objectpage/layouts_ChildEntities3';
 using from './listreport-objectpage/layouts_ChildEntities1';
-using from './listreport-objectpage/layouts_ChildEntities2';
+using from './listreport-objectpage/layouts_Orders';
 using from './listreport-objectpage/layouts_ChartDataEntities';
 using from './listreport-objectpage/value-helps';
 using from './listreport-objectpage/layouts_OrganizationalUnits';

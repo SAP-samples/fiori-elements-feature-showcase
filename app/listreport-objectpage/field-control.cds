@@ -12,7 +12,7 @@ annotate srv.RootEntities {
     association2one @(
         //Search-Term: #Navigation
         //Semantic Object annotation in order to show the links to the semantic object apps in the quick view facet
-        Common.SemanticObject : 'FeatureShowcaseChildEntity2',
+        Common.SemanticObject : 'FeatureShowcaseOrder',
         Common.SemanticObjectMapping : [
             {
                 // Semantic object mapping is done, to set filter values when navigation to the semantic object map
@@ -65,7 +65,7 @@ annotate srv.GrandChildEntities {
     parent  @UI.Hidden;
 };
 
-annotate srv.ChildEntities2 {
+annotate srv.Orders {
     ID      @UI.Hidden @readonly @mandatory;
 };
 

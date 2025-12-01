@@ -52,8 +52,8 @@ annotate schema.RootEntities with{
     association2one @(Common : {
         ValueListWithFixedValues: true,
         ValueList       : {
-            Label          : '{i18n>ChildEntity2}',
-            CollectionPath : 'ChildEntities2',
+            Label          : '{i18n>Order}',
+            CollectionPath : 'Orders',
             Parameters     : [
                 {
                     $Type               : 'Common.ValueListParameterInOut',
