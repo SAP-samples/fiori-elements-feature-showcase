@@ -26,7 +26,6 @@
     "@eslint/json": "^0.13.2",
     "@sap/cds-dk": "^9",
     "@sap/eslint-plugin-cds": "^4.1.0",
-    "@sap/ux-specification": "^1.136.5",
     "@types/node": "^22.0.0",
     "cds-plugin-ui5": "^0.15.0",
     "chai": "^6.2.0",
@@ -46,12 +45,15 @@
   ],
   "cds": {
     "launchpad": {
-      "version": "1.140.0"
+      "version": "1.141.0"
     },
     "requires": {
       "[production]": {
         "auth": "xsuaa",
         "db": "hana"
+      },
+      "[development]": {
+        "auth": "dummy"
       },
       "destinations": true,
       "html5-repo": true,
