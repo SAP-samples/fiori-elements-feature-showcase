@@ -15,7 +15,6 @@
         "start": "ui5 serve"
     },
     "devDependencies": {
-        "@sap/ux-specification": "UI5-1.93",
         "@sap/ux-ui5-tooling": "^1.14.3",
         "@sapui5/types": "~1.140.0",
         "@ui5/cli": "^4.0.0",
