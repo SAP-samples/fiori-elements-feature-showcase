@@ -1,5 +1,5 @@
 import cds from "@sap/cds";
-import { Singleton, RootEntities, OrganizationalUnits, OrganizationalUnit, RootEntity, Orders,Orders_,ChartDataEntities, Contacts, Countries,Criticality,Currencies,UnitOfMeasures, unboundAction, criticalAction } from '#cds-models/LROPODataService'
+import { Singleton, RootEntities, OrganizationalUnits, OrganizationalUnit, RootEntity, Orders, ChartDataEntities, Contacts, Countries,Criticality,Currencies,UnitOfMeasures, unboundAction, criticalAction } from '#cds-models/LROPODataService'
 
 export class LROPODataService extends cds.ApplicationService { init() {
 
@@ -299,7 +299,7 @@ export class LROPODataService extends cds.ApplicationService { init() {
 
     async function cleanUpDatabaseEntities() {
         await DELETE.from(RootEntities);
-        await DELETE.from(Orders_);
+        await DELETE.from(Orders);
     }
 
     // Add base class's handlers. Handlers registered above go first.
