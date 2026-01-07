@@ -96,7 +96,7 @@ entity OrderItems : cuid {
     order       : Association to one Orders;
     product     : String;
     productCategory: String;
-    netValue    : Decimal(5,3);
+    netValue    : Decimal(6,3);
     currency    : Currency;
 }
 
