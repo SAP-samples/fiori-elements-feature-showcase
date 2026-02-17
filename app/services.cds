@@ -1,4 +1,3 @@
-
 using from './listreport-objectpage/capabilities';
 using from './listreport-objectpage/field-control';
 using from './listreport-objectpage/labels';

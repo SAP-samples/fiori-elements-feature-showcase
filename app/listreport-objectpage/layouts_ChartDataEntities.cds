@@ -1,203 +1,190 @@
-using LROPODataService as srv           from '../../srv/list-report-srv';
+using LROPODataService as srv from '../../srv/list-report-srv';
 
 annotate srv.ChartDataEntities with @(
-    UI.LineItem : [
+    UI.LineItem                : [
         {
-            $Type : 'UI.DataField',
-            Value : integerValue,
+            $Type: 'UI.DataField',
+            Value: integerValue,
         },
         {
-            $Type : 'UI.DataField',
-            Value : forecastValue,
+            $Type: 'UI.DataField',
+            Value: forecastValue,
         },
         {
-            $Type : 'UI.DataField',
-            Value : targetValue,
+            $Type: 'UI.DataField',
+            Value: targetValue,
         },
         {
-            $Type : 'UI.DataField',
-            Value : dimensions,
+            $Type: 'UI.DataField',
+            Value: dimensions,
         },
     ],
-    UI.LineItem.@UI.Criticality : criticality_code,
+    UI.LineItem.@UI.Criticality: criticality_code,
     //Search-Term: #ChartSection
-    UI.Chart : {
-        Title       : '{i18n>chart}',
-        ChartType   : #Column,
-        Measures    : [maxAmount],
-        Dimensions  : [dimensions],
-        MeasureAttributes   : [
+    UI.Chart                   : {
+        Title              : '{i18n>chart}',
+        ChartType          : #Column,
+        Measures           : [maxAmount],
+        Dimensions         : [dimensions],
+        MeasureAttributes  : [{
+            $Type  : 'UI.ChartMeasureAttributeType',
+            Measure: maxAmount,
+            Role   : #Axis1
+        }, ],
+        DimensionAttributes: [
             {
-                $Type       : 'UI.ChartMeasureAttributeType',
-                Measure     : maxAmount,
-                Role        : #Axis1
+                $Type    : 'UI.ChartDimensionAttributeType',
+                Dimension: dimensions,
+                Role     : #Category
+            },
+            {
+                $Type    : 'UI.ChartDimensionAttributeType',
+                Dimension: criticality_code,
+                Role     : #Category
             },
         ],
-        DimensionAttributes : [
-            {
-                $Type       : 'UI.ChartDimensionAttributeType',
-                Dimension   : dimensions,
-                Role        : #Category
-            },
-            {
-                $Type       : 'UI.ChartDimensionAttributeType',
-                Dimension   : criticality_code,
-                Role        : #Category
-            },
-        ],
-        Actions : [
-            {
-                $Type       : 'UI.DataFieldForAction',
-                Action      : 'LROPODataService.EntityContainer/unboundAction',
-                Label       : '{i18n>unboundAction}',
-            },
-        ]
+        Actions            : [{
+            $Type : 'UI.DataFieldForAction',
+            Action: 'LROPODataService.EntityContainer/unboundAction',
+            Label : '{i18n>unboundAction}',
+        }, ]
     },
-    UI.Chart #areaChart : {
+    UI.Chart #areaChart        : {
         //Search-Term: #microChartArea
-        Title       : '{i18n>areaChart}',
-        Description : '{i18n>ThisIsAMicroChart}',
-        ChartType   : #Area,
-        Dimensions  : [dimensions],
-        Measures    : [integerValue],
-        MeasureAttributes : [
-            {
-                $Type       : 'UI.ChartMeasureAttributeType',
-                Measure     : integerValue,
-                Role        : #Axis1,
-                DataPoint   : '@UI.DataPoint#areaChart',
-            },
-        ],
+        Title            : '{i18n>areaChart}',
+        Description      : '{i18n>ThisIsAMicroChart}',
+        ChartType        : #Area,
+        Dimensions       : [dimensions],
+        Measures         : [integerValue],
+        MeasureAttributes: [{
+            $Type    : 'UI.ChartMeasureAttributeType',
+            Measure  : integerValue,
+            Role     : #Axis1,
+            DataPoint: '@UI.DataPoint#areaChart',
+        }, ],
     },
-    UI.Chart #lineChart : { 
+    UI.Chart #lineChart        : {
         //SearchTerm: #microChartLine
-        Title       : '{i18n>lineChart}',
-        Description : '{i18n>ThisIsAMicroChart}',
-        ChartType   : #Line,
-        Measures    : [
+        Title            : '{i18n>lineChart}',
+        Description      : '{i18n>ThisIsAMicroChart}',
+        ChartType        : #Line,
+        Measures         : [
             integerValueWithUoM,
             targetValue,
         ],
-        Dimensions  : [
+        Dimensions       : [
             dimensions,
             dimensions
         ],
-        MeasureAttributes : [
+        MeasureAttributes: [
             {
-                $Type       : 'UI.ChartMeasureAttributeType',
-                Measure     : integerValueWithUoM,
-                Role        : #Axis2,
-                DataPoint   : '@UI.DataPoint#lineChartWidth',
+                $Type    : 'UI.ChartMeasureAttributeType',
+                Measure  : integerValueWithUoM,
+                Role     : #Axis2,
+                DataPoint: '@UI.DataPoint#lineChartWidth',
             },
             {
-                $Type       : 'UI.ChartMeasureAttributeType',
-                Measure     : targetValue,
-                Role        : #Axis2,
-                DataPoint   : '@UI.DataPoint#lineChartDepth',
+                $Type    : 'UI.ChartMeasureAttributeType',
+                Measure  : targetValue,
+                Role     : #Axis2,
+                DataPoint: '@UI.DataPoint#lineChartDepth',
             },
         ],
     },
-    UI.Chart #columnChart : { 
+    UI.Chart #columnChart      : {
         //Search-Term: #microChartColumn
-        Title       : '{i18n>columnChart}',
-        Description : '{i18n>ThisIsAMicroChart}',
-        ChartType   : #Column,
-        Measures    : [integerValue],
-        Dimensions  : [dimensions],
-        MeasureAttributes : [
-            {
-                $Type       : 'UI.ChartMeasureAttributeType',
-                Measure     : integerValue,
-                Role        : #Axis1,
-                DataPoint   : '@UI.DataPoint#dataPointForChart',
-            }
-        ]
+        Title            : '{i18n>columnChart}',
+        Description      : '{i18n>ThisIsAMicroChart}',
+        ChartType        : #Column,
+        Measures         : [integerValue],
+        Dimensions       : [dimensions],
+        MeasureAttributes: [{
+            $Type    : 'UI.ChartMeasureAttributeType',
+            Measure  : integerValue,
+            Role     : #Axis1,
+            DataPoint: '@UI.DataPoint#dataPointForChart',
+        }]
     },
-    UI.Chart #stackedBarChart : { 
+    UI.Chart #stackedBarChart  : {
         //Search-Term: #microChartStackedBar
-        Title       : '{i18n>stackedBarChart}',
-        Description : '{i18n>ThisIsAMicroChart}',
-        ChartType   : #BarStacked,
-        Measures    : [integerValue],
-        Dimensions  : [dimensions],
-        MeasureAttributes : [
-            {
-                $Type       : 'UI.ChartMeasureAttributeType',
-                Measure     : integerValue,
-                Role        : #Axis1,
-                DataPoint   : '@UI.DataPoint#dataPointForChart',
-            }
-        ]
+        Title            : '{i18n>stackedBarChart}',
+        Description      : '{i18n>ThisIsAMicroChart}',
+        ChartType        : #BarStacked,
+        Measures         : [integerValue],
+        Dimensions       : [dimensions],
+        MeasureAttributes: [{
+            $Type    : 'UI.ChartMeasureAttributeType',
+            Measure  : integerValue,
+            Role     : #Axis1,
+            DataPoint: '@UI.DataPoint#dataPointForChart',
+        }]
     },
-    UI.Chart #comparisonChart : { 
+    UI.Chart #comparisonChart  : {
         //Search-Term: #microChartComparision
-        Title       : '{i18n>comparisonChart}',
-        Description : '{i18n>ThisIsAMicroChart}',
-        ChartType   : #Bar,
-        Measures    : [integerValue],
-        Dimensions  : [dimensions],
-        MeasureAttributes : [
-            {
-                $Type       : 'UI.ChartMeasureAttributeType',
-                Measure     : integerValue,
-                Role        : #Axis1,
-                DataPoint   : '@UI.DataPoint#dataPointForChart',
-            }
-        ]
+        Title            : '{i18n>comparisonChart}',
+        Description      : '{i18n>ThisIsAMicroChart}',
+        ChartType        : #Bar,
+        Measures         : [integerValue],
+        Dimensions       : [dimensions],
+        MeasureAttributes: [{
+            $Type    : 'UI.ChartMeasureAttributeType',
+            Measure  : integerValue,
+            Role     : #Axis1,
+            DataPoint: '@UI.DataPoint#dataPointForChart',
+        }]
     },
-    
+
 );
 
 annotate srv.ChartDataEntities with @(
-    UI.DataPoint #areaChart : { 
+    UI.DataPoint #areaChart        : {
         //Search-Term: #microChartArea
-        Value                   : integerValue,
-        TargetValue             : targetValue,
-        CriticalityCalculation  : {
-            ImprovementDirection        : #Target,
-            ToleranceRangeLowValue      : areaChartToleranceLowerBoundValue,
-            ToleranceRangeHighValue     : areaChartDeviationUpperBoundValue,
-            DeviationRangeLowValue      : areaChartDeviationLowerBoundValue,
-            DeviationRangeHighValue     : areaChartDeviationUpperBoundValue,
+        Value                 : integerValue,
+        TargetValue           : targetValue,
+        CriticalityCalculation: {
+            ImprovementDirection   : #Target,
+            ToleranceRangeLowValue : areaChartToleranceLowerBoundValue,
+            ToleranceRangeHighValue: areaChartDeviationUpperBoundValue,
+            DeviationRangeLowValue : areaChartDeviationLowerBoundValue,
+            DeviationRangeHighValue: areaChartDeviationUpperBoundValue,
         },
     },
-    UI.DataPoint #lineChartWidth : { 
+    UI.DataPoint #lineChartWidth   : {
         //Search-Term: #microChartLine
-        Value                   : integerValueWithUoM,
-        Criticality             : criticality_code,
+        Value      : integerValueWithUoM,
+        Criticality: criticality_code,
     },
-    UI.DataPoint #lineChartDepth : { 
+    UI.DataPoint #lineChartDepth   : {
         //Search-Term: #microChartLine
-        Value                   : targetValue,
-        Criticality             : criticality_code,
+        Value      : targetValue,
+        Criticality: criticality_code,
     },
-    UI.DataPoint #dataPointForChart : {
+    UI.DataPoint #dataPointForChart: {
         //Search-Terms: #microChartColumn, #microChartStackedBar, #microChartComparision
-        Value                   : integerValue,
-        Criticality             : criticality_code
+        Value      : integerValue,
+        Criticality: criticality_code
     },
 );
 
 annotate srv.ChartDataEntities with @(
-    //Search-Term: #ChartSection
-    Analytics.AggregatedProperties : [
-        {
-            Name                 : 'minAmount',
-            AggregationMethod    : 'min',
-            AggregatableProperty : 'integerValue',
-            @Common.Label     : 'Minimal Net Amount'
-        },
-        {
-            Name                 : 'maxAmount',
-            AggregationMethod    : 'max',
-            AggregatableProperty : 'integerValue',
-            @Common.Label     : 'Maximal Net Amount'
-        },
-        {
-            Name                 : 'avgAmount',
-            AggregationMethod    : 'average',
-            AggregatableProperty : 'integerValue',
-            @Common.Label     : 'Average Net Amount'
-        }
-    ],
-);
+                                      //Search-Term: #ChartSection
+                                    Analytics.AggregatedProperties: [
+    {
+        Name                : 'minAmount',
+        AggregationMethod   : 'min',
+        AggregatableProperty: 'integerValue',
+        @Common.Label       : 'Minimal Net Amount'
+    },
+    {
+        Name                : 'maxAmount',
+        AggregationMethod   : 'max',
+        AggregatableProperty: 'integerValue',
+        @Common.Label       : 'Maximal Net Amount'
+    },
+    {
+        Name                : 'avgAmount',
+        AggregationMethod   : 'average',
+        AggregatableProperty: 'integerValue',
+        @Common.Label       : 'Average Net Amount'
+    }
+], );

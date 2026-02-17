@@ -18,26 +18,35 @@
     "express": "^4"
   },
   "devDependencies": {
-    "cds-launchpad-plugin": "^2.0.1",
     "@cap-js/cds-typer": ">=0.1",
     "@cap-js/cds-types": "^0.15.0",
     "@cap-js/sqlite": "^2",
     "@eslint/js": "^9.35.0",
     "@eslint/json": "^0.13.2",
     "@sap/cds-dk": "^9",
+    "@sap/cds-lsp": "^9.2.1",
     "@sap/eslint-plugin-cds": "^4.1.0",
     "@types/node": "^22.0.0",
+    "cds-launchpad-plugin": "^2.0.1",
     "cds-plugin-ui5": "^0.15.0",
     "chai": "^6.2.0",
     "eslint": "^9.35.0",
     "globals": "^16.4.0",
     "jiti": "^2.5.1",
+    "prettier": "^3.8.1",
     "tsx": "^4",
     "typescript": "^5",
     "typescript-eslint": "^8.43.0"
   },
   "scripts": {
-    "start": "cds-serve --production"
+    "start": "cds-serve --production",
+    "lint": "npx eslint .",
+    "prettier": "npm run prettier-write && npm run prettier-cds-write",
+    "prettier:check": "npm run prettier-check && npm run prettier-cds-check",
+    "prettier-write": "npx prettier . --write",
+    "prettier-check": "npx prettier . --check",
+    "prettier-cds-write": "npx @sap/cds-lsp format-cds -f",
+    "prettier-cds-check": "npx @sap/cds-lsp format-cds --check"
   },
   "sapux": [
     "app/listreport-objectpage",
