@@ -80,8 +80,7 @@ modules:
       commands:
         - npm ci
         - npm run build
-      supported-platforms:
-        []
+      supported-platforms: []
   - name: featureshowcaseworklist
     type: html5
     path: app/worklist
@@ -91,8 +90,7 @@ modules:
       commands:
         - npm ci
         - npm run build
-      supported-platforms:
-        []
+      supported-platforms: []
 
   - name: feature-showcase-destinations
     type: com.sap.application.content
