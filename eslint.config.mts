@@ -19,7 +19,7 @@ export default defineConfig([
         "error",
         { argsIgnorePattern: "^_", reportUsedIgnorePattern: true },
       ],
-      "@typescript-eslint/no-unused-expressions": "off"
+      "@typescript-eslint/no-unused-expressions": "off",
     },
   },
   {
