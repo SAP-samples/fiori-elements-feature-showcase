@@ -119,7 +119,7 @@
                   }
                 }
               },
-              "hideFilterBar": true
+              "initialLoad": "Enabled"
             }
           }
         },
