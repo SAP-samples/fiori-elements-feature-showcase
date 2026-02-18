@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
+# yaml-language-server: $schema=https://ui5.github.io/cli/schema/ui5.yaml.json
 specVersion: "3.1"
 metadata:
   name: listreport-objectpage
