@@ -15,7 +15,7 @@ builder:
     - name: ui5-task-zipper
       afterTask: generateVersionInfo
       configuration:
-        archiveName: worklist
+        archiveName: deliveries
         relativePaths: true
         additionalFiles:
           - xs-app.json
