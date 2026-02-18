@@ -115,8 +115,7 @@
                   }
                 }
               },
-              "hideFilterBar": false,
-              "initialLoad": "Enabled"
+              "hideFilterBar": true
             }
           }
         },
