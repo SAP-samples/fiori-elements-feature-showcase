@@ -1,165 +1,165 @@
 {
-    "_version": "1.32.0",
-    "sap.app": {
-        "id": "sap.fe.showcase.deliveries",
-        "type": "application",
-        "i18n": "i18n/i18n.properties",
-        "applicationVersion": {
-            "version": "1.0.0"
-        },
-        "title": "{{appTitle}}",
-        "description": "{{appDescription}}",
-        "dataSources": {
-            "mainService": {
-                "uri": "/worklist-srv/",
-                "type": "OData",
-                "settings": {
-                    "odataVersion": "4.0"
-                }
-            }
-        },
-        "offline": false,
-        "resources": "resources.json",
-        "sourceTemplate": {
-            "id": "ui5template.fiorielements.v4.lrop",
-            "version": "1.0.0"
-        },
-        "crossNavigation": {
-            "inbounds": {
-                "feature-showcase-deliveries": {
-                    "signature": {
-                        "parameters": {
-                            "ID": {
-                                "required": false
-                            },
-                            "order.ID": {
-                                "required": false
-                            }
-                        },
-                        "additionalParameters": "ignored"
-                    },
-                    "semanticObject": "FeatureShowcaseDeliveries",
-                    "action": "manage",
-                    "title": "Deliveries",
-                    "subTitle": "Manage"
-                }
-            }
-        }
+  "_version": "1.32.0",
+  "sap.app": {
+    "id": "sap.fe.showcase.deliveries",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "1.0.0"
     },
-    "sap.ui": {
-        "technology": "UI5",
-        "icons": {
-            "icon": "",
-            "favIcon": "",
-            "phone": "",
-            "phone@2": "",
-            "tablet": "",
-            "tablet@2": ""
-        },
-        "deviceTypes": {
-            "desktop": true,
-            "tablet": true,
-            "phone": true
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "dataSources": {
+      "mainService": {
+        "uri": "/worklist-srv/",
+        "type": "OData",
+        "settings": {
+          "odataVersion": "4.0"
         }
+      }
     },
-    "sap.ui5": {
-        "dependencies": {
-            "minUI5Version": "1.141.0",
-            "libs": {
-                "sap.ui.core": {},
-                "sap.fe.templates": {}
-            }
-        },
-        "models": {
-            "i18n": {
-                "type": "sap.ui.model.resource.ResourceModel",
-                "uri": "i18n/i18n.properties"
+    "offline": false,
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "ui5template.fiorielements.v4.lrop",
+      "version": "1.0.0"
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "feature-showcase-deliveries": {
+          "signature": {
+            "parameters": {
+              "ID": {
+                "required": false
+              },
+              "order.ID": {
+                "required": false
+              }
             },
-            "": {
-                "dataSource": "mainService",
-                "preload": true,
-                "settings": {
-                    "synchronizationMode": "None",
-                    "operationMode": "Server",
-                    "autoExpandSelect": true,
-                    "earlyRequests": true
-                }
-            }
-        },
-        "routing": {
-            "routes": [
-                {
-                    "pattern": ":?query:",
-                    "name": "DeliveriesList",
-                    "target": "DeliveriesList"
-                },
-                {
-                    "pattern": "Deliveries({key}):?query:",
-                    "name": "DeliveriesObjectPage",
-                    "target": "DeliveriesObjectPage"
-                }
-            ],
-            "targets": {
-                "DeliveriesList": {
-                    "type": "Component",
-                    "id": "DeliveriesList",
-                    "name": "sap.fe.templates.ListReport",
-                    "options": {
-                        "settings": {
-                            "contextPath": "/Deliveries",
-                            "variantManagement": "Page",
-                            "navigation": {
-                                "Deliveries": {
-                                    "detail": {
-                                        "route": "DeliveriesObjectPage"
-                                    }
-                                }
-                            },
-                            "hideFilterBar": false,
-                            "initialLoad": "Enabled"
-                        }
-                    }
-                },
-                "DeliveriesObjectPage": {
-                    "type": "Component",
-                    "id": "DeliveriesObjectPage",
-                    "name": "sap.fe.templates.ObjectPage",
-                    "options": {
-                        "settings": {
-                            "contextPath": "/Deliveries",
-                            "controlConfiguration": {
-                                "items/@com.sap.vocabularies.UI.v1.LineItem": {
-                                    "tableSettings": {
-                                        "type": "ResponsiveTable"
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "config": {}
-        },
-        "contentDensities": {
-            "compact": true,
-            "cozy": true
+            "additionalParameters": "ignored"
+          },
+          "semanticObject": "FeatureShowcaseDeliveries",
+          "action": "manage",
+          "title": "Deliveries",
+          "subTitle": "Manage"
         }
-    },
-    "sap.platform.abap": {
-        "_version": "1.1.0",
-        "uri": ""
-    },
-    "sap.platform.hcp": {
-        "_version": "1.1.0",
-        "uri": ""
-    },
-    "sap.fiori": {
-        "_version": "1.1.0",
-        "registrationIds": [],
-        "archeType": "transactional"
-    },
-    "sap.cloud": {
-        "public": true,
-        "service": "featureshowcase.service"
+      }
     }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "dependencies": {
+      "minUI5Version": "1.141.0",
+      "libs": {
+        "sap.ui.core": {},
+        "sap.fe.templates": {}
+      }
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "uri": "i18n/i18n.properties"
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "synchronizationMode": "None",
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      }
+    },
+    "routing": {
+      "routes": [
+        {
+          "pattern": ":?query:",
+          "name": "DeliveriesList",
+          "target": "DeliveriesList"
+        },
+        {
+          "pattern": "Deliveries({key}):?query:",
+          "name": "DeliveriesObjectPage",
+          "target": "DeliveriesObjectPage"
+        }
+      ],
+      "targets": {
+        "DeliveriesList": {
+          "type": "Component",
+          "id": "DeliveriesList",
+          "name": "sap.fe.templates.ListReport",
+          "options": {
+            "settings": {
+              "contextPath": "/Deliveries",
+              "variantManagement": "Page",
+              "navigation": {
+                "Deliveries": {
+                  "detail": {
+                    "route": "DeliveriesObjectPage"
+                  }
+                }
+              },
+              "hideFilterBar": false,
+              "initialLoad": "Enabled"
+            }
+          }
+        },
+        "DeliveriesObjectPage": {
+          "type": "Component",
+          "id": "DeliveriesObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "contextPath": "/Deliveries",
+              "controlConfiguration": {
+                "items/@com.sap.vocabularies.UI.v1.LineItem": {
+                  "tableSettings": {
+                    "type": "ResponsiveTable"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "config": {}
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    }
+  },
+  "sap.platform.abap": {
+    "_version": "1.1.0",
+    "uri": ""
+  },
+  "sap.platform.hcp": {
+    "_version": "1.1.0",
+    "uri": ""
+  },
+  "sap.fiori": {
+    "_version": "1.1.0",
+    "registrationIds": [],
+    "archeType": "transactional"
+  },
+  "sap.cloud": {
+    "public": true,
+    "service": "featureshowcase.service"
+  }
 }
