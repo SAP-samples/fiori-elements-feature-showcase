@@ -11,7 +11,7 @@
     "outDir": "./dist",
     "baseUrl": "./",
     "paths": {
-      "sap/fe/showcase/worklist/*": ["./webapp/*"],
+      "sap/fe/showcase/deliveries/*": ["./webapp/*"],
       "#cds-models/*": ["../../@cds-models/*/index.ts"]
     },
     "typeRoots": [
