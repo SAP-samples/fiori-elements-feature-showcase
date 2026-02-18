@@ -141,13 +141,13 @@ annotate srv.RootEntities with @(
         {
             //Search-Term: #NavAction
             $Type          : 'UI.DataFieldForIntentBasedNavigation',
-            Label          : '{i18n>inboundNavigation}',
+            Label          : '{i18n>IntentBasedNavigation}',
             SemanticObject : 'FeatureShowcaseOrder',
             //Target entity
             Action         : 'manage',
             //Specifies the app of the target entity
             RequiresContext: true,
-            //Wheather a row has to be selected or not
+            //Whether a row has to be selected or not
             Inline         : true,
             //Part of the table, when true
             IconUrl        : 'sap-icon://cart',
@@ -235,7 +235,7 @@ annotate srv.RootEntities with @(
         {
             //Search-Term: #NavAction
             $Type          : 'UI.DataFieldForIntentBasedNavigation',
-            Label          : '{i18n>inboundNavigation}',
+            Label          : '{i18n>IntentBasedNavigation}',
             SemanticObject : 'FeatureShowcaseOrder',
             //Target entity
             Action         : 'manage',

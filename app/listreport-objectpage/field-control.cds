@@ -13,13 +13,21 @@ annotate srv.RootEntities {
         //Search-Term: #Navigation
         //Semantic Object annotation in order to show the links to the semantic object apps in the quick view facet
         Common.SemanticObject       : 'FeatureShowcaseOrder',
-        Common.SemanticObjectMapping: [{
-            // Semantic object mapping is done, to set filter values when navigation to the semantic object map
-            // No logical sensen behind the connection - just to demonstrate
-            $Type                 : 'Common.SemanticObjectMappingType',
-            LocalProperty         : integerValue,
-            SemanticObjectProperty: 'field3',
-        }, ],
+        Common.SemanticObjectMapping: [
+            {
+                // Map local property to the target object ID
+                $Type                 : 'Common.SemanticObjectMappingType',
+                LocalProperty         : association2one_ID,
+                SemanticObjectProperty: 'ID',
+            },
+            {
+                // Semantic object mapping is done, to set filter values when navigation to the semantic object map
+                // No logical sense behind the connection - just to demonstrate
+                $Type                 : 'Common.SemanticObjectMappingType',
+                LocalProperty         : integerValue,
+                SemanticObjectProperty: 'field3',
+            },
+        ],
     );
 
     fieldWithURLtext  @UI.HiddenFilter  @HTML5.LinkTarget: '_blank'; //Search-Term: #HideFilter, #Link
