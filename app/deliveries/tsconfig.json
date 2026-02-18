@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "target": "es2022",
+    "module": "es2022",
+    "skipLibCheck": true,
+    "allowJs": true,
+    "strict": true,
+    "strictPropertyInitialization": false,
+    "moduleResolution": "node",
+    "rootDir": "../../",
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "paths": {
+      "sap/fe/showcase/worklist/*": ["./webapp/*"],
+      "#cds-models/*": ["../../@cds-models/*/index.ts"]
+    },
+    "typeRoots": [
+      "./node_modules/@types",
+      "./node_modules/@sapui5/types",
+      "../../node_modules/@types",
+      "../../node_modules/@sapui5/types"
+    ]
+  },
+  "include": ["./webapp/**/*", "../ControllerExtension.d.ts"],
+  "exclude": ["node_modules/**"]
+}

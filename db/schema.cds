@@ -103,6 +103,20 @@ entity OrderItems : cuid {
     currency        : Currency;
 }
 
+entity Deliveries : cuid {
+    order          : Association to one Orders;
+    stringProperty : String;
+    deliveryDate   : Date;
+    trackingId     : String;
+    items          : Composition of many DeliveryItems
+                         on items.delivery = $self;
+}
+
+entity DeliveryItems : cuid {
+    delivery : Association to one Deliveries;
+    product  : String;
+}
+
 entity ChildEntities3 : cuid {
     parent : Association to one RootEntities;
     field  : String;

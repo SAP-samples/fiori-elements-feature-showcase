@@ -1,0 +1,31 @@
+{
+    "name": "sap.fe.showcase.deliveries",
+    "version": "0.0.1",
+    "description": "A SAP Fiori application.",
+    "keywords": [
+        "ui5",
+        "openui5",
+        "sapui5"
+    ],
+    "main": "webapp/index.html",
+    "scripts": {
+        "deploy-config": "npx -p @sap/ux-ui5-tooling fiori add deploy-config cf",
+        "build": "ui5 build preload --clean-dest --config ui5-deploy.yaml",
+        "build-local": "ui5 build preload --clean-dest",
+        "start": "ui5 serve"
+    },
+    "devDependencies": {
+        "@sap/ux-ui5-tooling": "^1.14.3",
+        "@sapui5/types": "~1.140.0",
+        "@ui5/cli": "^4.0.0",
+        "typescript": "^5.1.6",
+        "ui5-task-zipper": "^3.4.1",
+        "ui5-tooling-transpile": "^3.7.5"
+    },
+    "ui5": {
+        "dependencies": [
+            "ui5-task-zipper",
+            "mbt"
+        ]
+    }
+}
