@@ -4,9 +4,11 @@ annotate srv.Deliveries with @(
     UI.SelectionFields  : [
         stringProperty,
         deliveryDate,
-        trackingId
+        trackingId,
+        order.ID,
     ],
     UI.LineItem         : [
+        {Value: order.stringProperty, },
         {Value: deliveryDate, },
         {Value: trackingId, },
     ],

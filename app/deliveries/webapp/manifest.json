@@ -28,8 +28,15 @@
             "inbounds": {
                 "feature-showcase-deliveries": {
                     "signature": {
-                        "parameters": {},
-                        "additionalParameters": "allowed"
+                        "parameters": {
+                            "ID": {
+                                "required": false
+                            },
+                            "order.ID": {
+                                "required": false
+                            }
+                        },
+                        "additionalParameters": "ignored"
                     },
                     "semanticObject": "FeatureShowcaseDeliveries",
                     "action": "manage",
@@ -108,7 +115,8 @@
                                     }
                                 }
                             },
-                            "hideFilterBar": false
+                            "hideFilterBar": false,
+                            "initialLoad": "Enabled"
                         }
                     }
                 },
