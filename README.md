@@ -1061,7 +1061,7 @@ annotate srv.RootEntities with @(
         ...
         {
             $Type : 'UI.DataFieldForIntentBasedNavigation',
-            Label : '{i18n>inboundNavigation}',
+            Label : '{i18n>IntentBasedNavigation}',
             SemanticObject : 'FeatureShowcaseOrder',
             Action : 'manage',
             RequiresContext : true,
@@ -1978,8 +1978,18 @@ The semantic object is the application name in the [manifest.json](app/worklist/
         "inbounds": {
             "feature-showcase-worklist": {
                 "signature": {
-                    "parameters": {},
-                    "additionalParameters": "allowed"
+                    "parameters": {
+                        "ID": {
+                            "required": false
+                        },
+                        "field3": {
+                            "required": false
+                        },
+                        "integerProperty": {
+                            "required": false
+                        }
+                    },
+                    "additionalParameters": "ignored"
                 },
                 "semanticObject": "FeatureShowcaseOrder",
                 "action": "manage",
@@ -3661,7 +3671,7 @@ annotate srv.RootEntities with @(
             ...
             {
                 $Type : 'UI.DataFieldForIntentBasedNavigation',
-                Label : '{i18n>inboundNavigation}',
+                Label : '{i18n>IntentBasedNavigation}',
                 SemanticObject : 'FeatureShowcaseOrder',
                 Action : 'manage',
                 RequiresContext : true,
