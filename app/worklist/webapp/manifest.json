@@ -28,8 +28,18 @@
       "inbounds": {
         "feature-showcase-worklist": {
           "signature": {
-            "parameters": {},
-            "additionalParameters": "allowed"
+            "parameters": {
+              "ID": {
+                "required": false
+              },
+              "field3": {
+                "required": false
+              },
+              "integerProperty": {
+                "required": false
+              }
+            },
+            "additionalParameters": "ignored"
           },
           "semanticObject": "FeatureShowcaseOrder",
           "action": "manage",
