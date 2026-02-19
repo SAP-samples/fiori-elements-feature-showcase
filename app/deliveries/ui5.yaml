@@ -2,7 +2,7 @@
 
 specVersion: "4.0"
 metadata:
-  name: sap.fe.showcase.lrop
+  name: sap.fe.showcase.deliveries
 type: application
 server:
   customMiddleware:

@@ -1,7 +1,7 @@
 # yaml-language-server: $schema=https://ui5.github.io/cli/schema/ui5.yaml.json
 specVersion: "3.1"
 metadata:
-  name: worklist
+  name: sap.fe.showcase.deliveries
 type: application
 resources:
   configuration:
@@ -15,7 +15,7 @@ builder:
     - name: ui5-task-zipper
       afterTask: generateVersionInfo
       configuration:
-        archiveName: worklist
+        archiveName: deliveries
         relativePaths: true
         additionalFiles:
           - xs-app.json

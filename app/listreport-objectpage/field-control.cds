@@ -12,8 +12,8 @@ annotate srv.RootEntities {
     association2one   @(
         //Search-Term: #Navigation
         //Semantic Object annotation in order to show the links to the semantic object apps in the quick view facet
-        Common.SemanticObject       : 'FeatureShowcaseOrder',
-        Common.SemanticObjectMapping: [
+        Common.SemanticObject                   : 'FeatureShowcaseOrder',
+        Common.SemanticObjectMapping            : [
             {
                 // Map local property to the target object ID
                 $Type                 : 'Common.SemanticObjectMappingType',
@@ -28,6 +28,13 @@ annotate srv.RootEntities {
                 SemanticObjectProperty: 'field3',
             },
         ],
+        Common.SemanticObject #Deliveries       : 'FeatureShowcaseDeliveries',
+        Common.SemanticObjectMapping #Deliveries: [{
+            // Map local property to the target object ID
+            $Type                 : 'Common.SemanticObjectMappingType',
+            LocalProperty         : association2one_ID,
+            SemanticObjectProperty: 'order.ID',
+        }],
     );
 
     fieldWithURLtext  @UI.HiddenFilter  @HTML5.LinkTarget: '_blank'; //Search-Term: #HideFilter, #Link

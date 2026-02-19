@@ -50,7 +50,8 @@
   },
   "sapux": [
     "app/listreport-objectpage",
-    "app/worklist"
+    "app/worklist",
+    "app/deliveries"
   ],
   "cds": {
     "launchpad": {

@@ -1,6 +1,35 @@
 using WorkListODataService as srv from '../../srv/worklist-srv';
 
+annotate srv.Orders with {
+    ID
+    @title: '{i18n>OrderID}'
+    @(Common: {
+        Text           : stringProperty,
+        TextArrangement: #TextOnly,
+        ValueList      : {
+            Label         : '{i18n>ORDERS}}',
+            CollectionPath: 'Orders',
+            Parameters    : [
+                {
+                    $Type            : 'Common.ValueListParameterInOut',
+                    ValueListProperty: 'ID',
+                    LocalDataProperty: ID,
+                },
+                {
+                    $Type            : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty: 'stringProperty',
+                }
+            ]
+        }
+    });
+};
+
 annotate srv.Orders with @(
+    UI.SelectionFields                            : [
+        ID,
+        stringProperty,
+        country_code,
+    ],
     UI.LineItem                                   : [
         {Value: stringProperty, },
         {Value: integerProperty, },
