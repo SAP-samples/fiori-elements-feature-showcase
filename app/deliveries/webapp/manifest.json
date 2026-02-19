@@ -108,14 +108,14 @@
             "settings": {
               "contextPath": "/Deliveries",
               "variantManagement": "Page",
+              "liveMode": true,
               "navigation": {
                 "Deliveries": {
                   "detail": {
                     "route": "DeliveriesObjectPage"
                   }
                 }
-              },
-              "hideFilterBar": true
+              }
             }
           }
         },
