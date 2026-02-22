@@ -56,6 +56,8 @@ aspect rootBasis : {
 
     description                 : String(1000);
     description_customGrowing   : String(1000);
+
+    organizationalUnit          : Association to one OrganizationalUnits;
 };
 
 entity RootEntities : cuid, managed, rootBasis {
