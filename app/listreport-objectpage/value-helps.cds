@@ -135,6 +135,60 @@ annotate schema.RootEntities with {
             ]
         }
     });
+
+    organizationalUnit          @(Common: {
+        Text                        : organizationalUnit.name,
+        TextArrangement             : #TextFirst,
+        ValueList                   : {
+            Label         : '{i18n>OrganizationalUnit}',
+            CollectionPath: 'OrganizationalUnits',
+            Parameters    : [
+                {
+                    $Type            : 'Common.ValueListParameterInOut',
+                    ValueListProperty: 'ID',
+                    LocalDataProperty: organizationalUnit_ID
+                },
+                {
+                    $Type            : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty: 'description',
+                },
+                {
+                    $Type            : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty: 'category',
+                },
+                {
+                    $Type            : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty: 'superOrdinateOrgUnit_ID',
+                }
+
+            ]
+        },
+        ValueList #OrgUnitsHierarchy: {
+            Label                       : '{i18n>OrganizationalUnitHierarchy}',
+            CollectionPath              : 'OrganizationalUnits',
+            PresentationVariantQualifier: 'OrgUnitsHierarchy',
+            Parameters                  : [
+                {
+                    $Type            : 'Common.ValueListParameterInOut',
+                    ValueListProperty: 'ID',
+                    LocalDataProperty: organizationalUnit_ID
+                },
+                {
+                    $Type            : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty: 'description',
+                },
+                {
+                    $Type            : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty: 'category',
+                },
+                {
+                    $Type            : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty: 'superOrdinateOrgUnit_ID',
+                }
+
+            ]
+        }
+    });
 };
 
 annotate schema.AssignedRegions with {
