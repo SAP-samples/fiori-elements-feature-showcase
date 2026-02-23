@@ -34,6 +34,8 @@ annotate schema.RootEntities with {
     regionWithConstantValueHelp @title: '{i18n>region_with_constant_vh}';
     email                       @title: '{i18n>email}'           @Communication.IsEmailAddress; //Search-Term: #CommunicationFields
     telephone                   @title: '{i18n>telephone}'       @Communication.IsPhoneNumber; //Search-Term: #CommunicationFields
+
+    organizationalUnit          @title: '{i18n>OrganizationalUnit}';
 };
 
 annotate schema.ChildEntities1 with @title: '{i18n>childEntities1}' {

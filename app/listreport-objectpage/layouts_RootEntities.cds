@@ -590,7 +590,8 @@ annotate srv.RootEntities with @(
                                UI.SelectionFields: [
     stringProperty,
     validFrom,
-    childEntities1.criticalityValue_code //Search-Term: #NavigationProperties
+    childEntities1.criticalityValue_code, //Search-Term: #NavigationProperties
+    organizationalUnit_ID,
 ], );
 
 // UI.SelectionVariant
