@@ -191,6 +191,9 @@
                         "placement": "After",
                         "anchor": "DataField::fieldWithCriticality"
                       }
+                    },
+                    "DataField::association2one::country_code": {
+                      "availability": "Adaptation"
                     }
                   }
                 },

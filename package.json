@@ -55,7 +55,7 @@
   ],
   "cds": {
     "launchpad": {
-      "version": "1.141.0"
+      "version": "1.145.0"
     },
     "requires": {
       "[production]": {
