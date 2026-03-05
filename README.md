@@ -79,6 +79,7 @@ Open `http://localhost:4008/$launchpad` in the Browser to get to the SAP Fiori l
       - [Adding Currency or UoM Fields to a table](#adding-currency-or-uom-fields-to-a-table)
         - [Customize Currency or UoM scale](#customize-currency-or-uom-scale)
       - [Adding a link to a table](#adding-a-link-to-a-table)
+      - [Adding a navigation property only to personalization](#adding-a-navigation-property-only-to-personalization)
       - [Add custom column (Extensibility)](#add-custom-column-extensibility)
 - [Object Page](#object-page)
   - [General Features](#general-features-object-page)
@@ -2131,6 +2132,49 @@ annotate srv.RootEntities with {
 ```
 
 The annotation is documented [here](https://sap.github.io/odata-vocabularies/vocabularies/HTML5.html#LinkTarget).
+
+#### Adding a navigation property only to personalization
+
+<i>Search term:</i> [`#NavPropInAdaptability`](../../search?q=NavPropInAdaptability), [`DataField::association2one`](../../search?q=DataField::association2one::country_code)
+
+Associations and compositions can be added as columns to a table by adding them to the `@UI.LineItem` annotation. If the property should only be available via the personalization settings, an additional configuration in the [manifest.json](app/listreport-objectpage/webapp/manifest.json) is necessary.
+
+```cds
+@UI.LineItem : [
+    {
+        //Search-Term: #NavPropInAdaptability
+        Label : 'Navigation field only available via settings',
+        Value : association2one.country_code,
+    }
+]
+```
+
+Setting the `availability` property to `Adaptation`, will only bring up the property in the table settings for the user add it if necessary.
+
+```json
+"RootEntityListReport": {
+    ...
+    "options": {
+        "settings": {
+            ...
+            "controlConfiguration": {
+                "@com.sap.vocabularies.UI.v1.LineItem": {
+                    ...
+                    "columns": {
+                        "DataField::association2one::country_code": {
+                            "availability": "Adaptation"
+                        }
+                    }
+                },
+                ...
+            },
+            ...
+        }
+    }
+}
+```
+
+The ID of the column follows the pattern `DataField::<path>`, with the dots in the navigation path being replaced by two ':', e.g. `DataField::association2one::country_code`.
 
 #### Add custom column (Extensibility)
 

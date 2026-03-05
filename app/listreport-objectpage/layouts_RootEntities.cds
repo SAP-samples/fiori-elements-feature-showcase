@@ -65,6 +65,11 @@ annotate srv.RootEntities with @(
             @UI.Importance: #Low,
         },
         {
+            //Search-Term: #NavPropInAdaptability
+            Label : 'Navigation field only available via settings',
+            Value : association2one.country_code,
+        },
+        {
             $Type                    : 'UI.DataField',
             Value                    : fieldWithCriticality,
             Criticality              : criticality_code, //Supported values 0,1,2,3,5
