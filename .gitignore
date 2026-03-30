@@ -29,3 +29,5 @@ mta_archives/
 .idea
 @cds-models
 dist/
+
+.cdsrc-private.json
