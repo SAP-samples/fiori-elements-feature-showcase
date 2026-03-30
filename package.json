@@ -54,6 +54,9 @@
     "app/deliveries"
   ],
   "cds": {
+    "features": {
+      "assert_integrity": "db"
+    },
     "launchpad": {
       "version": "1.145.0"
     },
