@@ -16,6 +16,7 @@ import {
   criticalAction,
   confirmAction
 } from "#cds-models/LROPODataService";
+import type { CdsDate, CdsTime } from "#cds-models/_";
 
 export class LROPODataService extends cds.ApplicationService {
   init() {
@@ -39,13 +40,13 @@ export class LROPODataService extends cds.ApplicationService {
         //Requesting the
         const contact = await SELECT.one
           .from(Contacts, response.contact.ID as string)
-          .columns((contact: any) => {
+          .columns((contact) => {
             (contact.ID,
               contact.building,
               contact.street,
               contact.postCode,
               contact.city,
-              contact.country((country: any) => {
+              contact.country((country) => {
                 country.name;
               }));
           });
@@ -244,7 +245,7 @@ export class LROPODataService extends cds.ApplicationService {
       //Create new entities
       const countRootEntities = 4;
       const association2oneIDs = await createOrders(countRootEntities);
-      const rootEntities = [];
+      const rootEntities: RootEntity[] = [];
       const imageUrls = [
         "sap-icon://lab",
         "sap-icon://geographic-bubble-chart",
@@ -287,9 +288,9 @@ export class LROPODataService extends cds.ApplicationService {
           deletePossible: i === 0 ? false : true,
           updateHidden: i === 1 ? true : false,
           dimensions: (i + 1) * 2 === 6 ? i * 2 : (i + 1) * 2, //manipulate values, that two entities have one dimension for demonstrating aggregation on ALP floor plan
-          validFrom: date.toISOString().substring(0, 11),
-          validTo: date2.toISOString().substring(0, 11),
-          time: `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`,
+          validFrom: date.toISOString().substring(0, 10) as CdsDate,
+          validTo: date2.toISOString().substring(0, 10) as CdsDate,
+          time: `${String(date.getHours()).padStart(2, "0")}:${String(date.getMinutes()).padStart(2, "0")}:${String(date.getSeconds()).padStart(2, "0")}` as CdsTime,
           timeStamp: date.toISOString(),
           fieldWithUoM: i * 49 + 49,
           fieldWithPrice: i * 100,
@@ -315,35 +316,27 @@ export class LROPODataService extends cds.ApplicationService {
           chartEntities: await createChartEntities(10, uuid),
         });
       }
-      await cds.tx(req).run(INSERT.into(RootEntities).entries(rootEntities as any));
+      await cds.tx(req).run(INSERT.into(RootEntities).entries(rootEntities));
       return req.notify(`All entity data has been reset!`);
     });
 
     function determineFieldWithCriticalityValue(
       criticality_code: number,
     ): string {
-      let fieldWithCriticality = "";
       switch (criticality_code) {
         case 0:
-          fieldWithCriticality = "Neutral";
-          break;
+          return "Neutral";
         case 1:
-          fieldWithCriticality = "Negative";
-          break;
+          return "Negative";
         case 2:
-          fieldWithCriticality = "Critical";
-          break;
+          return "Critical";
         case 3:
-          fieldWithCriticality = "Positive";
-          break;
+          return "Positive";
         case 5:
-          fieldWithCriticality = "New Item";
-          break;
+          return "New Item";
         default:
-          fieldWithCriticality = "Unknown criticality";
-          break;
+          return "Unknown criticality";
       }
-      return fieldWithCriticality;
     }
 
     async function createOrders(amountRootEntities: number) {
