@@ -71,6 +71,9 @@ service LROPODataService @(path: '/srv1') {
 
     action criticalAction();
 
+    //Search-Term: #ConfirmationPopup
+    action confirmAction();
+
 
     entity ChildEntities1         as projection on persistence.ChildEntities1;
 

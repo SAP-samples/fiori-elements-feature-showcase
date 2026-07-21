@@ -214,6 +214,22 @@ export class LROPODataService extends cds.ApplicationService {
       return req.notify(`Critical action pressed`); //Search-Term: #MessageToast
     });
 
+    //Search-Term: #ConfirmationPopup
+    this.on("confirmAction", async (req: any) => {
+      if (req.headers?.prefer?.includes("handling=strict")) {
+        req.res.setHeader("Preference-Applied", "handling=strict");
+        return req.reject(412, {
+          code: "STRICT",
+          details: [
+            {
+              message: "Please confirm the action!",
+            },
+          ],
+        });
+      }
+      return req.notify(`Action executed`);
+    });
+
     //Reseting all entities to there default state
     this.on(resetEntities, async (req) => {
       //Delete current data

@@ -29,6 +29,12 @@ annotate srv.RootEntities with @(
             //The Action is in the footer of the object page
             Criticality: criticality_code, //Only 0,1,3 supported
         },
+        {
+            //Search-Term: #ConfirmationPopup
+            $Type : 'UI.DataFieldForAction',
+            Action: 'LROPODataService.EntityContainer/confirmAction',
+            Label : '{i18n>confirmAction}',
+        },
     ],
 
 
