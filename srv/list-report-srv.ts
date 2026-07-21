@@ -14,6 +14,7 @@ import {
   UnitOfMeasures,
   unboundAction,
   criticalAction,
+  confirmAction
 } from "#cds-models/LROPODataService";
 
 export class LROPODataService extends cds.ApplicationService {
@@ -32,23 +33,23 @@ export class LROPODataService extends cds.ApplicationService {
 
       //Create Address Label of contact
       //The address label is a property which contains all address information of a contact in a single string
-      //To avoid managing the properties itself and the string, the concatination is done
-      //The concatination is only done, if the addressLabel is requested and the contact ID is available
+      //To avoid managing the properties itself and the string, the concatenation is done
+      //The concatenation is only done, if the addressLabel is requested and the contact ID is available
       if (response.contact && response.contact.addressLabel === null) {
         //Requesting the
         const contact = await SELECT.one
-          .from(Contacts, response.contact.ID)
-          .columns((contact) => {
+          .from(Contacts, response.contact.ID as string)
+          .columns((contact: any) => {
             (contact.ID,
               contact.building,
               contact.street,
               contact.postCode,
               contact.city,
-              contact.country((country) => {
+              contact.country((country: any) => {
                 country.name;
               }));
           });
-        response.contact.addressLabel = `${contact.building}\n${contact.street}\n${contact.postCode} ${contact.city}\n${contact.country.name}`;
+        response.contact.addressLabel = `${contact!.building}\n${contact!.street}\n${contact!.postCode} ${contact!.city}\n${contact!.country!.name}`;
         await UPDATE(Contacts, response.contact.ID).with({
           addressLabel: response.contact.addressLabel,
         }); //Update the persistence with the generated value
@@ -77,21 +78,25 @@ export class LROPODataService extends cds.ApplicationService {
               },
             ]),
           );
-          //Calculating the forcast and target Value of each chart entity
+          //Calculating the forecast and target Value of each chart entity
           response.chartEntities.forEach(async (e) => {
+            e.integerValue ??= 0;
             e.forecastValue =
               chartEntities.get(e.ID) != undefined
-                ? chartEntities.get(e.ID).forecastValue
+                ? chartEntities.get(e.ID)!.forecastValue
                 : e.integerValue + 10;
             e.targetValue =
               chartEntities.get(e.ID) != undefined
-                ? chartEntities.get(e.ID).targetValue
-                : e.integerValue + 20;
+                ? chartEntities.get(e.ID)!.targetValue
+                : e.integerValue! + 20;
           });
         }
         //Calculate the values important for the criticality calculation
-        //This is done to avoid manageing all these value in the csv file
+        //This is done to avoid managing all these value in the csv file
         response.chartEntities.forEach((e) => {
+          e.integerValue ??= 0;
+          e.targetValue ??= 0;
+          e.forecastValue ??= 0;
           e.areaChartToleranceUpperBoundValue =
             e.integerValue +
             Math.round((e.integerValue / e.targetValue) * 5 + 15);
@@ -110,7 +115,7 @@ export class LROPODataService extends cds.ApplicationService {
 
     //Filling of properties, when a new RootEntity is created
     this.before("NEW", RootEntities.drafts, async (req) => {
-      req.data.contact_ID = (await SELECT.one.from(Contacts).columns("ID")).ID; //Default Contact to prevent Error when creating address label
+      req.data.contact_ID = (await SELECT.one.from(Contacts).columns("ID"))!.ID; //Default Contact to prevent Error when creating address label
       //Generating chart entities, so the charts are not empty - the user has no option to fill in chart entity values in the UI
       req.data.chartEntities = [];
       for (let i = 1; i <= 10; i++) {
@@ -141,10 +146,10 @@ export class LROPODataService extends cds.ApplicationService {
           .columns("max(externalId) as highestID"),
       ]);
       const newID = cds.utils.uuid();
-      toCopy.ID = newID;
-      toCopy.externalId = `0${Number(highestID) + 1}`;
-      await INSERT.into(OrganizationalUnits).entries(toCopy);
-      toCopy.IsActiveEntity = true;
+      toCopy!.ID = newID;
+      toCopy!.externalId = `0${Number(highestID) + 1}`;
+      await INSERT.into(OrganizationalUnits).entries(toCopy!);
+      toCopy!.IsActiveEntity = true;
       return toCopy;
     });
 
@@ -152,29 +157,29 @@ export class LROPODataService extends cds.ApplicationService {
       const [nextSibling, orgUnit] = await Promise.all([
         SELECT.one
           .from(OrganizationalUnit)
-          .where({ ID: req.data.NextSibling.ID })
+          .where({ ID: req.data.NextSibling!.ID })
           .columns("rank"),
         SELECT.one.from(req.subject).columns("rank"),
       ]);
       await Promise.all([
         UPDATE.entity(OrganizationalUnit)
-          .where({ ID: req.data.NextSibling.ID })
-          .set({ rank: orgUnit.rank }),
-        UPDATE.entity(req.subject).set({ rank: nextSibling.rank }),
+          .where({ ID: req.data.NextSibling!.ID })
+          .set({ rank: orgUnit!.rank }),
+        UPDATE.entity(req.subject).set({ rank: nextSibling!.rank }),
       ]);
     });
 
     this.before("READ", OrganizationalUnits, (req) => {
       if (
-        req.query.SELECT.columns &&
-        req.query.SELECT.columns.some(
+        req.query.SELECT!.columns &&
+        req.query.SELECT!.columns.some(
           (c) => c.ref && c.expand && c.ref[0] === "category",
         ) &&
-        !req.query.SELECT.columns.some(
+        !req.query.SELECT!.columns.some(
           (c) => c.ref && c.ref[0] === "category_code",
         )
       ) {
-        req.query.SELECT.columns.push({ ref: ["category_code"] });
+        req.query.SELECT!.columns.push({ ref: ["category_code"] });
       }
     });
 
@@ -187,11 +192,11 @@ export class LROPODataService extends cds.ApplicationService {
     this.on(changeCriticality, async (req) => {
       //Req.data contains the parameter values of the action
       const criticality_code = req.data.newCriticality;
-      //Update the current RootEntity with the new value for ciritcality_code and fieldWithCriticality
+      //Update the current RootEntity with the new value for criticality_code and fieldWithCriticality
       return UPDATE(req.subject).with({
         criticality_code: criticality_code,
         fieldWithCriticality:
-          determineFieldWithCriticalityValue(criticality_code),
+          determineFieldWithCriticalityValue(criticality_code!),
       });
     });
 
@@ -215,9 +220,11 @@ export class LROPODataService extends cds.ApplicationService {
     });
 
     //Search-Term: #ConfirmationPopup
-    this.on("confirmAction", async (req: any) => {
+    this.on(confirmAction, async (req) => {
       if (req.headers?.prefer?.includes("handling=strict")) {
+        // @ts-expect-error not yet in cds-types
         req.res.setHeader("Preference-Applied", "handling=strict");
+        // @ts-expect-error not yet in this variant in cds-types
         return req.reject(412, {
           code: "STRICT",
           details: [
@@ -230,7 +237,7 @@ export class LROPODataService extends cds.ApplicationService {
       return req.notify(`Action executed`);
     });
 
-    //Reseting all entities to there default state
+    //Resetting all entities to there default state
     this.on(resetEntities, async (req) => {
       //Delete current data
       await cleanUpDatabaseEntities();
@@ -246,7 +253,7 @@ export class LROPODataService extends cds.ApplicationService {
       const contacts = await SELECT.from(Contacts).columns("ID");
       const unitOfMeasures = await SELECT.from(UnitOfMeasures).columns("code");
       const currencies = await SELECT.from(Currencies).columns("code");
-      const criticaityCodes = await SELECT.from(Criticality).columns("code");
+      const criticalityCodes = await SELECT.from(Criticality).columns("code");
       const countries = await SELECT.from(Countries).columns("code");
       for (let i = 0; i < countRootEntities; i++) {
         const date = new Date();
@@ -265,9 +272,9 @@ export class LROPODataService extends cds.ApplicationService {
           isoCurrency_code:
             i >= currencies.length ? currencies[0].code : currencies[i].code,
           criticality_code:
-            i >= criticaityCodes.length
-              ? criticaityCodes[0].code
-              : criticaityCodes[i].code,
+            i >= criticalityCodes.length
+              ? criticalityCodes[0].code
+              : criticalityCodes[i].code,
           country_code:
             i >= countries.length ? countries[0].code : countries[i].code,
           //Calculating values, just to have values for the UI. The generation has no special logic behind it.
@@ -279,7 +286,7 @@ export class LROPODataService extends cds.ApplicationService {
                 : `Root entity ${i + 1}`,
           deletePossible: i === 0 ? false : true,
           updateHidden: i === 1 ? true : false,
-          dimensions: (i + 1) * 2 === 6 ? i * 2 : (i + 1) * 2, //manipulate values, that two entities have one dimension for demonstrating aggregation on ALP floorplan
+          dimensions: (i + 1) * 2 === 6 ? i * 2 : (i + 1) * 2, //manipulate values, that two entities have one dimension for demonstrating aggregation on ALP floor plan
           validFrom: date.toISOString().substring(0, 11),
           validTo: date2.toISOString().substring(0, 11),
           time: `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`,
@@ -287,9 +294,9 @@ export class LROPODataService extends cds.ApplicationService {
           fieldWithUoM: i * 49 + 49,
           fieldWithPrice: i * 100,
           fieldWithCriticality: determineFieldWithCriticalityValue(
-            i === criticaityCodes.length
-              ? criticaityCodes[0].code
-              : criticaityCodes[i].code,
+            i === criticalityCodes.length
+              ? criticalityCodes[0].code!
+              : criticalityCodes[i].code!,
           ),
           integerValue: 20 + 2 * i,
           forecastValue: 20 + 2 * i + 10 * i,
@@ -308,8 +315,8 @@ export class LROPODataService extends cds.ApplicationService {
           chartEntities: await createChartEntities(10, uuid),
         });
       }
-      await cds.tx(req).run(INSERT.into(RootEntities).entries(rootEntities));
-      return req.notify(`All entitiy data has been reseted!`);
+      await cds.tx(req).run(INSERT.into(RootEntities).entries(rootEntities as any));
+      return req.notify(`All entity data has been reset!`);
     });
 
     function determineFieldWithCriticalityValue(

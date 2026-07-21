@@ -45,7 +45,8 @@
     "prettier-write": "npx prettier . --write",
     "prettier-check": "npx prettier . --check",
     "prettier-cds-write": "npx @sap/cds-lsp format-cds -f",
-    "prettier-cds-check": "npx @sap/cds-lsp format-cds --check"
+    "prettier-cds-check": "npx @sap/cds-lsp format-cds --check",
+    "types": "npx cds-typer \"*\" --outputDTsFiles"
   },
   "sapux": [
     "app/listreport-objectpage",
