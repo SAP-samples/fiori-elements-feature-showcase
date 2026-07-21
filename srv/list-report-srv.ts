@@ -14,7 +14,7 @@ import {
   UnitOfMeasures,
   unboundAction,
   criticalAction,
-  confirmAction
+  confirmAction,
 } from "#cds-models/LROPODataService";
 import type { CdsDate, CdsTime } from "#cds-models/_";
 
@@ -196,8 +196,9 @@ export class LROPODataService extends cds.ApplicationService {
       //Update the current RootEntity with the new value for criticality_code and fieldWithCriticality
       return UPDATE(req.subject).with({
         criticality_code: criticality_code,
-        fieldWithCriticality:
-          determineFieldWithCriticalityValue(criticality_code!),
+        fieldWithCriticality: determineFieldWithCriticalityValue(
+          criticality_code!,
+        ),
       });
     });
 
