@@ -1122,6 +1122,36 @@ annotate srv.criticalAction with @(
 );
 ```
 
+##### Confirmation Popup
+
+<i>since UI5 Version: 1.100.0</i>
+<i>Search term:</i> [`#ConfirmationPopup`](../../search?q=ConfirmationPopup)
+
+SAP Fiori elements will display confirmation popups for application specific actions and the standard actions Save, Activate, Create when a transition message with the error code 412 is returned.
+For that SAP Fiori elements sends the first action call with the header parameter 'Prefer:handling=strict'. The backend can react to that by sending the 412 error back and a confirmation popup will be shown with the message and two buttons: "Confirm" and "Cancel".
+After pressing confirm, SAP Fiori elements will call the action again, however this time without the parameter 'Prefer:handling=strict' and the backend can execute the action.
+
+An example implementation of the backend handler for CAP Node.js can be seen below.
+
+```ts
+this.on("confirmAction", async (req: any) => {
+  if (req.headers?.prefer?.includes("handling=strict")) {
+    req.res.setHeader("Preference-Applied", "handling=strict");
+    return req.reject(412, {
+      code: "STRICT",
+      details: [
+        {
+          message: "Please confirm the action!",
+        },
+      ],
+    });
+  }
+  return req.notify(`Action executed`);
+});
+```
+
+More information are available in the [SAP UI5 Documentation](https://sapui5.hana.ondemand.com/#/topic/9a536627a6a94de084b0605eb164d2c8.html).
+
 ##### Message Toasts
 
 <i>Search term:</i> `#MessageToast`
